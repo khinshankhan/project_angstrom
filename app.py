@@ -1,7 +1,6 @@
 from flask import Flask, render_template, session, redirect, url_for, flash,request
 import random
 import os
-import requests
 
 app = Flask(__name__)
 
@@ -24,7 +23,7 @@ def valid():
         return True
     return False
 
-@app.route('login', methods = ['GET'. 'POST'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     session['user'] = request.form['user']
     session['pass'] = request.form['pass']
