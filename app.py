@@ -1,6 +1,11 @@
 from flask import Flask, render_template, session, redirect, url_for, flash,request
 import random
 import os
+import sqlite3   #enable control of an sqlite database
+
+database = "database.db"
+db = sqlite3.connect(database)
+c = db.cursor()
 
 app = Flask(__name__)
 
