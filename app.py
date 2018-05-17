@@ -56,7 +56,7 @@ def addmatch():
         
         #figure out how to do this?
         taskCount = 13
-        
+        '''
         queryString = """INSERT INTO match_performance VALUES (%d, %d, %d"""+
                 ("%d," * 13)
         
@@ -66,7 +66,7 @@ def addmatch():
                 req['user-id'],
                 #add better way to add tasks
                 req['notes']
-        )
+        )'''
         pass
 '''
 

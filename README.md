@@ -2,6 +2,7 @@
 
 ## Atomic Theory: Khinshan Khan, Stanley Lin,Ish Mahdi Ryan Siu
 
+### DeployTest: [206.189.235.133](http://206.189.235.133/)
 ### How to run:
 1. Clone the repo: `git clone https://github.com/kkhan01/Atomic_Theory-Project_Angstrom.git`
 2. Activate or create and activate a new virtual environment with basic dependecies (eg Flask)
