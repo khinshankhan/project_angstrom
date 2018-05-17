@@ -1,5 +1,4 @@
-.content .container {
+.content .border {
     border: 1px solid teal;
-    margin: 20px;
     padding: 20px;
 }

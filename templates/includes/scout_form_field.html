@@ -1,0 +1,22 @@
+{% if game.type == 1 %}
+
+<div class="input-field col s6">
+  <div class="switch">
+    <p>{{ game.name }}</p>
+    <label>
+      No
+      <input id="{{ game.id }}" name="{{ game.id }}" type="checkbox">
+      <span class="lever"></span>
+      Yes
+    </label>
+  </div>
+</div>
+
+{% else %}
+
+<div class="input-field col s12">
+  <input id="{{ game.id }}" name="{{ game.id }}" type="text" required="" class="validate">
+  <label for="{{ game.id }}">{{ game.name }}</label>
+</div>
+
+{% endif %}

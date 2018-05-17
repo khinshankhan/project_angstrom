@@ -1,4 +1,8 @@
 from flask import Flask, render_template, session, redirect, url_for, flash, request
+from utils import game_config
+from game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
+from game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
+
 import random
 import os
 import sqlite3   #enable control of an sqlite database
@@ -20,7 +24,7 @@ def home():
         flash('You are not logged in.')
         return redirect( url_for('index') )
     else:
-        return render_template('home.html', user=session['u_id'])
+        return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
 
 #will check against database later
 def valid(u_id, pw):
@@ -44,7 +48,7 @@ def logout():
     if 'u_id' in session:
         session.pop('u_id')
     return redirect( url_for('index') )
-        
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
