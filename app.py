@@ -44,7 +44,28 @@ def logout():
     if 'u_id' in session:
         session.pop('u_id')
     return redirect( url_for('index') )
+
+@app.route('/addmatch', methods = ['POST'])
+def addmatch():
+	req = requests.form
+	#check for valid form, etc.
+	
+	#figure out how to do this?
+	taskCount = 13
+	
+	queryString = """INSERT INTO match_performance VALUES (%d, %d, %d"""+
+		("%d," * 13)
+	
+	%(
+		req['team-num'],
+		req['match-num'],
+		req['user-id'],
+		#add better way to add tasks
+		req['notes']
+	)
+	pass
         
 if __name__ == "__main__":
     app.debug = True
     app.run()
+
