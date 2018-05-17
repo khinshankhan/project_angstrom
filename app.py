@@ -16,28 +16,31 @@ def index():
 
 @app.route('/home')
 def home():
-    if 'user' not in session:
-        return redirect( url_for('root') )
+    if 'u_id' not in session:
+        return redirect( url_for('index') )
     else:
-        return render_template('home.html', user=session['user'])
+        return render_template('home.html', user=session['u_id'])
 
 #will check against database later
-def valid(user, pasa):
-    if (user == 'admin' and  pasa == 'safepass'):
+def valid(u_id, pw):
+    if (u_id.isnumeric() and int(u_id) == 0 and pw == 'safepass'):
         return True
     return False
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    user = request.form['user']
-    pasa = request.form['pass']
-    result = valid(user, pasa)
-    if result == True:
-        session['user'] = user
-        session['pasa'] = pasa
+    if request.method == 'POST':
+        u_id = request.form['user_id']
+        pw = request.form['password']
+        if valid(u_id, pw):
+            session['u_id'] = int(u_id)
+            session['pw'] = pw
+            return redirect( url_for('home') )
+        else:
+            flash('Invalid credentials.')
+            return redirect( url_for('index') )
     else:
-        flash('INVALID CREDENTIALS! TRY AGAIN!')
-    return redirect (url_for ('root'))
+        return render_template('login.html')
 
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -45,7 +48,7 @@ def logout():
         session.pop('user')
     if 'pasa' in session:
         session.pop('pasa')
-    return redirect( url_for('root') )
+    return redirect( url_for('index') )
         
 if __name__ == "__main__":
     app.debug = True

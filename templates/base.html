@@ -39,11 +39,11 @@
             <img id="logo" src="{{ url_for('static', filename='img/circle_logo.gif') }}" alt="Stuy Fission">
           </a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
           </ul>
 
           <ul id="nav-mobile" class="sidenav">
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
           </ul>
           <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
@@ -79,5 +79,18 @@
 
     <!-- Materialize JS for optimized loading -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    <!-- Materialize toast flash -->
+    <script>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      M.toast({
+        html: '{{ message }}',
+        displayLength: 4000
+      });
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </script>
   </body>
 </html>

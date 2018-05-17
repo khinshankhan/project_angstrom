@@ -18,7 +18,19 @@ Project Ångström
       <h5 class="header col s12 light">A modern way to conduct scouting for FIRST Tech Challenge</h5>
     </div>
     <div class="row center">
-      <a href="{{ url_for('login') }}" class="btn-large waves-effect waves-light teal lighten-1">Login</a>
+      <form class="col s12" method="POST" action="{{ url_for('login') }}">
+        <div class="input-field col s4">
+          <input id="user_id" name="user_id" type="text" class="validate">
+          <label for="user_id">User ID</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="password" name="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <div class="input-field col s2">
+          <button class="btn waves-effect waves-light" type="submit">Login</button>
+        </div>
+      </form>
     </div>
     <br>
   </div>
