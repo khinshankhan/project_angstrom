@@ -17,6 +17,7 @@ def index():
 @app.route('/home')
 def home():
     if 'u_id' not in session:
+        flash('You are not logged in.')
         return redirect( url_for('index') )
     else:
         return render_template('home.html', user=session['u_id'])
@@ -27,27 +28,21 @@ def valid(u_id, pw):
         return True
     return False
 
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/login', methods = ['POST'])
 def login():
-    if request.method == 'POST':
-        u_id = request.form['user_id']
-        pw = request.form['password']
-        if valid(u_id, pw):
-            session['u_id'] = int(u_id)
-            session['pw'] = pw
-            return redirect( url_for('home') )
-        else:
-            flash('Invalid credentials.')
-            return redirect( url_for('index') )
+    u_id = request.form['user_id']
+    pw = request.form['password']
+    if valid(u_id, pw):
+        session['u_id'] = int(u_id)
+        return redirect( url_for('home') )
     else:
-        return render_template('login.html')
+        flash('Invalid credentials.')
+        return redirect( url_for('index') )
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    if 'user' in session:
-        session.pop('user')
-    if 'pasa' in session:
-        session.pop('pasa')
+    if 'u_id' in session:
+        session.pop('u_id')
     return redirect( url_for('index') )
         
 if __name__ == "__main__":
