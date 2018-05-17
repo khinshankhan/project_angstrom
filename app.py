@@ -12,10 +12,7 @@ app.secret_key = os.urandom(64)
 
 @app.route('/')
 def root():
-    if 'user' not in session:
-        return render_template('login.html')
-    else:
-        return redirect( url_for('home') )
+    return render_template('index.html')
 
 @app.route('/home')
 def home():

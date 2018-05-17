@@ -1,0 +1,20 @@
+nav ul a,
+nav .brand-logo {
+    color: #444;
+}
+
+footer.page-footer {
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
