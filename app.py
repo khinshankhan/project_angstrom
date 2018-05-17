@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, flash,request
+from flask import Flask, render_template, session, redirect, url_for, flash, request
 import random
 import os
 import sqlite3   #enable control of an sqlite database
@@ -8,32 +8,48 @@ db = sqlite3.connect(database)
 c = db.cursor()
 
 app = Flask(__name__)
+app.secret_key = os.urandom(64)
 
 @app.route('/')
 def root():
-    if(loggedin()):
-        return "home.html"
+    if 'user' not in session:
+        return render_template('login.html')
     else:
-        return "fake.html"
+        return redirect( url_for('home') )
 
-def loggedin():
-    if ('user' in session and 'pass' in session):
-        if (valid(session['user']) and valid(session['pass'])):
-            return True
-    return False
+@app.route('/home')
+def home():
+    if 'user' not in session:
+        return redirect( url_for('root') )
+    else:
+        return render_template('home.html', user=session['user'])
 
 #will check against database later
-def valid():
-    if (session['user'] == 'admin' and  session['pass'] == 'safepass'):
+def valid(user, pasa):
+    if (user == 'admin' and  pasa == 'safepass'):
         return True
     return False
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    session['user'] = request.form['user']
-    session['pass'] = request.form['pass']
+    user = request.form['user']
+    pasa = request.form['pass']
+    result = valid(user, pasa)
+    if result == True:
+        session['user'] = user
+        session['pasa'] = pasa
+    else:
+        flash('INVALID CREDENTIALS! TRY AGAIN!')
     return redirect (url_for ('root'))
 
+@app.route('/logout', methods=['POST'])
+def logout():
+    if 'user' in session:
+        session.pop('user')
+    if 'pasa' in session:
+        session.pop('pasa')
+    return redirect( url_for('root') )
+        
 if __name__ == "__main__":
     app.debug = True
     app.run()
