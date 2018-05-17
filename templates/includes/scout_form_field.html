@@ -1,20 +1,21 @@
 {% if game.type == 1 %}
 
+<!-- change to checkboxes -->
 <div class="input-field col s6">
-  <div class="switch">
-    <p>{{ game.name }}</p>
+  <p>
     <label>
-      No
-      <input id="{{ game.id }}" name="{{ game.id }}" type="checkbox">
-      <span class="lever"></span>
-      Yes
+      <input type="checkbox"/>
+      <span>{{ game.name }}</span>
     </label>
-  </div>
+  </p>
 </div>
 
 {% else %}
 
-<div class="input-field col s12">
+<div class="input-field col s6">
+  {% if game.icon %}
+  <i class="material-icons prefix">{{ game.icon }}</i>
+  {% endif %}
   <input id="{{ game.id }}" name="{{ game.id }}" type="text" required="" class="validate">
   <label for="{{ game.id }}">{{ game.name }}</label>
 </div>

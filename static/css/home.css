@@ -2,3 +2,16 @@
     border: 1px solid teal;
     padding: 20px;
 }
+
+.tabs {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.tabs .indicator {
+    background-color: #009688 !important;
+}
+
+.tabs {
+    overflow-x: hidden;
+}

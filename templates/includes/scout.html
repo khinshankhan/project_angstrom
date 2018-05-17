@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="container">
+    <div class="card-panel">
+      <h4 class="center-align">Match Scout</h4>
+      <div class="row">
+        <form class="col s12" method="POST">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="team" type="text" required="" class="validate">
+              <label for="team">Team #</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="match" type="text" required="" class="validate">
+              <label for="match">Match #</label>
+            </div>
+            <div class="col s12">
+              <h5>Auto</h5>
+            </div>
+            {% for game in GAME_AUTO %}
+            {% include "includes/scout_form_field.html" %}
+            {% endfor %}
+            <div class="col s12">
+              <h5>Teleop</h5>
+            </div>
+            {% for game in GAME_TELE %}
+            {% include "includes/scout_form_field.html" %}
+            {% endfor %}
+            <div class="input-field col s12">
+              <input id="notes" type="text" class="validate">
+              <label for="notes">Notes</label>
+              <span class="helper-text">Optional</span>
+            </div>
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

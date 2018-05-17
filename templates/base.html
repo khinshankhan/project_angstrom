@@ -24,7 +24,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}"/>
-    {% block static %}
+    {% block style %}
     {% endblock %}
 
   </head>
@@ -92,5 +92,7 @@
       {% endif %}
       {% endwith %}
     </script>
+    {% block scripts %}
+    {% endblock %}
   </body>
 </html>
