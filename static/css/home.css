@@ -15,3 +15,7 @@
 .tabs {
     overflow-x: hidden;
 }
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+                        background-color: rgba(0, 150, 136, 0.1);
+                    }
