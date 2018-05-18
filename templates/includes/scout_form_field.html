@@ -1,10 +1,12 @@
+{% set game = GAME[game] %}
+
 {% if game.type == 1 %}
 
 <!-- change to checkboxes -->
 <div class="input-field col s6">
   <p>
     <label>
-      <input type="checkbox"/>
+      <input id="{{ game }}" type="checkbox" name="{{ game }}"/>
       <span>{{ game.name }}</span>
     </label>
   </p>
@@ -16,8 +18,8 @@
   {% if game.icon %}
   <i class="material-icons prefix">{{ game.icon }}</i>
   {% endif %}
-  <input id="{{ game.id }}" name="{{ game.id }}" type="text" required="" class="validate">
-  <label for="{{ game.id }}">{{ game.name }}</label>
+  <input id="{{ game }}" name="{{ game }}" type="text" required="" class="validate">
+  <label for="{{ game }}">{{ game.name }}</label>
 </div>
 
 {% endif %}
