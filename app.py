@@ -5,6 +5,7 @@ from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the approp
 import random
 import os
 import sqlite3   #enable control of an sqlite database
+from utils import dbFunctions
 
 database = "database.db"
 db = sqlite3.connect(database)
@@ -15,7 +16,10 @@ app.secret_key = os.urandom(64)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'u_id' not in session:
+        return render_template('index.html')
+    else:
+        return redirect( url_for('home') )
 
 @app.route('/home')
 def home():
@@ -42,7 +46,7 @@ def login():
         flash('Invalid credentials.')
         return redirect( url_for('index') )
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     if 'u_id' in session:
         session.pop('u_id')

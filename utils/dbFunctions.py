@@ -1,8 +1,11 @@
 import sqlite3   #enable control of an sqlite database
 
-database = "database.db"
-db = sqlite3.connect(database)
-c = db.cursor()
+db = None
+c = None
+
+def init(db_file):
+	db = sqlite3.connect(db_file)
+	c = db.cursor()
 
 def setup():
 	querystring = """
@@ -59,6 +62,8 @@ def setup():
 	c.execute(querystring)
 	db.commit()
 
-setup();
+def db_close():
+	db.close();
 
-c.close()
+
+
