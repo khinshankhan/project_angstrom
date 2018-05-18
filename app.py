@@ -5,6 +5,7 @@ from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the approp
 import random
 import os
 import sqlite3   #enable control of an sqlite database
+from utils import dbFunctions
 
 database = "database.db"
 db = sqlite3.connect(database)
