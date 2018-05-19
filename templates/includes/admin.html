@@ -1,7 +1,8 @@
 <div class="row">
   <div class="container">
+    <h4 class="center-align">Admin Privileges</h4><br>
     <div class="card-panel">
-      <h4 class="center-align">Admin Privileges</h4>
+      <h4 class="center-align">Add Team</h4>
       <div class="row">
         <form class="col s12" method="POST">
           <div class="row">
@@ -15,17 +16,6 @@
             </div>
             <div class="col s12">
               <h5>Auto</h5>
-	      <!--{#
-            </div>
-            {% for game in GAME_AUTO %}
-            {% include "includes/scout_form_field.html" %}
-            {% endfor %}
-            <div class="col s12">
-              <h5>Teleop</h5>
-            </div>
-            {% for game in GAME_TELE %}
-            {% include "includes/scout_form_field.html" %}
-            {% endfor %} #}-->
             <div class="input-field col s12">
               <input id="notes" type="text" class="validate">
               <label for="notes">Notes</label>
@@ -39,4 +29,34 @@
       </div>
     </div>
   </div>
+  <div class="card-panel">
+    <h4 class="center-align">Add User</h4>
+    <div class="row">
+      <form class="col s12" method="POST">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="username" type="text" required="" class="validate">
+            <label for="team">Username</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="text" required="" class="validate">
+            <label for="password">Password</label>
+          </div>
+          <div class="input-field col s6">
+            <p>
+              <label>
+                <input id="privilege" type="checkbox" name="make_admin"/>
+                <span>Give Admin Privileges?</span>
+              </label>
+            </p>
+          </div>
+          <div class="col s12">
+          <div class="input-field col s12 center">
+            <button class="btn waves-effect waves-light" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 </div>
