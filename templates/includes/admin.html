@@ -7,38 +7,48 @@
         <form class="col s12" method="POST">
           <div class="row">
             <div class="input-field col s6">
-              <input id="team" type="text" required="" class="validate">
-              <label for="team">Team #</label>
+              <input id="team_num" type="text" required="" class="validate">
+              <label for="team_num">Team #</label>
             </div>
             <div class="input-field col s6">
-              <input id="match" type="text" required="" class="validate">
-              <label for="match">Match #</label>
+              <input id="team_name" type="text" required="" class="validate">
+              <label for="team_name">Team Name</label>
             </div>
-            <div class="col s12">
-              <h5>Auto</h5>
+            <div class="input-field col s6">
+              <input id="location" type="text" class="validate">
+              <label for="location">Location</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="members" type="number" class="validate">
+              <label for="members">Number of Members</label>
+            </div>
             <div class="input-field col s12">
               <input id="notes" type="text" class="validate">
               <label for="notes">Notes</label>
               <span class="helper-text">Optional</span>
             </div>
             <div class="input-field col s12 center">
-              <button class="btn waves-effect waves-light" type="submit">Submit</button>
+              <button class="btn waves-effect waves-light" type="submit" name="upload"><i class="material-icons right">cloud</i>Upload Robot Picture</button>
+            </div>
+            <div class="input-field col s12 center">
+              <button class="btn waves-effect waves-light" type="submit" name="form">Submit</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
+  <div class="container">
   <div class="card-panel">
     <h4 class="center-align">Add User</h4>
     <div class="row">
       <form class="col s12" method="POST">
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s12 center">
             <input id="username" type="text" required="" class="validate">
             <label for="team">Username</label>
           </div>
-          <div class="input-field col s6">
+          <div class="input-field col s12 center">
             <input id="password" type="text" required="" class="validate">
             <label for="password">Password</label>
           </div>
@@ -58,5 +68,6 @@
       </form>
     </div>
   </div>
+</div>
 </div>
 </div>
