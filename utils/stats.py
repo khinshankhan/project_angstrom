@@ -66,5 +66,3 @@ def opr(data):
 OPRs = opr(SAMPLE_SCOUT_DATA)
 print 'Sample OPRs for each match:', OPRs
 print 'Sample overall OPR:', sum(OPRs) / len(OPRs)
-
-#
