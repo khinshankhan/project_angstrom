@@ -5,13 +5,29 @@
       <div class="row">
         <form class="col s12" method="POST">
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col m4 s4">
               <input id="team" type="text" required="" class="validate">
               <label for="team">Team #</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col m4 s3">
               <input id="match" type="text" required="" class="validate">
               <label for="match">Match #</label>
+            </div>
+            <div class="input-field switch col s5 center hide-on-med-and-up right">
+              <label>
+                R
+                <input type="checkbox" id="alliance" name="alliance">
+                <span class="lever"></span>
+                B
+              </label>
+            </div>
+            <div class="input-field switch col m4 center hide-on-small-only">
+              <label>
+                Red
+                <input type="checkbox" id="alliance" name="alliance">
+                <span class="lever"></span>
+                Blue
+              </label>
             </div>
             <div class="col s12">
               <h5>Auto</h5>
