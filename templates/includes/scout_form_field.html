@@ -18,7 +18,7 @@
   {% if game.icon %}
   <i class="material-icons prefix">{{ game.icon }}</i>
   {% endif %}
-  <input id="{{ game }}" name="{{ game }}" type="text" required="" class="validate">
+  <input id="{{ game }}" name="{{ game.name }}" type="text" required="" class="validate">
   <label for="{{ game }}">{{ game.name }}</label>
 </div>
 

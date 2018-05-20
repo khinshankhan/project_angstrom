@@ -62,6 +62,28 @@ def about():
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
 
+@app.route('/add-task', methods=['POST'])
+def add_task():
+    if 'u_id' not in session:
+        flash('You are not logged in.')
+        return redirect( url_for('index') )
+    else:
+        form = request.form
+        print form
+        
+        #alliance: blue is one, red is 0
+        form_data = {
+                "team": int(form["Team"]),
+                "match": int(form["Match"]),
+                "alliance": (1 if "Alliance" in form else 0),
+                "tasks": {
+                    
+                },
+                "notes": ("" if "Notes" not in form else form["Notes"])
+    }
+        
+        return redirect(url_for('home'))
+
 if __name__ == "__main__":
     app.debug = True
     db_init("database.db")
