@@ -19,3 +19,35 @@
 .tabs .tab a:focus, .tabs .tab a:focus.active {
                         background-color: rgba(0, 150, 136, 0.1);
                     }
+ 
+.switch label .lever {
+ 
+  content: "";
+ 
+  display: inline-block;
+ 
+  position: relative;
+ 
+  width: 36px;
+ 
+  height: 14px;
+ 
+  background-color: maroon;
+ 
+  border-radius: 15px;
+ 
+  margin-right: 10px;
+ 
+  -webkit-transition: background 0.3s ease;
+ 
+  transition: background 0.3s ease;
+ 
+  vertical-align: middle;
+ 
+  margin: 0 16px;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: teal; 
+}
+
