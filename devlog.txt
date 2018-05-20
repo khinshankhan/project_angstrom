@@ -1,0 +1,176 @@
+khinshanK -- Wed May 9 14:21:44 2018 -0400
+
+    Initial commit
+
+khinshanK -- Sun May 13 08:29:50 2018 -0400
+
+    Basic How To
+
+ishtiaqueM -- Wed May 16 14:21:28 2018 -0400
+
+    Pushed the flask app - basic structure
+
+khinshanK -- Wed May 16 14:22:09 2018 -0400
+
+    basic directory structure for the app
+
+khinshanK -- Wed May 16 14:37:40 2018 -0400
+
+    Made basic, hard-coded login with Ish
+
+khinshanK -- Wed May 16 14:42:28 2018 -0400
+
+    mess up some syntax, fixed
+
+ishtiaqueM -- Wed May 16 14:52:24 2018 -0400
+
+    Working on database right now with Shan, basic stuff, will move to a seperate file later.
+
+khinshanK -- Wed May 16 14:53:01 2018 -0400
+
+    made skeleton for base, need to import framework
+
+khinshanK -- Thu May 17 04:30:32 2018 -0400
+
+    Better login and authenticate structure
+
+ryanS -- Thu May 17 09:18:04 2018 -0400
+
+    Modify base file to use Materialize and add Materialize static files
+
+ryanS -- Thu May 17 09:56:40 2018 -0400
+
+    Move image directory to static directory and add informative content to index page
+
+ryanS -- Thu May 17 11:13:22 2018 -0400
+
+    Add login functionality on the index page
+
+ryanS -- Thu May 17 11:47:42 2018 -0400
+
+    Start work on logged in user homepage
+
+stanleyL -- Thu May 17 14:51:05 2018 -0400
+
+    starting work on the db
+
+ryanS -- Thu May 17 15:27:03 2018 -0400
+
+    Add game task specification file and create form to input scouting data using the specs
+
+Merge: f274ecb aa870d9
+ryanS -- Thu May 17 15:27:45 2018 -0400
+
+    Fix merge with adding matches
+
+khinshanK -- Thu May 17 18:35:00 2018 -0400
+
+    Update README.md
+
+khinshanK -- Thu May 17 18:47:33 2018 -0400
+
+    made a temp fix for app to run
+
+ryanS -- Thu May 17 19:05:16 2018 -0400
+
+    Reorganize home page templates to make more modular, add tabs to separate homepage functionality, and restyle match data form
+
+Merge: 0f832d1 4dee668
+ryanS -- Thu May 17 19:05:22 2018 -0400
+
+    Merge branch 'master' of github.com:kkhan01/Atomic_Theory-Project_Angstrom
+
+ryanS -- Thu May 17 19:06:21 2018 -0400
+
+    Fix stray block comment characters
+
+ryanS -- Thu May 17 19:09:40 2018 -0400
+
+    Change tab animation color to better reflect current color scheme
+
+ryanS -- Thu May 17 22:12:14 2018 -0400
+
+    Create stats file and specify stats that we want to calculate
+
+stanleyL -- Fri May 18 14:44:38 2018 -0400
+
+    setup db
+
+ishtiaqueM -- Fri May 18 14:48:33 2018 -0400
+
+    Started working on admin tab and form fields
+
+ryanS -- Fri May 18 14:49:54 2018 -0400
+
+    Add sample data generation and function for scouted OPR stat calculation
+
+Merge: ea76359 7e9a769
+ryanS -- Fri May 18 14:50:01 2018 -0400
+
+    Merge branch 'master' of github.com:kkhan01/Atomic_Theory-Project_Angstrom
+
+stanleyL -- Fri May 18 14:50:26 2018 -0400
+
+    slight change to dbFunctions
+
+khinshanK -- Fri May 18 14:52:23 2018 -0400
+
+    made logout functionality operational, might want to make it more secure though... added in session checks, but redirects are VERY slow, need to look into that. now: working out navbar mobile compatability
+
+Merge: 5b2f352 3e64a4e
+khinshanK -- Fri May 18 14:52:34 2018 -0400
+
+    Merge branch 'master' of https://github.com/kkhan01/Atomic_Theory-Project_Angstrom
+
+ryanS -- Fri May 18 16:10:01 2018 -0400
+
+    Clean up stats file; move code into functions
+
+Merge: 986abfd 282f4b7
+ryanS -- Fri May 18 16:10:13 2018 -0400
+
+    Merge branch 'master' of github.com:kkhan01/Atomic_Theory-Project_Angstrom
+
+khinshanK -- Fri May 18 22:01:53 2018 -0400
+
+    made a temp fix, NOTE: when using jinja, one must comment out using html comment <\!-- --> AND jinja comment {# #}. current problem: scout_form_field.html, fix: commented out all calls in admin.html
+
+ishtiaqueM -- Fri May 18 23:52:01 2018 -0400
+
+    Deleted GAME Jinja stuff from file and added Add Admin field + rearranged some elements.
+
+ishtiaqueM -- Sat May 19 00:20:17 2018 -0400
+
+    Fixed up Add Team Field and added an upload button. Differentiates from form button via name of button.
+
+ryanS -- Sat May 19 11:49:41 2018 -0400
+
+    Minor changes to admin forms
+
+ryanS -- Sat May 19 14:26:44 2018 -0400
+
+    Create statistical functions to analyze the performance of teams
+
+khinshanK -- Sun May 20 10:05:02 2018 -0400
+
+    tried a init navbar file
+
+ryanS -- Sun May 20 10:08:29 2018 -0400
+
+    Fixed sidebar initialization
+
+ryanS -- Sun May 20 10:12:29 2018 -0400
+
+    Move sidenav init code into js directory
+
+ryanS -- Sun May 20 10:14:22 2018 -0400
+
+    Fix logout link not displaying on sidenav
+
+khinshanK -- Sun May 20 10:32:01 2018 -0400
+
+    fixed log out functionality, alerts user if they try to logout without ever being logged in. now working on about us page... thinking edgy
+
+khinshanK -- Sun May 20 10:57:19 2018 -0400
+
+    made lever look color/ more user intuitive
