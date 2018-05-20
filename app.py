@@ -50,7 +50,18 @@ def login():
 def logout():
     if 'u_id' in session:
         session.pop('u_id')
+    else:
+        flash('You are not logged in.')
     return redirect( url_for('index') )
+
+@app.route('/about')
+def about():
+    cuser = ""
+    if 'u_id' not in session:
+        cuser = "Nameless Visitor"
+    else:
+        cuser = "User " + str(session['u_id'])
+    return render_template('about.html', user=cuser)
 
 '''
 @app.route('/addmatch', methods = ['POST'])
