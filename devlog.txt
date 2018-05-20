@@ -2,9 +2,17 @@ khinshanK -- Wed May 9 14:21:44 2018 -0400
 
     Initial commit
 
+khinshanK -- Thu May 10 14:38:59 2018 -0400
+
+    Update README.md
+
 khinshanK -- Sun May 13 08:29:50 2018 -0400
 
     Basic How To
+
+khinshanK -- Mon May 14 22:19:49 2018 -0400
+
+    Add files via upload
 
 ishtiaqueM -- Wed May 16 14:21:28 2018 -0400
 
@@ -58,11 +66,6 @@ ryanS -- Thu May 17 15:27:03 2018 -0400
 
     Add game task specification file and create form to input scouting data using the specs
 
-Merge: f274ecb aa870d9
-ryanS -- Thu May 17 15:27:45 2018 -0400
-
-    Fix merge with adding matches
-
 khinshanK -- Thu May 17 18:35:00 2018 -0400
 
     Update README.md
@@ -74,11 +77,6 @@ khinshanK -- Thu May 17 18:47:33 2018 -0400
 ryanS -- Thu May 17 19:05:16 2018 -0400
 
     Reorganize home page templates to make more modular, add tabs to separate homepage functionality, and restyle match data form
-
-Merge: 0f832d1 4dee668
-ryanS -- Thu May 17 19:05:22 2018 -0400
-
-    Merge branch 'master' of github.com:kkhan01/Atomic_Theory-Project_Angstrom
 
 ryanS -- Thu May 17 19:06:21 2018 -0400
 
@@ -104,11 +102,6 @@ ryanS -- Fri May 18 14:49:54 2018 -0400
 
     Add sample data generation and function for scouted OPR stat calculation
 
-Merge: ea76359 7e9a769
-ryanS -- Fri May 18 14:50:01 2018 -0400
-
-    Merge branch 'master' of github.com:kkhan01/Atomic_Theory-Project_Angstrom
-
 stanleyL -- Fri May 18 14:50:26 2018 -0400
 
     slight change to dbFunctions
@@ -117,19 +110,9 @@ khinshanK -- Fri May 18 14:52:23 2018 -0400
 
     made logout functionality operational, might want to make it more secure though... added in session checks, but redirects are VERY slow, need to look into that. now: working out navbar mobile compatability
 
-Merge: 5b2f352 3e64a4e
-khinshanK -- Fri May 18 14:52:34 2018 -0400
-
-    Merge branch 'master' of https://github.com/kkhan01/Atomic_Theory-Project_Angstrom
-
 ryanS -- Fri May 18 16:10:01 2018 -0400
 
     Clean up stats file; move code into functions
-
-Merge: 986abfd 282f4b7
-ryanS -- Fri May 18 16:10:13 2018 -0400
-
-    Merge branch 'master' of github.com:kkhan01/Atomic_Theory-Project_Angstrom
 
 khinshanK -- Fri May 18 22:01:53 2018 -0400
 
@@ -174,3 +157,11 @@ khinshanK -- Sun May 20 10:32:01 2018 -0400
 khinshanK -- Sun May 20 10:57:19 2018 -0400
 
     made lever look color/ more user intuitive
+
+khinshanK -- Sun May 20 11:12:51 2018 -0400
+
+    devlog v1/!
+
+ryanS -- Sun May 20 11:22:47 2018 -0400
+
+    Change styling of lever on scouting page
