@@ -165,3 +165,11 @@ khinshanK -- Sun May 20 11:12:51 2018 -0400
 ryanS -- Sun May 20 11:22:47 2018 -0400
 
     Change styling of lever on scouting page
+
+khinshanK -- Sun May 20 11:46:56 2018 -0400
+
+    cleaned up devlog
+
+khinshanK -- Sun May 20 13:08:11 2018 -0400
+
+    pulled everybody's pictures off fb and resized them to fit aspect ratio using a fairly roundabout way to retain humanlike structure.. about page currently has mostly filler stuff + the pictures in \'card structures\'.
