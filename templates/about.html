@@ -2,5 +2,99 @@
 
 
 {% block content %}
-Hello {{ user }}
+<h4>Hello {{ user }}
+  <br>
+  &emsp; We thank you for your interest in our team.. in our history.
+</h4>
+
+<br>
+<br>
+<br>
+
+<h5>
+  To start with, our name:
+  <br>
+  &emsp; We wanted a cool sounding name and we found one.
+
+  <br>
+  <br>
+  <!-- "{{ url_for('static', filename='img/circle_logo.gif') }}" -->
+  Meet the team:
+  <br>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+  <div class="row">
+    
+    <div class="col s3">
+      <div class="main">
+	<div class="card">
+	  <div class="card-image waves-effect waves-block waves-light">
+	    <img class="activator" src="{{ url_for('static', filename='img/shan.jpg') }}" border="160">
+	  </div>
+	  <div class="card-content">
+	    <span class="card-title activator grey-text text-darken-4">"Shan" Khan<i class="material-icons right">more_vert</i></span>
+	  </div>
+	  <div class="card-reveal">
+	    <span class="card-title grey-text text-darken-4">Khinshan Khan<i class="material-icons right">close</i></span>
+	    <p>Here is some more information about this that is only revealed once clicked on.</p>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="col s3">
+      <div class="main">
+	<div class="card">
+	  <div class="card-image waves-effect waves-block waves-light">
+	    <img class="activator" src="{{ url_for('static', filename='img/stanley.jpg') }}">
+	  </div>
+	  <div class="card-content">
+	    <span class="card-title activator grey-text text-darken-4">Stanley Lin<i class="material-icons right">more_vert</i></span>
+	  </div>
+	  <div class="card-reveal">
+	    <span class="card-title grey-text text-darken-4">Stanley Lin<i class="material-icons right">close</i></span>
+	    <p>Here is some more information about this that is only revealed once clicked on.</p>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="col s3">
+      <div class="main">
+	<div class="card">
+	  <div class="card-image waves-effect waves-block waves-light">
+	    <img class="activator" src="{{ url_for('static', filename='img/ryan.jpg') }}">
+	  </div>
+	  <div class="card-content">
+	    <span class="card-title activator grey-text text-darken-4">Ryan Siu<i class="material-icons right">more_vert</i></span>
+	  </div>
+	  <div class="card-reveal">
+	    <span class="card-title grey-text text-darken-4">Ryan Siu<i class="material-icons right">close</i></span>
+	    <p>Here is some more information about this that is only revealed once clicked on.</p>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="col s3">
+      <div class="main">
+	<div class="card">
+	  <div class="card-image waves-effect waves-block waves-light">
+	    <img class="activator" src="{{ url_for('static', filename='img/ish.jpg') }}">
+	  </div>
+	  <div class="card-content">
+	    <span class="card-title activator grey-text text-darken-4">"Ish" Mahdi<i class="material-icons right">more_vert</i></span>
+	  </div>
+	  <div class="card-reveal">
+	    <span class="card-title grey-text text-darken-4">Ishtiaque Mahdi<i class="material-icons right">close</i></span>
+	    <p>Here is some more information about this that is only revealed once clicked on.</p>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+  </div>
+</h5>
 {% endblock %}
