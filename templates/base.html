@@ -82,11 +82,8 @@
 
     <!-- Materialize JS for optimized loading -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
-    <!-- allow navbar to collapse -->
-    <script>
-      var elem = document.querySelector('.sidenav');
-      var instance = new M.Sidenav(elem);
-    </script>
+    <!-- initialize sidebar -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/sidenavInit.js') }}"></script>
     <!-- Materialize toast flash -->
     <script>
       {% with messages = get_flashed_messages() %}
