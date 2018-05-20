@@ -29,9 +29,7 @@ def home():
     else:
         return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
 
-#will check against database later
 def valid(u_id, pw):
-    #if (u_id.isnumeric() and int(u_id) == 0 and pw == 'safepass'):
     if u_id.isnumeric():
         return valid_login(u_id, pw)
     return False
@@ -63,28 +61,6 @@ def about():
     else:
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
-
-'''
-@app.route('/addmatch', methods = ['POST'])
-def addmatch():
-        req = requests.form
-        #check for valid form, etc.
-        
-        #figure out how to do this?
-        taskCount = 13
-        
-        queryString = """INSERT INTO match_performance VALUES (%d, %d, %d"""+
-                ("%d," * 13)
-        
-        %(
-                req['team-num'],
-                req['match-num'],
-                req['user-id'],
-                #add better way to add tasks
-                req['notes']
-        )
-        pass
-'''
 
 if __name__ == "__main__":
     app.debug = True

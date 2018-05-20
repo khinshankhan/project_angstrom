@@ -83,8 +83,6 @@ def valid_login(u_id, pw):
     res = c.fetchall()
     db.close()
 
-    print res
-
     if len(res) > 0:
         return True
     return False
@@ -92,6 +90,5 @@ def valid_login(u_id, pw):
 '''
 db_init("database.db")
 db_setup()
-db_close()
 '''
 
