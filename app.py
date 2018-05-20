@@ -5,7 +5,7 @@ from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the approp
 import random
 import os
 import sqlite3   #enable control of an sqlite database
-from utils import dbFunctions
+from utils.dbFunctions import *
 
 database = "database.db"
 db = sqlite3.connect(database)
@@ -31,8 +31,9 @@ def home():
 
 #will check against database later
 def valid(u_id, pw):
-    if (u_id.isnumeric() and int(u_id) == 0 and pw == 'safepass'):
-        return True
+    #if (u_id.isnumeric() and int(u_id) == 0 and pw == 'safepass'):
+    if u_id.isnumeric():
+        return valid_login(u_id, pw)
     return False
 
 @app.route('/login', methods = ['POST'])
@@ -87,4 +88,7 @@ def addmatch():
 
 if __name__ == "__main__":
     app.debug = True
+    db_init("database.db")
+
     app.run()
+
