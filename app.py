@@ -16,10 +16,15 @@ app.secret_key = "dev" #os.urandom(64)
 
 @app.route('/')
 def index():
+    #temporarily disable login checks
+    session['u_id'] = 0
+    return redirect( url_for('home') )
+    '''
     if 'u_id' not in session:
         return render_template('index.html')
     else:
         return redirect( url_for('home') )
+    '''
 
 @app.route('/home')
 def home():
@@ -62,8 +67,26 @@ def about():
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
 
+def gen_task_dict(form):
+    task_list = {}
+        
+    for key in form.keys():
+        temp = key.split("_")
+        print "key: " +key
+        print temp
+        if len(temp) > 1:
+            if form[key].isdigit():
+                task_list[int(temp[0])] = int(form[key])
+            else:
+                if form[key]
+            task_list[int(temp[0])] = (
+                    form[key] if not form[key].isdigit() else int(form[key]))
+    print task_list
+    return task_list
+
 @app.route('/add-task', methods=['POST'])
 def add_task():
+    session['u_id'] = 0
     if 'u_id' not in session:
         flash('You are not logged in.')
         return redirect( url_for('index') )
@@ -76,11 +99,9 @@ def add_task():
                 "team": int(form["Team"]),
                 "match": int(form["Match"]),
                 "alliance": (1 if "Alliance" in form else 0),
-                "tasks": {
-                    
-                },
+                "tasks": gen_task_dict(form),
                 "notes": ("" if "Notes" not in form else form["Notes"])
-    }
+	}
         
         return redirect(url_for('home'))
 
