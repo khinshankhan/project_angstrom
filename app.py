@@ -12,7 +12,7 @@ db = sqlite3.connect(database)
 c = db.cursor()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(64)
+app.secret_key = "dev" #os.urandom(64)
 
 @app.route('/')
 def index():
@@ -84,6 +84,10 @@ def add_task():
         
         return redirect(url_for('home'))
 
+@app.route('/visualize')
+def visualize():
+    return render_template('visualize.html')
+    
 if __name__ == "__main__":
     app.debug = True
     db_init("database.db")
