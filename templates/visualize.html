@@ -2,21 +2,12 @@
 
 {% block content %}
 <style>
-
-  .axis--x path {
-  display: none;
-
-  }
-
   .line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
   }
-
 </style>
-
 
 <svg width="960" height="500"></svg>
 <script src="{{ url_for('static', filename='js/visualize.js') }}"></script>

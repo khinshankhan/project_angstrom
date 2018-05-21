@@ -67,6 +67,7 @@ def about():
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
 
+'''
 def gen_task_dict(form):
     task_list = {}
         
@@ -83,6 +84,7 @@ def gen_task_dict(form):
                     form[key] if not form[key].isdigit() else int(form[key]))
     print task_list
     return task_list
+'''
 
 @app.route('/add-task', methods=['POST'])
 def add_task():
