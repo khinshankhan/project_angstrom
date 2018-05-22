@@ -67,7 +67,7 @@ def about():
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
 
-'''
+
 def gen_task_dict(form):
     task_list = {}
         
@@ -79,12 +79,17 @@ def gen_task_dict(form):
             if form[key].isdigit():
                 task_list[int(temp[0])] = int(form[key])
             else:
-                if form[key]
-            task_list[int(temp[0])] = (
-                    form[key] if not form[key].isdigit() else int(form[key]))
-    print task_list
+                if str(form[key]) == "on":
+	            task_list[int(temp[0])] = 1
+                elif str(form[key]) == "off":
+	            task_list[int(temp[0])] = 0
+    #add missing indices
+    for x in range(0, 13):
+        if not x in task_list.keys():
+            task_list[x] = 0
+    #print task_list
     return task_list
-'''
+
 
 @app.route('/add-task', methods=['POST'])
 def add_task():
@@ -94,7 +99,7 @@ def add_task():
         return redirect( url_for('index') )
     else:
         form = request.form
-        print form
+        #print form
         
         #alliance: blue is one, red is 0
         form_data = {
@@ -104,6 +109,7 @@ def add_task():
                 "tasks": gen_task_dict(form),
                 "notes": ("" if "Notes" not in form else form["Notes"])
 	}
+        add_tasks_to_db(form_data)
         
         return redirect(url_for('home'))
 

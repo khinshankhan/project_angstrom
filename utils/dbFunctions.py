@@ -65,8 +65,16 @@ def db_setup():
     db.commit()
     db.close()
 
-def add_tasks_to_db():
+def add_tasks_to_db(data):
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
     
+    querystring = '''
+        INSERT INTO match_performance VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    '''
+    c.execute(querystring, param_tuple)
     pass
 
 def valid_login(u_id, pw):
