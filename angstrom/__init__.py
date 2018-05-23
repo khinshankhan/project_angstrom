@@ -118,7 +118,7 @@ def visualize():
     return render_template('visualize.html')
     
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     db_init("database.db")
 
     app.run()

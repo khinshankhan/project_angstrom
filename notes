@@ -6,4 +6,5 @@ Droplet Transfer:
 4. a2dissite any currently active site unless it is angstrom
 5. a2ensite angstrom.conf
 6. change database variable to "/var/www/angstrom/angstrom/database.db"
-7. service apache2 restart
+7. Turn debug to False
+8. service apache2 restart
