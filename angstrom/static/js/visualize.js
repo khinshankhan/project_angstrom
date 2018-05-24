@@ -1,5 +1,6 @@
 var svg_height = document.getElementsByTagName("svg")[0].clientHeight;
 var svg_width = document.getElementsByTagName("svg")[0].clientWidth;
+var svg_id = document.getElementsByTagName("svg")[0].id;
 
 var svg = d3.select("svg"),
     margin = {top: 20, right: 30, bottom: 70, left: 50},
@@ -15,19 +16,17 @@ var line = d3.line()
     .x(function(d) { return x(d.match); })
     .y(function(d) { return y(d.opr); });
 
-d3.csv("static/data/data.csv", function(error, data) {
-  if (error) throw error;
+$.ajax({
+    url: svg_id,
+    success: function(result){
+      result = JSON.parse(result);
+      chart(result);
+    }
+});
 
-  var teams = data.columns.slice(1).map(function(id) {
-    return {
-      id: id,
-      values: data.map(function(d) {
-        return {match: d.match, opr: d[id]};
-      })
-    };
-  });
+var chart = function(teams) {
 
-  x.domain(d3.extent(data, function(d) { return parseInt(d.match)**(1+1/d.match)-1; }));
+  x.domain(d3.extent(teams[0].values, function(d) { return parseInt(d.match)**(1+1/d.match)-1; }));
 
   y.domain([0,
             d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseInt(d.opr); }); })
@@ -74,4 +73,4 @@ d3.csv("static/data/data.csv", function(error, data) {
     .style("font", "10px sans-serif")
     .text(function(d) { return d.id; });
 
-});
+}

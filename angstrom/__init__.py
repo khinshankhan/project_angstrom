@@ -5,6 +5,7 @@ from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the approp
 import random
 import os
 import sqlite3   #enable control of an sqlite database
+import json
 from utils.dbFunctions import *
 
 database = "database.db"
@@ -13,6 +14,8 @@ c = db.cursor()
 
 app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 @app.route('/')
 def index():
@@ -115,8 +118,14 @@ def add_task():
 
 @app.route('/visualize')
 def visualize():
-    return render_template('visualize.html')
-    
+    return render_template('visualize.html', data_link = url_for('get_sample_data'))
+
+@app.route('/get_sample_data')
+def get_sample_data():
+    json_data = open(basedir + '/static/data/data.json').read()
+    data = json.loads(json_data)
+    return json.dumps(data)
+
 if __name__ == "__main__":
     app.debug = True
     db_init("database.db")
