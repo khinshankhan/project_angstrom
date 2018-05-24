@@ -7,12 +7,17 @@ import os
 import sqlite3   #enable control of an sqlite database
 from utils.dbFunctions import *
 
+# ~~~~~~~~~~ GLOBALS
 database = "database.db"
 db = sqlite3.connect(database)
 c = db.cursor()
 
 app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
+
+team_pic_directory = "static/img/public"
+
+# ~~~~~~~~~~
 
 @app.route('/')
 def index():

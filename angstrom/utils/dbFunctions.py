@@ -66,6 +66,11 @@ def db_setup():
     db.commit()
     db.close()
 
+def make_param_tuple(data):
+    temp = []
+    for elem in data:
+        
+
 def add_tasks_to_db(data):
     global db_file
     db = sqlite3.connect(db_file)
@@ -117,6 +122,46 @@ def valid_login(u_id, pw):
     if len(res) > 0:
         return True
     return False
+
+def add_user(data):
+    '''
+        Data should be in format:
+        {
+            "u_id": <number>,
+            "name": <string>,
+            "password": <string>,
+            "permission": <number>
+        }
+    '''
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (
+        data["u_id"],
+        data["name"],
+        data["password"],
+        data["permission"],
+    )
+    querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
+    
+    c.execute(querystring, param_tuple)
+    db.commit()
+    db.close()
+
+def add_team(data):
+    '''
+        Data should be in format:
+        {
+            "team": <number>,
+            "team_name": <string>,
+            "location": <string>,
+            "num_mem": <number>,
+            "notes": <string or null>,
+            "pic": <string>
+        }
+    '''
+    querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
 
 if __name__ == "__main__":
     db_init("database.db")
