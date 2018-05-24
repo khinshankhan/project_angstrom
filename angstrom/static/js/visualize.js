@@ -1,7 +1,10 @@
+var svg_height = document.getElementsByTagName("svg")[0].clientHeight;
+var svg_width = document.getElementsByTagName("svg")[0].clientWidth;
+
 var svg = d3.select("svg"),
-    margin = {top: 20, right: 80, bottom: 50, left: 50},
-    width = svg.attr("width") - margin.left - margin.right,
-    height = svg.attr("height") - margin.top - margin.bottom,
+    margin = {top: 20, right: 30, bottom: 70, left: 50},
+    width = svg_width - margin.left - margin.right,
+    height = svg_height - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x = d3.scaleLinear().range([0, width]),
