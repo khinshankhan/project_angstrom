@@ -95,8 +95,6 @@ def valid_login(u_id, pw):
         return True
     return False
 
-'''
-db_init("database.db")
-db_setup()
-'''
-
+if __name__ == "__main__":
+    db_init("database.db")
+    db_setup()
