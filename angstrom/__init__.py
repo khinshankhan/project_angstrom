@@ -106,6 +106,7 @@ def add_task():
                 "team": int(form["Team"]),
                 "match": int(form["Match"]),
                 "alliance": (1 if "Alliance" in form else 0),
+                "u_id": int(session["u_id"]),
                 "tasks": gen_task_dict(form),
                 "notes": ("" if "Notes" not in form else form["Notes"])
 	}
