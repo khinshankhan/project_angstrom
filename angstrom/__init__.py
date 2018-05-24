@@ -8,6 +8,7 @@ import sqlite3   #enable control of an sqlite database
 import json
 from utils.dbFunctions import *
 
+# ~~~~~~~~~~ GLOBALS
 database = "database.db"
 db = sqlite3.connect(database)
 c = db.cursor()
@@ -16,6 +17,7 @@ app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+team_pic_directory = "static/img/public"
 
 @app.route('/')
 def index():
@@ -109,6 +111,7 @@ def add_task():
                 "team": int(form["Team"]),
                 "match": int(form["Match"]),
                 "alliance": (1 if "Alliance" in form else 0),
+                "u_id": int(session["u_id"]),
                 "tasks": gen_task_dict(form),
                 "notes": ("" if "Notes" not in form else form["Notes"])
 	}

@@ -25,6 +25,7 @@ def db_setup():
     CREATE TABLE match_performance (
             team_num INTEGER,
             match_num INTEGER,
+            alliance INTEGER,
             user_id INTEGER,
             task_1 INTEGER,
             task_2 INTEGER,
@@ -65,17 +66,44 @@ def db_setup():
     db.commit()
     db.close()
 
+def make_param_tuple(data):
+    temp = []
+    for elem in data:
+        
+
 def add_tasks_to_db(data):
     global db_file
     db = sqlite3.connect(db_file)
     c = db.cursor()
     
+    param_tuple = (
+        data["team"],
+        data["match"],
+        data["alliance"],
+        data["u_id"],
+        data["tasks"][0],
+        data["tasks"][1],
+        data["tasks"][2],
+        data["tasks"][3],
+        data["tasks"][4],
+        data["tasks"][5],
+        data["tasks"][6],
+        data["tasks"][7],
+        data["tasks"][8],
+        data["tasks"][9],
+        data["tasks"][10],
+        data["tasks"][11],
+        data["tasks"][12],
+        data["notes"]
+    )
+    
     querystring = '''
         INSERT INTO match_performance VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     '''
     c.execute(querystring, param_tuple)
-    pass
+    db.commit()
+    db.close()
 
 def valid_login(u_id, pw):
     global db_file
@@ -95,6 +123,47 @@ def valid_login(u_id, pw):
         return True
     return False
 
+def add_user(data):
+    '''
+        Data should be in format:
+        {
+            "u_id": <number>,
+            "name": <string>,
+            "password": <string>,
+            "permission": <number>
+        }
+    '''
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (
+        data["u_id"],
+        data["name"],
+        data["password"],
+        data["permission"],
+    )
+    querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
+    
+    c.execute(querystring, param_tuple)
+    db.commit()
+    db.close()
+
+def add_team(data):
+    '''
+        Data should be in format:
+        {
+            "team": <number>,
+            "team_name": <string>,
+            "location": <string>,
+            "num_mem": <number>,
+            "notes": <string or null>,
+            "pic": <string>
+        }
+    '''
+    querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
+
 if __name__ == "__main__":
     db_init("database.db")
     db_setup()
+
