@@ -36,7 +36,7 @@ def generate_all(teams, num_matches):
             data.append(generate_match(teams[j+1], i+1, 0))
             data.append(generate_match(teams[j+2], i+1, 1))
             data.append(generate_match(teams[j+3], i+1, 1))
-            print teams[j], teams[j+1], teams[j+2], teams[j+3]
+            #print teams[j], teams[j+1], teams[j+2], teams[j+3]
 
         # do the rotation
         tmp = teams[1]
@@ -53,13 +53,11 @@ def generate_match(team, match, alliance):
 
     for task in AUTO:
         task_max = AUTO[task]['max'] if AUTO[task]['max'] else 3
-        temp = task.split("_")
-        tasks[int(temp[0])] = random.randint(AUTO[task]['min'], task_max)
+        tasks[task] = random.randint(AUTO[task]['min'], task_max)
 
     for task in TELE:
         task_max = TELE[task]['max'] if TELE[task]['max'] else 20
-        temp = task.split("_")
-        tasks[int(temp[0])] = random.randint(TELE[task]['min'], task_max)
+        tasks[task] = random.randint(TELE[task]['min'], task_max)
 
     return {
         'team': team,

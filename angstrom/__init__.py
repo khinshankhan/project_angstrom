@@ -110,9 +110,19 @@ def profile():
         'pic': 'test.jpg',
         'notes': 'more info'
     }
-    return render_template('team.html', team = team, data_link = url_for('get_sample_data'))
+    return render_template('team.html', team = team, data_link = url_for('get_310_data'))
 
 # REQUEST ROUTES (AJAX)
+
+@app.route('/get_310_data')
+def get_310_data():
+    data = generate_all([310, 1, 2, 3], 5)
+    oprs = opr(data, 310)
+    formatted = [{
+        "id": 310,
+        "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
+    }]
+    return json.dumps(formatted)
 
 @app.route('/get_sample_data')
 def get_sample_data():
