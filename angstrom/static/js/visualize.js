@@ -13,23 +13,24 @@ var x = d3.scaleLinear().range([0, width]),
     z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
-    .x(function(d) { return x(d.match); })
-    .y(function(d) { return y(d.opr); });
+    .x(function(d) { return x(d[0]); })
+    .y(function(d) { return y(d[1]); });
 
 $.ajax({
     url: svg_id,
     success: function(result){
       result = JSON.parse(result);
+      console.log(result);
       chart(result);
     }
 });
 
 var chart = function(teams) {
 
-  x.domain(d3.extent(teams[0].values, function(d) { return parseInt(d.match)**(1+1/d.match)-1; }));
+  x.domain(d3.extent(teams[0].values, function(d) { return parseInt(d[0])**(1+1/d[0])-1; }));
 
   y.domain([0,
-            d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseInt(d.opr); }); })
+            d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseInt(d[1]); }); })
   ]);
 
   z.domain(teams.map(function(c) { return c.id; }));
@@ -67,7 +68,7 @@ var chart = function(teams) {
 
   team.append("text")
     .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-    .attr("transform", function(d) { return "translate(" + x(d.value.match) + "," + y(d.value.opr) + ")"; })
+    .attr("transform", function(d) { return "translate(" + x(d.value[0]) + "," + y(d.value[1]) + ")"; })
     .attr("x", 3)
     .attr("dy", "0.35em")
     .style("font", "10px sans-serif")
