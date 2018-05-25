@@ -3,7 +3,7 @@ var svg_width = document.getElementsByTagName("svg")[0].clientWidth;
 var svg_id = document.getElementsByTagName("svg")[0].id;
 
 var svg = d3.select("svg"),
-    margin = {top: 20, right: 30, bottom: 70, left: 50},
+    margin = {top: 10, right: 10, bottom: 50, left: 30},
     width = svg_width - margin.left - margin.right,
     height = svg_height - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");

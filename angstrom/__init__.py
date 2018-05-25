@@ -97,6 +97,20 @@ def add_task():
 def visualize():
     return render_template('visualize.html', data_link = url_for('get_sample_data'))
 
+@app.route('/profile')
+def profile():
+    team = {
+        'team': 310,
+        'team_name': 'Stuy Fission',
+        'location': 'New York',
+        'num_mem': 20,
+        'pic': 'test.jpg',
+        'notes': 'more info'
+    }
+    return render_template('team.html', team = team, data_link = url_for('get_sample_data'))
+
+# REQUEST ROUTES (AJAX)
+
 @app.route('/get_sample_data')
 def get_sample_data():
     json_data = open(basedir + '/static/data/data.json').read()

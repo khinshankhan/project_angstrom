@@ -59,3 +59,8 @@ p {
         width: 64px;
     }
 }
+
+.inline-icon {
+    vertical-align: top;
+    font-size: 20px !important;
+}
