@@ -66,10 +66,11 @@ def db_setup():
     db.commit()
     db.close()
 
+'''
 def make_param_tuple(data):
     temp = []
     for elem in data:
-        
+'''
 
 def add_tasks_to_db(data):
     global db_file

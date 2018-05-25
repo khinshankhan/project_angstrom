@@ -1,4 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for, flash, request
+
 from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 
@@ -6,9 +7,8 @@ import random
 import os
 import sqlite3   #enable control of an sqlite database
 import json
-from utils.dbFunctions import *
 
-# ~~~~~~~~~~ GLOBALS
+# GLOBALS
 database = "database.db"
 db = sqlite3.connect(database)
 c = db.cursor()
@@ -18,6 +18,9 @@ app.secret_key = "dev" #os.urandom(64)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
+
+from utils.dbFunctions import *
+from utils.view_helper import *
 
 @app.route('/')
 def index():
@@ -38,11 +41,6 @@ def home():
         return redirect( url_for('index') )
     else:
         return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
-
-def valid(u_id, pw):
-    if u_id.isnumeric():
-        return valid_login(u_id, pw)
-    return False
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -71,30 +69,6 @@ def about():
     else:
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
-
-
-def gen_task_dict(form):
-    task_list = {}
-        
-    for key in form.keys():
-        temp = key.split("_")
-        print "key: " +key
-        print temp
-        if len(temp) > 1:
-            if form[key].isdigit():
-                task_list[int(temp[0])] = int(form[key])
-            else:
-                if str(form[key]) == "on":
-	            task_list[int(temp[0])] = 1
-                elif str(form[key]) == "off":
-	            task_list[int(temp[0])] = 0
-    #add missing indices
-    for x in range(0, 13):
-        if not x in task_list.keys():
-            task_list[x] = 0
-    #print task_list
-    return task_list
-
 
 @app.route('/add-task', methods=['POST'])
 def add_task():
@@ -131,7 +105,5 @@ def get_sample_data():
 
 if __name__ == "__main__":
     app.debug = True
-    db_init("database.db")
-
+    db_init(database)
     app.run()
-
