@@ -53,11 +53,13 @@ def generate_match(team, match, alliance):
 
     for task in AUTO:
         task_max = AUTO[task]['max'] if AUTO[task]['max'] else 3
-        tasks[task] = random.randint(AUTO[task]['min'], task_max)
+        temp = task.split("_")
+        tasks[int(temp[0])] = random.randint(AUTO[task]['min'], task_max)
 
     for task in TELE:
         task_max = TELE[task]['max'] if TELE[task]['max'] else 20
-        tasks[task] = random.randint(TELE[task]['min'], task_max)
+        temp = task.split("_")
+        tasks[int(temp[0])] = random.randint(TELE[task]['min'], task_max)
 
     return {
         'team': team,
@@ -148,8 +150,9 @@ SAMPLE_SCOUT_DATA = generate_all(TEAMS, len(TEAMS)-1)
 s = str(SAMPLE_SCOUT_DATA).replace("'",'"')
 
 import json
-print json.dumps(json.loads(s), indent=2, sort_keys=True)
+#print json.dumps(json.loads(s), indent=2, sort_keys=True)
 
+'''
 for team in TEAMS:
     o = opr(SAMPLE_SCOUT_DATA, team)
     x = ximpact(SAMPLE_SCOUT_DATA, team)
@@ -161,3 +164,4 @@ for team in TEAMS:
     print 'Impact of %d:' % team, avg(i)
     print 'Reliability of %d:' % team, r
     print
+'''

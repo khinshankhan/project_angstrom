@@ -3,13 +3,17 @@ def valid(u_id, pw):
         return valid_login(u_id, pw)
     return False
 
+def extract_task_id(tasks):
+    '''
+        tasks is a dict
+    '''
+    
+
 def gen_task_dict(form):
     task_list = {}
         
     for key in form.keys():
         temp = key.split("_")
-        print "key: " +key
-        print temp
         if len(temp) > 1:
             if form[key].isdigit():
                 task_list[int(temp[0])] = int(form[key])
@@ -22,5 +26,5 @@ def gen_task_dict(form):
     for x in range(0, 13):
         if not x in task_list.keys():
             task_list[x] = 0
-    #print task_list
     return task_list
+

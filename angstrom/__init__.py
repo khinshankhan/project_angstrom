@@ -21,6 +21,7 @@ team_pic_directory = "static/img/public"
 
 from utils.dbFunctions import *
 from utils.view_helper import *
+from utils.stats import *
 
 @app.route('/')
 def index():
@@ -89,7 +90,9 @@ def add_task():
                 "tasks": gen_task_dict(form),
                 "notes": ("" if "Notes" not in form else form["Notes"])
 	}
-        add_tasks_to_db(form_data)
+        #add_tasks_to_db(form_data)
+        test = generate_all([2, 3, 4, 10], 5)
+        add_tasks_to_db(test)
         
         return redirect(url_for('home'))
 

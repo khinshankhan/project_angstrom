@@ -66,11 +66,16 @@ def db_setup():
     db.commit()
     db.close()
 
-'''
+
 def make_param_tuple(data):
     temp = []
-    for elem in data:
-'''
+    for key in data:
+        if type(data[key]) == type({}):
+            for inner in data[key]:
+                temp.append(data[key][inner])
+        else:
+            temp.append(data[key])
+    return tuple(temp)
 
 def add_tasks_to_db(data):
     global db_file
@@ -97,6 +102,7 @@ def add_tasks_to_db(data):
         data["tasks"][12],
         data["notes"]
     )
+    param_tuple = make_param_tuple(data)
     
     querystring = '''
         INSERT INTO match_performance VALUES (
@@ -151,6 +157,10 @@ def add_user(data):
     db.close()
 
 def add_team(data):
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
     '''
         Data should be in format:
         {
@@ -162,6 +172,14 @@ def add_team(data):
             "pic": <string>
         }
     '''
+    param_tuple();
+    querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
+    
+    c.execute(querystring, param_tuple)
+    db.commit()
+    db.close()
+
+def get_team(data):
     querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
 
 if __name__ == "__main__":
