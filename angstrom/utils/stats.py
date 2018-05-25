@@ -6,11 +6,11 @@ Stats to implement:
 DETAILED SCOUTING
 - Num of matches
 - Scouted OPR (calculated from scouted information)
-- Expected Impact (OPR/average of alliance partner's OPRs)
+- Expected Impact (OPR/average of alliances' OPRs)
 - Impact (how much a team contributes to wins)
-  - Points scored/alliance partner's points scored
+  - average of points scored/alliance points scored
 - Reliability
-  - 1 / Standard deviation of impact
+  - Standard deviation of impact (smaller=more reliable)
 
 MATCH SCORE SCOUTING
 - Max
@@ -103,7 +103,7 @@ Takes in a dataset containing match data and returns the expected impact of a si
 def ximpact(data, team):
     team_opr = opr(data, team)
     partners_opr = [ avg(opr(data, team)) for team in alliance_partners(data, team) ]
-    return avg(team_opr) / avg(partners_opr)
+    return avg(team_opr) / (avg(team_opr) + avg(partners_opr))
 
 
 # Takes in a dataset containing all the teams' match data and returns a list of alliance partners for that team
@@ -125,7 +125,7 @@ Takes in a dataset containing match data and returns a list of impacts of a sing
 def impact(data, team):
     team_opr = opr(data, team)
     partners_opr = [ avg(opr(data, team)) for team in alliance_partners(data, team) ]
-    match_impacts = [ team_opr[i]/partners_opr[i] for i in range(0,len(team_opr)) ]
+    match_impacts = [ team_opr[i]/(team_opr[i] + partners_opr[i]) for i in range(0,len(team_opr)) ]
     return match_impacts
 
 '''
@@ -137,7 +137,7 @@ import numpy
 
 def reliability(data, team):
     i = impact(data, team)
-    return 1 / numpy.std(i)
+    return numpy.std(i)
 
 '''
 TESTING
