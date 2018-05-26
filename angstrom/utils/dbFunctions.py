@@ -23,27 +23,25 @@ def db_setup():
     c.execute(querystring)
     querystring = """
     CREATE TABLE match_performance (
+            entry_id INTEGER PRIMARY KEY AUTOINCREMENT,
             team_num INTEGER,
             match_num INTEGER,
             alliance INTEGER,
             user_id INTEGER,
-            task_1 INTEGER,
-            task_2 INTEGER,
-            task_3 INTEGER,
-            task_4 INTEGER,
-            task_5 INTEGER,
-            task_6 INTEGER,
-            task_7 INTEGER,
-            task_8 INTEGER,
-            task_9 INTEGER,
-            task_10 INTEGER,
-            task_11 INTEGER,
-            task_12 INTEGER,
-            task_13 INTEGER,
             notes TEXT
     );
     """
     c.execute(querystring)
+    
+    querystring = """
+    CREATE TABLE match_tasks (
+            entry_id INTEGER,
+            task_name TEXT,
+            count INTEGER
+    );
+    """
+    c.execute(querystring)
+    
     querystring = """
     CREATE TABLE pre_scout (
             team_num INTEGER,
