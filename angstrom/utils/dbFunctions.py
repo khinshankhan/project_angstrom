@@ -17,7 +17,7 @@ def db_setup():
             name TEXT,
             location TEXT,
             robot_picture TEXT,
-            member INTEGER,
+            members INTEGER,
             last_reached_worlds INTEGER
     );
     """
@@ -62,18 +62,9 @@ def db_setup():
     );
     """
     c.execute(querystring)
+    
     db.commit()
     db.close()
-
-def make_param_tuple(data):
-    temp = []
-    for key in data.keys():
-        if type(data[key]) == type({}):
-            for inner in data[key].keys():
-                temp.append(data[key][inner])
-        else:
-            temp.append(data[key])
-    return tuple(temp)
 
 def add_tasks_to_db(data):
     '''
@@ -120,7 +111,10 @@ def add_tasks_to_db(data):
     
     #should only be one result (only want a specific team from a specific match)
     if res == None or len(res) > 1:
-        print "error"   #error handle?
+        print "An error ocurred when adding match performance data, rolling back changes"
+        db.rollback()
+        db.close()
+        return
     
     tasks = data["tasks"]
     for task in tasks.keys():
@@ -173,8 +167,8 @@ def add_user(data):
         data["permission"],
     )
     querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
-    
     c.execute(querystring, param_tuple)
+    
     db.commit()
     db.close()
 
@@ -190,19 +184,44 @@ def add_team(data):
             "team_name": <string>,
             "location": <string>,
             "num_mem": <number>,
-            "notes": <string or null>,
-            "pic": <string>
+            "pic": <string>,
+            "worlds": <number>
         }
     '''
-    param_tuple();
+    param_tuple = (
+        data["team"],
+        data["team_name"],
+        data["location"],
+        data["pic"],
+        data["num_mem"],
+        data["worlds"]
+    )
     querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
-    
     c.execute(querystring, param_tuple)
+    
     db.commit()
     db.close()
 
-def get_team(data):
-    querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
+def get_team(team_num):
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (team_num,)
+    querystring = '''
+        SELECT * from teams WHERE team_num = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
+    temp = c.fetchall()
+    if len(temp) == 0:
+        print "None found"
+        return None
+    
+    print temp
+    
+    db.close()
+    return temp[0]
 
 def get_match_data(team_num, match_num):
     '''
@@ -249,6 +268,7 @@ def get_match_data(team_num, match_num):
     temp = c.fetchall()
     
     if len(temp) == 0:
+        db.close()
         return None
     
     res["team"] = temp[0]["team_num"]
@@ -269,4 +289,23 @@ if __name__ == "__main__":
     db_init("database.db")
     db_setup()
     #get_match_data(1, 1)
+    '''
+    add_team({
+            "team": 7,
+            "team_name": "Team seven",
+            "location": "China",
+            "num_mem": 49,
+            "pic": "cool.jpg",
+            "worlds": 2011
+        })
+    get_team(7)
+    '''
+    '''
+    add_user({
+            "u_id": 0,
+            "name": "Mr. Admin",
+            "password": "safepass",
+            "permission": 0
+        })
+    '''
 
