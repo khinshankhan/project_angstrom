@@ -1,4 +1,5 @@
 import random
+from dbFunctions import *
 
 '''
 Stats to implement:
@@ -108,14 +109,12 @@ def ximpact(data, team):
 
 # Takes in a dataset containing all the teams' match data and returns a list of alliance partners for that team
 def alliance_partners(data, team):
-    return [ alliance_partner(data, team, match['match']) for match in data if match['team'] == team]
+    return [ alliance_partner(data, team, match['match'], match['alliance']) for match in data if match['team'] == team]
 
 # Finds a team's alliance partner in a given match
-def alliance_partner(data, team, match_num):
-    for match in data:
-        if match['match'] == match_num and match['team'] != team:
-            return match['team']
-    return None
+def alliance_partner(data, team, match_num, alliance):
+    print get_match_data(find_alliance_partner(team, match_num, alliance), match_num)
+    return get_match_data(find_alliance_partner(team, match_num, alliance), match_num)
 
 '''
 Impact
@@ -124,8 +123,8 @@ Takes in a dataset containing match data and returns a list of impacts of a sing
 '''
 def impact(data, team):
     team_opr = opr(data, team)
-    partners_opr = [ avg(opr(data, team)) for team in alliance_partners(data, team) ]
-    match_impacts = [ team_opr[i]/(team_opr[i] + partners_opr[i]) for i in range(0,len(team_opr)) ]
+    partners_opr = [ avg(opr(data, team)) if partner else None for partner in alliance_partners(data, team) ]
+    match_impacts = [ team_opr[i]/(team_opr[i] + partners_opr[i]) if partners_opr[i] else None for i in range(0,len(team_opr)) ]
     return match_impacts
 
 '''

@@ -94,7 +94,8 @@ def add_task():
         add_tasks_to_db(form_data)
         #test = generate_all([2, 3, 4, 10], 5)
         #add_tasks_to_db(test)
-        
+
+        flash('Match added.')
         return redirect(url_for('home'))
 
 @app.route('/find_team', methods=['POST'])
@@ -123,19 +124,25 @@ def profile():
         'num_mem': team_tuple[4],
         'pic': team_tuple[3]
     }
-    
-    return render_template('team.html', team = team, data_link = url_for('get_310_data'))
+
+    team_data = get_team_data(team_tuple[0])
+    oprs = opr(team_data, team_tuple[0])
+    impacts = impact(team_data, team_tuple[0])
+
+    return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, data_link = url_for('get_oprs', team_num = team_tuple[0]))
 
 # REQUEST ROUTES (AJAX)
 
-@app.route('/get_310_data')
-def get_310_data():
-    data = generate_all([310, 1, 2, 3], 5)
-    oprs = opr(data, 310)
+@app.route('/get_opr')
+def get_oprs():
+    team_num = int(request.args.get('team_num'))
+    data = get_team_data(team_num)
+    oprs = opr(data, team_num)
     formatted = [{
-        "id": 310,
+        "id": team_num,
         "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
     }]
+    print data
     return json.dumps(formatted)
 
 @app.route('/get_sample_data')

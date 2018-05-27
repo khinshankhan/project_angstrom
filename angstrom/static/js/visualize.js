@@ -27,7 +27,7 @@ $.ajax({
 
 var chart = function(teams) {
 
-  x.domain(d3.extent(teams[0].values, function(d) { return parseInt(d[0])**(1+1/d[0])-1; }));
+  x.domain(d3.extent(teams[0].values, function(d) { return parseInt(d[0])**(1+1/d[0])-d[0]*.2; }));
 
   y.domain([0,
             d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseInt(d[1]); }); })

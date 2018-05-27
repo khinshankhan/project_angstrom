@@ -241,6 +241,27 @@ def search_team(query):
     db.close()
     return temp[0]
 
+def find_alliance_partner(team, match_num, alliance):
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (match_num, alliance, team)
+    querystring = '''
+        SELECT team_num from match_performance WHERE match_num = ? AND alliance = ? AND team_num != ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
+    temp = c.fetchall()
+    if len(temp) == 0:
+        print "None found"
+        return None
+    
+    print temp[0][0]
+    
+    db.close()
+    return temp[0][0]
+
 def get_match_data(team_num, match_num):
     '''
         Note: as of now, tasks that were left blank on the
@@ -343,8 +364,7 @@ if __name__ == "__main__":
             "worlds": 2011
         })
     get_team(7)
-    '''
-    '''
+    
     add_user({
             "u_id": 0,
             "name": "Mr. Admin",

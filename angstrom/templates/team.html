@@ -27,11 +27,17 @@
           <th>OPR</th>
           <th>Impact</th>
         </tr>
+        {% for i in range(0, team_data|length) %}
         <tr>
-          <td>1</td>
-          <td>300</td>
-          <td>0.6</td>
+          <td>{{ team_data[i]['match'] }}</td>
+          <td>{{ oprs[i]|int }}</td>
+          {% if impacts[i] %}
+          <td>{{ impacts[i]|round(2) }}</td>
+          {% else %}
+          <td></td>
+          {% endif %}
         </tr>
+        {% endfor %}
       </table>
     </div>
   </div>
