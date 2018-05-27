@@ -71,7 +71,7 @@ def about():
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
 
-@app.route('/add-task', methods=['POST'])
+@app.route('/add_task', methods=['POST'])
 def add_task():
     session['u_id'] = 0
     if 'u_id' not in session:
@@ -97,20 +97,33 @@ def add_task():
         
         return redirect(url_for('home'))
 
+@app.route('/find_team', methods=['POST'])
+def find_team():
+    team_num = search_team(request.form['search_team'])
+    if team_num is None:
+        flash('Team was not found.')
+        return redirect(url_for('home', _anchor='dashboard'))
+    return redirect(url_for('profile', team_num = team_num))
+
 @app.route('/visualize')
 def visualize():
     return render_template('visualize.html', data_link = url_for('get_sample_data'))
 
 @app.route('/profile')
 def profile():
+    if not request.args['team_num']:
+        flash('Team was not found.')
+        return redirect(url_for('home', _anchor='dashboard'))
+
+    team_tuple = get_team(int(request.args['team_num']))
     team = {
-        'team': 310,
-        'team_name': 'Stuy Fission',
-        'location': 'New York',
-        'num_mem': 20,
-        'pic': 'test.jpg',
-        'notes': 'more info'
+        'team': team_tuple[0],
+        'team_name': team_tuple[1],
+        'location': team_tuple[2],
+        'num_mem': team_tuple[4],
+        'pic': team_tuple[3]
     }
+    
     return render_template('team.html', team = team, data_link = url_for('get_310_data'))
 
 # REQUEST ROUTES (AJAX)

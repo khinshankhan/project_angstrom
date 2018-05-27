@@ -223,6 +223,27 @@ def get_team(team_num):
     db.close()
     return temp[0]
 
+def search_team(query):
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (query, '%' + query + '%')
+    querystring = '''
+        SELECT team_num from teams WHERE team_num = ? OR name LIKE ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
+    temp = c.fetchall()
+    if len(temp) == 0:
+        print "None found"
+        return None
+    
+    print temp
+    
+    db.close()
+    return temp[0]
+
 def get_match_data(team_num, match_num):
     '''
         Note: as of now, tasks that were left blank on the
