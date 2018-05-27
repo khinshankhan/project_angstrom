@@ -184,7 +184,6 @@ def add_team(data):
             "location": <string>,
             "num_mem": <number>,
             "pic": <string>,
-            "worlds": <number>
         }
     '''
     param_tuple = (
@@ -193,9 +192,8 @@ def add_team(data):
         data["location"],
         data["pic"],
         data["num_mem"],
-        data["worlds"]
     )
-    querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
+    querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?)"
     c.execute(querystring, param_tuple)
     
     db.commit()
