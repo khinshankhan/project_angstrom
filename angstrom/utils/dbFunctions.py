@@ -65,7 +65,6 @@ def db_setup():
     db.commit()
     db.close()
 
-
 def make_param_tuple(data):
     temp = []
     for key in data.keys():
@@ -93,7 +92,7 @@ def add_tasks_to_db(data):
                 "tasks": {
                     task_name <string>: <number>
                 },
-                "notes": <string or null>
+                "notes": <string>
 	}
     '''
     global db_file
@@ -126,7 +125,6 @@ def add_tasks_to_db(data):
     tasks = data["tasks"]
     for task in tasks.keys():
         param_tuple = (res[0][0], task, tasks[task])
-        print "param_tuple", param_tuple
         
         querystring = '''
             INSERT INTO match_tasks VALUES (?, ?, ?);
@@ -206,7 +204,69 @@ def add_team(data):
 def get_team(data):
     querystring = "INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)"
 
+def get_match_data(team_num, match_num):
+    '''
+        Note: as of now, tasks that were left blank on the
+        form are not returned in POST data. As such, when 
+        you pull data from the db and a certain task is
+        missing from a match, assume the team never
+        accomplished that task.
+
+        If results are found with the provided
+        parameters, then a dictionary is returned,
+        formatted as follows:
+        {
+                "team": <number>,
+                "match": <number>,
+                "alliance": (1 if blue else 0),
+                "u_id": <number>,
+                "tasks": {
+                    task_name <string>: <number>
+                },
+                "notes": <string>
+	}
+        
+        If no results are found, None is returned
+    '''
+    
+    global db_file
+    db = sqlite3.connect(db_file)
+    db.row_factory = sqlite3.Row    #get column names
+    c = db.cursor()
+    
+    res = {}
+    
+    param_tuple = (team_num, match_num);
+    querystring = '''
+        SELECT team_num, match_num, alliance, user_id, notes, task_name, count
+            FROM (
+                match_performance INNER JOIN match_tasks ON
+                match_performance.entry_id = match_tasks.entry_id
+            )
+            WHERE team_num = ? AND match_num = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    temp = c.fetchall()
+    
+    if len(temp) == 0:
+        return None
+    
+    res["team"] = temp[0]["team_num"]
+    res["match"] = temp[0]["match_num"]
+    res["alliance"] = temp[0]["alliance"]
+    res["u_id"] = temp[0]["user_id"]
+    res["notes"] = temp[0]["notes"]
+    res["tasks"] = {}
+
+    #now construct the task dict
+    for elem in temp:
+        res["tasks"][elem["task_name"]] = elem["count"]
+    
+    db.close()
+    return res
+
 if __name__ == "__main__":
     db_init("database.db")
     db_setup()
+    #get_match_data(1, 1)
 
