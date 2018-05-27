@@ -1,4 +1,5 @@
 import sqlite3   #enable control of an sqlite database
+import copy
 
 db_file = ""
 
@@ -67,46 +68,71 @@ def db_setup():
 
 def make_param_tuple(data):
     temp = []
-    for key in data:
+    for key in data.keys():
         if type(data[key]) == type({}):
-            for inner in data[key]:
+            for inner in data[key].keys():
                 temp.append(data[key][inner])
         else:
             temp.append(data[key])
     return tuple(temp)
 
 def add_tasks_to_db(data):
+    '''
+        Note: as of now, tasks that were left blank on the
+        form are not returned in POST data. As such, when 
+        you pull data from the db and a certain task is
+        missing from a match, assume the team never
+        accomplished that task.
+        
+        data should be in the form:
+        {
+                "team": <number>,
+                "match": <number>,
+                "alliance": (1 if blue else 0),
+                "u_id": <number>,
+                "tasks": {
+                    task_name <string>: <number>
+                },
+                "notes": <string or null>
+	}
+    '''
     global db_file
     db = sqlite3.connect(db_file)
     c = db.cursor()
     
-    param_tuple = (
-        data["team"],
-        data["match"],
-        data["alliance"],
-        data["u_id"],
-        data["tasks"][0],
-        data["tasks"][1],
-        data["tasks"][2],
-        data["tasks"][3],
-        data["tasks"][4],
-        data["tasks"][5],
-        data["tasks"][6],
-        data["tasks"][7],
-        data["tasks"][8],
-        data["tasks"][9],
-        data["tasks"][10],
-        data["tasks"][11],
-        data["tasks"][12],
-        data["notes"]
-    )
-    param_tuple = make_param_tuple(data)
+    #add other data first
+    param_tuple = (data["team"], data["match"], data["alliance"], data["u_id"], data["notes"]);
     
     querystring = '''
-        INSERT INTO match_performance VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO match_performance (team_num, match_num, alliance, user_id, notes)
+            VALUES (?, ?, ?, ?, ?);
     '''
     c.execute(querystring, param_tuple)
+    
+    #now add the tasks
+    search_val = (data["team"], data["match"])  #we need the entry_id
+    querystring = '''
+        SELECT * FROM match_performance WHERE team_num = ? AND match_num = ?;
+    '''
+    c.execute(querystring, search_val)
+    
+    #get all results now, so we can access it later
+    res = c.fetchall()
+    
+    #should only be one result (only want a specific team from a specific match)
+    if res == None or len(res) > 1:
+        print "error"   #error handle?
+    
+    tasks = data["tasks"]
+    for task in tasks.keys():
+        param_tuple = (res[0][0], task, tasks[task])
+        print "param_tuple", param_tuple
+        
+        querystring = '''
+            INSERT INTO match_tasks VALUES (?, ?, ?);
+        '''
+        c.execute(querystring, param_tuple)
+    
     db.commit()
     db.close()
 

@@ -16,15 +16,17 @@ def gen_task_dict(form):
         temp = key.split("_")
         if len(temp) > 1:
             if form[key].isdigit():
-                task_list[int(temp[0])] = int(form[key])
+                task_list[key] = int(form[key])
             else:
                 if str(form[key]) == "on":
-	            task_list[int(temp[0])] = 1
+	            task_list[key] = 1
                 elif str(form[key]) == "off":
-	            task_list[int(temp[0])] = 0
+	            task_list[key] = 0
+    '''
     #add missing indices
     for x in range(0, 13):
         if not x in task_list.keys():
             task_list[x] = 0
+    '''
     return task_list
 
