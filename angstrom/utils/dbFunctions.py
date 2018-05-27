@@ -17,8 +17,7 @@ def db_setup():
             name TEXT,
             location TEXT,
             robot_picture TEXT,
-            members INTEGER,
-            last_reached_worlds INTEGER
+            members INTEGER
     );
     """
     c.execute(querystring)
@@ -285,6 +284,32 @@ def get_match_data(team_num, match_num):
     db.close()
     return res
 
+def get_team_data(team_num):
+    '''
+        Returns a list of dictionaries, refer
+        to get_match_data() for dictionary structure
+    '''
+    global db_file
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    #get all matches
+    param_tuple = (team_num,);
+    querystring = '''
+        SELECT match_num FROM match_performance
+            WHERE team_num = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    matches = c.fetchall()
+    
+    res = []
+    
+    for match in matches:
+        res.append(get_match_data(team_num, match[0]))
+    
+    db.close()
+    return res
+
 if __name__ == "__main__":
     db_init("database.db")
     db_setup()
@@ -308,4 +333,5 @@ if __name__ == "__main__":
             "permission": 0
         })
     '''
+    #get_team_data(1)
 
