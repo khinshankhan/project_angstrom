@@ -1,3 +1,19 @@
+from functools import wraps
+from flask import session, redirect, url_for, flash
+from dbFunctions import *
+
+def logged_in(f):
+    @wraps(f)
+    def check_user(*args, **kwargs):
+        if not 'u_id' in session:
+            flash('You are not logged in.')
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return check_user
+
+def is_user():
+    return 'u_id' in session
+
 def valid(u_id, pw):
     if u_id.isnumeric():
         return valid_login(u_id, pw)

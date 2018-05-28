@@ -23,25 +23,23 @@ from utils.dbFunctions import *
 from utils.view_helper import *
 from utils.stats import *
 
+app.jinja_env.globals.update(is_user = is_user)
+
 @app.route('/')
 def index():
     #temporarily disable login checks
     session['u_id'] = 0
     return redirect( url_for('home') )
-    '''
-    if 'u_id' not in session:
-        return render_template('index.html')
-    else:
-        return redirect( url_for('home') )
-    '''
+
+    #if 'u_id' not in session:
+    #    return render_template('index.html')
+    #else:
+    #    return redirect( url_for('home') )
 
 @app.route('/home')
+@logged_in
 def home():
-    if 'u_id' not in session:
-        flash('You are not logged in.')
-        return redirect( url_for('index') )
-    else:
-        return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
+    return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -55,11 +53,9 @@ def login():
         return redirect( url_for('index') )
 
 @app.route('/logout', methods=['GET', 'POST'])
+@logged_in
 def logout():
-    if 'u_id' in session:
-        session.pop('u_id')
-    else:
-        flash('You are not logged in.')
+    session.pop('u_id')
     return redirect( url_for('index') )
 
 @app.route('/about')
@@ -72,33 +68,30 @@ def about():
     return render_template('about.html', user=cuser)
 
 @app.route('/add_task', methods=['POST'])
+@logged_in
 def add_task():
-    session['u_id'] = 0
-    if 'u_id' not in session:
-        flash('You are not logged in.')
-        return redirect( url_for('index') )
-    else:
-        form = request.form
-        #print form
+    form = request.form
+    #print form
         
-        #alliance: blue is one, red is 0
-        form_data = {
-                "team": int(form["Team"]),
-                "match": int(form["Match"]),
-                "alliance": (1 if "Alliance" in form else 0),
-                "u_id": int(session["u_id"]),
-                "tasks": gen_task_dict(form),
-                "notes": ("" if "Notes" not in form else form["Notes"])
-	}
-        print form_data
-        add_tasks_to_db(form_data)
-        #test = generate_all([2, 3, 4, 10], 5)
-        #add_tasks_to_db(test)
+    #alliance: blue is one, red is 0
+    form_data = {
+        "team": int(form["Team"]),
+        "match": int(form["Match"]),
+        "alliance": (1 if "Alliance" in form else 0),
+        "u_id": int(session["u_id"]),
+        "tasks": gen_task_dict(form),
+        "notes": ("" if "Notes" not in form else form["Notes"])
+    }
+    print form_data
+    add_tasks_to_db(form_data)
+    #test = generate_all([2, 3, 4, 10], 5)
+    #add_tasks_to_db(test)
 
-        flash('Match added.')
-        return redirect(url_for('home'))
+    flash('Match added.')
+    return redirect(url_for('home'))
 
 @app.route('/find_team', methods=['POST'])
+@logged_in
 def find_team():
     team_num = search_team(request.form['search_team'])
     if team_num is None:
@@ -111,6 +104,7 @@ def visualize():
     return render_template('visualize.html', data_link = url_for('get_sample_data'))
 
 @app.route('/profile')
+@logged_in
 def profile():
     if not request.args['team_num']:
         flash('Team was not found.')
