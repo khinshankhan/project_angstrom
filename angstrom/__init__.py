@@ -28,13 +28,13 @@ app.jinja_env.globals.update(is_user = is_user)
 @app.route('/')
 def index():
     #temporarily disable login checks
-    session['u_id'] = 0
-    return redirect( url_for('home') )
+    #session['u_id'] = 0
+    #return redirect( url_for('home') )
 
-    #if 'u_id' not in session:
-    #    return render_template('index.html')
-    #else:
-    #    return redirect( url_for('home') )
+    if 'u_id' not in session:
+        return render_template('index.html')
+    else:
+        return redirect( url_for('home') )
 
 @app.route('/home')
 @logged_in

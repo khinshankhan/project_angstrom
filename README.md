@@ -9,4 +9,5 @@
 2. Activate or create and activate a new virtual environment with basic dependecies (eg Flask)
 3. cd `angstrom/angstrom/`
 4. Run the app: `python __init__.py`
-5. View and interact the site by opening a browser and navugating to: `127.0.0.1:5000` or `localhost:5000`
+5. View and interact the site by opening a browser and navigating to: `127.0.0.1:5000` or `localhost:5000`
+
