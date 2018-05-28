@@ -1,8 +1,8 @@
 import os
 import sys
 
-windows_replace = {'\"database.db\"':'\"/var/www/angstrom/angstrom/database.db\"'}
-revert_replace = {'\"/var/www/angstrom/angstrom/database.db\"':'\"database.db\"'}
+windows_replace = {'\"database.db\"':'\"/var/www/angstrom/angstrom/database.db\"', 'app.debug = True':'app.debug = False'}
+revert_replace = {'\"/var/www/angstrom/angstrom/database.db\"':'\"database.db\"', 'app.debug = False':'app.debug = True'}
 wordReplacements = {'hi':'hello'}
 
 def transform_line(line, choice):
