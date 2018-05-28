@@ -2,7 +2,7 @@ import os
 import sys
 
 def transform_line(line):
-    print line
+    #print line
     num = 0
     line2 = line.split(' ')
     if (line2[0] == 'Merge:'):
@@ -18,7 +18,7 @@ def clean_log(fname):
             check = line.split(' ')
             
             if (check[0] == 'commit' or ticker > 0):
-                print ('######################', ticker)
+                #print ('######################', ticker)
                 if (ticker > 0):
                     ticker -= 1
                 pass
@@ -47,6 +47,8 @@ def clean_log(fname):
             
             
 def run():
+    command ='git log --reverse > hi.txt'
+    os.system(command)
     clean_log("hi.txt")
     
 run()

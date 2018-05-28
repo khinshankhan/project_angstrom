@@ -349,3 +349,15 @@ ryanS -- Sun May 27 17:37:18 2018 -0400
 ryanS -- Sun May 27 23:15:06 2018 -0400
 
     Add and implement login decorator and login function for templates
+
+khinshanK -- Mon May 28 15:40:19 2018 -0400
+
+    cleaned+refreshed devlog
+
+khinshanK -- Mon May 28 15:45:40 2018 -0400
+
+    updated logistical instructions for others
+
+khinshanK -- Mon May 28 16:18:31 2018 -0400
+
+    took off debugging auto login, added ish\'s image resized, fixed up navbar a bit for inituive + aesthetic, and fixed typo in readme
