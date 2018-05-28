@@ -173,3 +173,179 @@ khinshanK -- Sun May 20 11:46:56 2018 -0400
 khinshanK -- Sun May 20 13:08:11 2018 -0400
 
     pulled everybody's pictures off fb and resized them to fit aspect ratio using a fairly roundabout way to retain humanlike structure.. about page currently has mostly filler stuff + the pictures in \'card structures\'.
+
+khinshanK -- Sun May 20 13:10:07 2018 -0400
+
+    devlog refreshed
+
+stanleyL -- Sun May 20 15:40:22 2018 -0400
+
+    implemented login checks (without the db file)
+
+stanleyL -- Sun May 20 15:45:39 2018 -0400
+
+    added db file
+
+stanleyL -- Sun May 20 16:18:45 2018 -0400
+
+    WIP of obtaining scouting form data, still need to add the tasks themselves
+
+stanleyL -- Mon May 21 14:50:39 2018 -0400
+
+    more work on the form
+
+ryanS -- Mon May 21 19:40:30 2018 -0400
+
+    Add sample line chart using d3 for data visualization
+
+ryanS -- Mon May 21 19:45:29 2018 -0400
+
+    Fix syntax error in app and add x-axis line to chart
+
+khinshanK -- Tue May 22 14:16:19 2018 -0400
+
+    wsgi file
+
+khinshanK -- Tue May 22 14:18:23 2018 -0400
+
+    conf file
+
+khinshanK -- Tue May 22 14:19:23 2018 -0400
+
+    Update Atomic_Theory-Project_Angstrom.conf
+
+stanleyL -- Tue May 22 14:26:19 2018 -0400
+
+    almost done with task form handling
+
+khinshanK -- Tue May 22 14:28:57 2018 -0400
+
+    changed structure for deployment
+
+khinshanK -- Tue May 22 14:39:42 2018 -0400
+
+    Update Atomic_Theory-Project_Angstrom.conf
+
+khinshanK -- Tue May 22 14:54:15 2018 -0400
+
+    changing the whole structure because apache2 isnt working yet
+
+khinshanK -- Tue May 22 15:12:26 2018 -0400
+
+    changed directory because of name error, fixed
+
+khinshanK -- Wed May 23 14:26:37 2018 -0400
+
+    Safety instructions for team mates to deploy app
+
+khinshanK -- Wed May 23 14:28:20 2018 -0400
+
+    updated conf file, seems new directory aliases necessary?
+
+khinshanK -- Wed May 23 14:36:53 2018 -0400
+
+    updated for debug purposes
+
+ryanS -- Thu May 24 11:41:49 2018 -0400
+
+    Edit db function file to generate db if run directly
+
+ryanS -- Thu May 24 13:14:48 2018 -0400
+
+    Make visualization chart scalable
+
+stanleyL -- Thu May 24 14:30:50 2018 -0400
+
+    scout form done
+
+stanleyL -- Thu May 24 14:50:38 2018 -0400
+
+    some refactoring, starting more forms
+
+ryanS -- Thu May 24 15:16:30 2018 -0400
+
+    Implement AJAX to load data from server for visualization line chart
+
+ryanS -- Thu May 24 20:17:15 2018 -0400
+
+    Attempt to reorganize views and move helper functions to utils directory
+
+ryanS -- Thu May 24 20:40:10 2018 -0400
+
+    Make chart maker more modular
+
+ryanS -- Thu May 24 21:05:44 2018 -0400
+
+    Change impact and reliability stats
+
+khinshanK -- Fri May 25 18:36:45 2018 +0000
+
+    added files to make deployment easier. need to look over all calls nonrelative for edit.sh
+
+khinshanK -- Fri May 25 18:37:28 2018 +0000
+
+    final deployment change file. need to make it though....
+
+khinshanK -- Fri May 25 18:41:07 2018 +0000
+
+    cleaned directory structure
+
+khinshanK -- Fri May 25 18:42:59 2018 +0000
+
+    renamed for more clarity
+
+stanleyL -- Fri May 25 14:51:03 2018 -0400
+
+    fixing errors due to key mismatch
+
+khinshanK -- Fri May 25 14:52:00 2018 -0400
+
+    Update edit.py
+
+ryanS -- Fri May 25 15:01:09 2018 -0400
+
+    Start template for team page (include basic team information and sample charts and graphs)
+
+ryanS -- Fri May 25 15:30:06 2018 -0400
+
+    Add generated sample data to team profile chart
+
+stanleyL -- Sat May 26 19:44:26 2018 -0400
+
+    redid some setup
+
+stanleyL -- Sun May 27 12:52:31 2018 -0400
+
+    redid tasks handling for db
+
+stanleyL -- Sun May 27 15:07:17 2018 -0400
+
+    added quering for match performance
+
+stanleyL -- Sun May 27 15:35:04 2018 -0400
+
+    added team addition, team lookup, and user addition
+
+stanleyL -- Sun May 27 16:11:08 2018 -0400
+
+    added ability to get all match data for a team
+
+stanleyL -- Sun May 27 16:13:43 2018 -0400
+
+    fixed some team stuff
+
+ryanS -- Sun May 27 16:46:07 2018 -0400
+
+    Add search for teams and connect search to team profiles
+
+ryanS -- Sun May 27 16:49:41 2018 -0400
+
+    Fixing merge issues
+
+ryanS -- Sun May 27 17:37:18 2018 -0400
+
+    Finish connecting database with profile page; OPR graph and stats table display with stats calculated from database data; error handling for calculating stats added
+
+ryanS -- Sun May 27 23:15:06 2018 -0400
+
+    Add and implement login decorator and login function for templates
