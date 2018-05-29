@@ -100,30 +100,37 @@ def find_team():
         return redirect(url_for('home', _anchor='dashboard'))
     return redirect(url_for('profile', team_num = team_num))
 
-@app.route('/add_team', methods=['POST'])
+@app.route('/add_teams', methods=['POST'])
 @logged_in
-def add_team():
+def add_teams():
+    form = request.form
+    form_data = {
+        "team": int(form["team_num"]),
+        "team_name": (form["team_name"]),
+        "location": (form["location"]),
+        "num_mem": (form["members"]),
+        "pic": (form["pic"])
+        #"notes": (form["notes"])
+    }
+    print (form_data,file=sys.stderr)
     print('Team python checks out', file=sys.stderr)
-    q = request.form["u_id"]
-    print(q, file=sys.stderr)
-    #add_team(request.form["add_team"])
+    add_team(form_data)
     flash('Team was added.')
     return redirect(url_for('home', _anchor='admin'))
 
-@app.route('/add_user', methods=['POST'])
+@app.route('/add_users', methods=['POST'])
 @logged_in
-def add_user():
-    print('User python checks oust', file=sys.stderr)
-    q = request.form["u_id"]
-    print(q, file=sys.stderr)
-    #form_data = {
-    #    "u_id": int(request.form["u_id"])
-    #    "name": (form["name"]),
-    #    "password": (form["password"]),
-    #    "permission": (1 if "permission" in form else 0),
-    #}
-#    print (form_data,file=sys.stderr)
-#    add_user(form_data)
+def add_users():
+    form = request.form
+    form_data = {
+        "u_id": int(form["u_id"]),
+        "name": (form["name"]),
+        "password": (form["password"]),
+        "permission": (1 if "permission" in form else 0)
+    }
+    print (form_data,file=sys.stderr)
+    print('User python checks out', file=sys.stderr)
+    add_user(form_data)
     flash('User was added.')
     return redirect(url_for('home', _anchor='admin'))
 

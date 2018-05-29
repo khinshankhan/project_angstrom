@@ -145,6 +145,9 @@ def valid_login(u_id, pw):
 
 def add_user(data):
     print(data, file=sys.stderr)
+    print("user fxn gets called",file=sys.stderr)
+    print(data,file=sys.stderr)
+
     '''
         Data should be in format:
         {
@@ -154,20 +157,23 @@ def add_user(data):
             "permission": <number>
         }
      '''
-
-#    param_tuple = (
-#        data["u_id"],
-#        data["name"],
-#        data["password"],
-#        data["permission"],
-#    )
-#    querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
-#    c.execute(querystring, param_tuple)
-#    db.commit()
-#    db.close()
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    param_tuple = (
+        data["u_id"],
+        data["name"],
+        data["password"],
+        data["permission"],
+    )
+    querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
+    c.execute(querystring, param_tuple)
+    db.commit()
+    db.close()
 
 
 def add_team(data):
+    print("team fxn gets called",file=sys.stderr)
+    print(data,file=sys.stderr)
     db = sqlite3.connect(db_file)
     c = db.cursor()
 
