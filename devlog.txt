@@ -361,3 +361,87 @@ khinshanK -- Mon May 28 15:45:40 2018 -0400
 khinshanK -- Mon May 28 16:18:31 2018 -0400
 
     took off debugging auto login, added ish\'s image resized, fixed up navbar a bit for inituive + aesthetic, and fixed typo in readme
+
+khinshanK -- Mon May 28 16:44:43 2018 -0400
+
+    about page updated for mvp, devlog refreshed, sleek script fixed to be more self-sufficient
+
+khinshanK -- Mon May 28 17:16:57 2018 -0400
+
+    more after mvp is finished, but start of 404 page
+
+khinshanK -- Mon May 28 23:11:41 2018 +0000
+
+    script to view log + the error rn
+
+khinshanK -- Mon May 28 19:27:58 2018 -0400
+
+    Update edit.py
+
+khinshanK -- Mon May 28 23:59:19 2018 +0000
+
+    edited scripts to make it a little easier
+
+khinshanK -- Tue May 29 00:00:21 2018 +0000
+
+    newfound logic\! uses __name__ to know where it\'s relative to
+
+khinshanK -- Tue May 29 01:51:48 2018 +0000
+
+    new errors
+
+khinshanK -- Tue May 29 01:57:02 2018 +0000
+
+    new errors
+
+khinshanK -- Tue May 29 02:05:18 2018 +0000
+
+    fixed db accessor method
+
+khinshanK -- Mon May 28 22:16:50 2018 -0400
+
+    temp fix to run locally, what is db_init???
+
+khinshanK -- Mon May 28 22:19:43 2018 -0400
+
+    updated for name clarity
+
+ishtiaqueM -- Tue May 29 00:26:16 2018 -0400
+
+    Working on parsing user form and team form, getting a bad request error becuase forms are returning empty
+
+ishtiaqueM -- Tue May 29 01:33:04 2018 -0400
+
+    Finished parsing add teams form and add users form. We can now add users and teams.
+
+khinshanK -- Tue May 29 04:44:10 2018 -0400
+
+    Creating admin differences
+
+khinshanK -- Tue May 29 04:49:49 2018 -0400
+
+    New permissions checking method
+
+khinshanK -- Tue May 29 04:51:14 2018 -0400
+
+    Sending permissions to home route
+
+khinshanK -- Tue May 29 04:54:46 2018 -0400
+
+    Utitilizing permissions
+
+khinshanK -- Tue May 29 04:58:23 2018 -0400
+
+    Update dbFunctions.py
+
+khinshanK -- Tue May 29 05:00:45 2018 -0400
+
+    forgot to define cursor
+
+khinshanK -- Tue May 29 05:03:42 2018 -0400
+
+    I hope casting works, need help with the get_permissions
+
+khinshanK -- Tue May 29 05:14:22 2018 -0400
+
+    okay, dbfunction for permissions now works locally, it's time to transition to DO box
