@@ -347,6 +347,26 @@ def get_team_data(team_num):
     db.close()
     return res
 
+def get_perm (u_id):
+    global db_file
+    db = sqlite3.connect(db_file)
+    param_tuple = (u_id,)
+    querystring = '''
+        SELECT permission FROM users
+            WHERE user_id = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    matches = c.fetchall()
+
+    res = []
+
+    for match in matches:
+        res.append(get_match_data(team_num, match[0]))
+
+    db.close()
+    return res
+    
+
 if __name__ == "__main__":
     db_setup()
     #get_match_data(1, 1)
