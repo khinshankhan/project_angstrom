@@ -356,13 +356,7 @@ def get_perm (u_id):
             WHERE user_id = ?;
     '''
     c.execute(querystring, param_tuple)
-    matches = c.fetchall()
-
-    res = []
-
-    for match in matches:
-        res.append(get_match_data(team_num, match[0]))
-
+    res = c.fetchall()
     db.close()
     return res
     
