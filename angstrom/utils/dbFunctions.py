@@ -170,6 +170,24 @@ def add_user(data):
     db.commit()
     db.close()
 
+def get_user(u_id):
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+
+    param_tuple = (u_id,)
+
+    querystring = """
+    SELECT * FROM users WHERE user_id = ?
+    """
+    c.execute(querystring, param_tuple)
+
+    temp = c.fetchall()
+    if len(temp) == 0:
+        #print "None found"
+        return None
+
+    db.close()
+    return temp[0]
 
 def add_team(data):
     print("team fxn gets called",file=sys.stderr)
@@ -346,25 +364,6 @@ def get_team_data(team_num):
 
     db.close()
     return res
-
-def get_perm (u_id):
-    global db_file
-    db = sqlite3.connect(db_file)
-    c = db.cursor()
-    
-    param_tuple = (u_id,)
-    querystring = '''
-        SELECT permission FROM users
-            WHERE user_id = ?;
-    '''
-    c.execute(querystring, param_tuple)
-    res = c.fetchall()
-    db.close()
-    for i in res:
-        print (i[0], file=sys.stderr)
-        return int (i[0])
-    return res
-    
 
 if __name__ == "__main__":
     db_setup()

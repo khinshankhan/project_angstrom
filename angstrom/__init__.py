@@ -25,6 +25,7 @@ from utils.view_helper import *
 from utils.stats import *
 
 app.jinja_env.globals.update(is_user = is_user)
+app.jinja_env.globals.update(is_admin = is_admin)
 
 @app.route('/')
 def index():
@@ -32,7 +33,7 @@ def index():
     #session['u_id'] = 0
     #return redirect( url_for('home') )
 
-    if 'u_id' not in session:
+    if not is_user():
         return render_template('index.html')
     else:
         return redirect( url_for('home') )
@@ -40,8 +41,7 @@ def index():
 @app.route('/home')
 @logged_in
 def home():
-    perm = get_perm (session ['u_id'])
-    return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, perms=perm)
+    return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -63,7 +63,7 @@ def logout():
 @app.route('/about')
 def about():
     cuser = ""
-    if 'u_id' not in session:
+    if not is_user():
         cuser = "Nameless Visitor"
     else:
         cuser = "User " + str(session['u_id'])

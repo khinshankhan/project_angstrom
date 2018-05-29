@@ -11,8 +11,27 @@ def logged_in(f):
         return f(*args, **kwargs)
     return check_user
 
+def admin(f):
+    @wraps(f)
+    def check_user(*args, **kwargs):
+        if not is_user():
+            flash('You are not logged in.')
+            return redirect(url_for('index'))
+        elif not is_admin():
+            flash('You do not have permission to view this page.')
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return check_user
+
 def is_user():
     return 'u_id' in session
+
+def is_admin():
+    # get user and check if admin
+    if is_user():
+        return get_user(session['u_id'])[3] == 1
+    else:
+        return False
 
 def valid(u_id, pw):
     if u_id.isnumeric():
