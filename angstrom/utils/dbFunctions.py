@@ -361,7 +361,8 @@ def get_perm (u_id):
     res = c.fetchall()
     db.close()
     for i in res:
-        return int (i)
+        print (i[0], file=sys.stderr)
+        return int (i[0])
     return res
     
 
