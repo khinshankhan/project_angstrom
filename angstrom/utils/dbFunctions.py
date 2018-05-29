@@ -360,6 +360,8 @@ def get_perm (u_id):
     c.execute(querystring, param_tuple)
     res = c.fetchall()
     db.close()
+    for i in res:
+        return int (i)
     return res
     
 
