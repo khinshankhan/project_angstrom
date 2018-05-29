@@ -40,6 +40,7 @@ def index():
 @app.route('/home')
 @logged_in
 def home():
+    perm = get_perm (session ['u_id'])
     return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
 
 @app.route('/login', methods = ['POST'])
