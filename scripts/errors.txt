@@ -1,27 +1,27 @@
-[Tue May 29 01:50:36.638271 2018] [wsgi:warn] [pid 4693:tid 140214154454912] mod_wsgi: Compiled for Python/2.7.11.
-[Tue May 29 01:50:36.638481 2018] [wsgi:warn] [pid 4693:tid 140214154454912] mod_wsgi: Runtime using Python/2.7.12.
-[Tue May 29 01:50:36.641972 2018] [mpm_event:notice] [pid 4693:tid 140214154454912] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming normal operations
-[Tue May 29 01:50:36.642082 2018] [core:notice] [pid 4693:tid 140214154454912] AH00094: Command line: '/usr/sbin/apache2'
-[Tue May 29 01:51:09.693359 2018] [wsgi:error] [pid 4696:tid 140213972104960] [(7,)]
-[Tue May 29 01:51:09.734083 2018] [wsgi:error] [pid 4696:tid 140213946926848] [(7, u'Team seven', u'China', u'cool.jpg', 49)]
-[Tue May 29 01:51:09.745088 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695] [2018-05-29 01:51:09,735] ERROR in app: Exception on /profile [GET], referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745157 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695] Traceback (most recent call last):, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745163 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745167 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     response = self.full_dispatch_request(), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745172 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745176 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     rv = self.handle_user_exception(e), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745180 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745184 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     reraise(exc_type, exc_value, tb), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745187 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745191 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     rv = self.dispatch_request(), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745196 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745200 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     return self.view_functions[rule.endpoint](**req.view_args), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745204 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/utils/view_helper.py", line 11, in check_user, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745209 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     return f(*args, **kwargs), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745213 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/__init__.py", line 122, in profile, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745217 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     team_data = get_team_data(team_tuple[0]), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745246 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 335, in get_team_data, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745251 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     res.append(get_match_data(team_num, match[0])), referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745254 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 280, in get_match_data, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745258 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     db.row_factory = sqlite3.Row    #get column names, referer: http://206.189.235.133/home
-[Tue May 29 01:51:09.745263 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695] NameError: global name 'db' is not defined, referer: http://206.189.235.133/home
+[Tue May 29 01:55:57.175858 2018] [wsgi:warn] [pid 5086:tid 140470348683136] mod_wsgi: Compiled for Python/2.7.11.
+[Tue May 29 01:55:57.175977 2018] [wsgi:warn] [pid 5086:tid 140470348683136] mod_wsgi: Runtime using Python/2.7.12.
+[Tue May 29 01:55:57.176946 2018] [mpm_event:notice] [pid 5086:tid 140470348683136] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming normal operations
+[Tue May 29 01:55:57.176993 2018] [core:notice] [pid 5086:tid 140470348683136] AH00094: Command line: '/usr/sbin/apache2'
+[Tue May 29 01:56:10.410597 2018] [wsgi:error] [pid 5090:tid 140470109853440] [(7,)]
+[Tue May 29 01:56:10.435884 2018] [wsgi:error] [pid 5090:tid 140470101460736] [(7, u'Team seven', u'China', u'cool.jpg', 49)]
+[Tue May 29 01:56:10.440178 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715] [2018-05-29 01:56:10,437] ERROR in app: Exception on /profile [GET], referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440249 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715] Traceback (most recent call last):, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440257 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440263 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     response = self.full_dispatch_request(), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440268 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440273 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     rv = self.handle_user_exception(e), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440277 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440282 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     reraise(exc_type, exc_value, tb), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440286 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440292 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     rv = self.dispatch_request(), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440297 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440304 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     return self.view_functions[rule.endpoint](**req.view_args), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440309 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/var/www/angstrom/angstrom/utils/view_helper.py", line 11, in check_user, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440314 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     return f(*args, **kwargs), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440319 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/var/www/angstrom/angstrom/__init__.py", line 122, in profile, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440325 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     team_data = get_team_data(team_tuple[0]), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440359 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 336, in get_team_data, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440366 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     res.append(get_match_data(team_num, match[0])), referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440372 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 281, in get_match_data, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440377 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715]     db.row_factory = sqlite3.Row    #get column names, referer: http://206.189.235.133/home
+[Tue May 29 01:56:10.440381 2018] [wsgi:error] [pid 5090:tid 140470101460736] [client 184.152.186.62:57715] NameError: global name 'db' is not defined, referer: http://206.189.235.133/home
