@@ -3,6 +3,7 @@ import copy
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+global db_file
 db_file = basedir + "/../database.db"
 
 def db_setup():
@@ -276,6 +277,8 @@ def get_match_data(team_num, match_num):
 
         If no results are found, None is returned
     '''
+    global db_file
+    db = sqlite3.connect(db_file)
 
     db.row_factory = sqlite3.Row    #get column names
     c = db.cursor()
