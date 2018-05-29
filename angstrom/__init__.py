@@ -9,7 +9,7 @@ import sqlite3   #enable control of an sqlite database
 import json
 
 # GLOBALS
-database = "/var/www/angstrom/angstrom/database.db"
+database = "database.db"
 db = sqlite3.connect(database)
 c = db.cursor()
 
@@ -151,5 +151,5 @@ def page_not_found(e):
 
 if __name__ == "__main__":
     app.debug = False
-    db_init(database)
+    #db_init(database)
     app.run()
