@@ -10,7 +10,7 @@
         <ul>
           <li><i class="teal-text inline-icon material-icons">location_on</i> {{ team.location }}</li>
           <li><i class="teal-text inline-icon material-icons">person</i> {{ team.num_mem }} members</li>
-          <li><i class="teal-text inline-icon material-icons">image</i> <a href="{{ url_for('static', filename='img/public/' + team.pic) }}">{{ team.pic }}</a></li>
+          <li><i class="teal-text inline-icon material-icons">image</i> <a href="{{ url_for('pictures', filename = team.pic) }}">{{ team.pic }}</a></li>
         </ul>
       </span>
     </div>

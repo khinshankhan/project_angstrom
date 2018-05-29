@@ -1,5 +1,5 @@
 from __future__ import print_function
-from flask import Flask, render_template, session, redirect, url_for, flash, request
+from flask import Flask, render_template, session, redirect, url_for, flash, request, send_from_directory
 
 from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
@@ -9,6 +9,8 @@ import os
 import sqlite3   #enable control of an sqlite database
 import json
 import sys
+from werkzeug.utils import secure_filename
+
 # GLOBALS
 database = "database.db"
 db = sqlite3.connect(database)
@@ -104,24 +106,48 @@ def find_team():
 @app.route('/add_teams', methods=['POST'])
 @logged_in
 def add_teams():
+    print(request.files)
+    
+    if 'pic' not in request.files:
+        flash('You did not upload an image.')
+        return redirect(url_for('home', _anchor='admin'))
+
+    f = request.files['pic']
+
+    if f.filename == '':
+        flash('You did not select an image.')
+        return redirect(url_for('home', _anchor='admin'))
+
+    if not allowed_file(f.filename):
+        flash('Please upload a .JPG or .JPEG image.')
+        return redirect(url_for('home', _anchor='admin'))
+
+    filename = secure_filename(f.filename)
+    f.save(os.path.join(team_pic_directory, filename))
+
     form = request.form
     form_data = {
         "team": int(form["team_num"]),
         "team_name": (form["team_name"]),
         "location": (form["location"]),
         "num_mem": (form["members"]),
-        "pic": (form["pic"])
+        "pic": filename
         #"notes": (form["notes"])
     }
     print (form_data,file=sys.stderr)
     print('Team python checks out', file=sys.stderr)
-    add_team(form_data)
-    flash('Team was added.')
+    if get_team(int(form['team_num'])) is None:
+        add_team(form_data)
+        flash('Team was added.')
+    else:
+        flash('Team already exists.')
+    print ("test")
     return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/add_users', methods=['POST'])
 @logged_in
 def add_users():
+
     form = request.form
     form_data = {
         "u_id": int(form["u_id"]),
@@ -140,6 +166,10 @@ def add_users():
 @app.route('/visualize')
 def visualize():
     return render_template('visualize.html', data_link = url_for('get_sample_data'))
+
+@app.route('/pictures/<filename>')
+def pictures(filename):
+    return send_from_directory(team_pic_directory, filename)
 
 @app.route('/profile')
 @logged_in

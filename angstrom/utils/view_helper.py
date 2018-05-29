@@ -38,6 +38,10 @@ def valid(u_id, pw):
         return valid_login(u_id, pw)
     return False
 
+def allowed_file(filename):
+        return '.' in filename and \
+                       filename.rsplit('.', 1)[1].lower() in ['jpg', 'jpeg']
+
 def extract_task_id(tasks):
     '''
         tasks is a dict
