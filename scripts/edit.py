@@ -1,13 +1,13 @@
 import os
 import sys
 
-windows_replace = {'\"database.db\"':'\"/var/www/angstrom/angstrom/database.db\"', 'app.debug = True':'app.debug = False'}
+servers_replace = {'\"database.db\"':'\"/var/www/angstrom/angstrom/database.db\"', 'app.debug = True':'app.debug = False'}
 revert_replace = {'\"/var/www/angstrom/angstrom/database.db\"':'\"database.db\"', 'app.debug = False':'app.debug = True'}
 wordReplacements = {'hi':'hello'}
 
 def transform_line(line, choice):
-    if (choice == "windows"):
-            wordReplacements = windows_replace
+    if (choice == "servers"):
+            wordReplacements = servers_replace
     elif (choice == "revert"):
         wordReplacements = revert_replace
     
@@ -25,13 +25,13 @@ def replace_file(fname, choice):
 
 def run():
     sys.stdout.flush()
-    print '\'windows\' will convert files to work with a DO apache2 deployment server'
+    print '\'servers\' will convert files to work with a DO apache2 deployment server'
     print '\'revert\' will convert files back to normal, localhost use'
     print
-    print 'Now choose either: windows or revert'
+    print 'Now choose either: servers or revert'
     sys.stdout.flush()
     choice = raw_input()
-    if (choice == "windows" or choice == "revert"):
+    if (choice == "servers" or choice == "revert"):
         replace_file("../angstrom/__init__.py", choice)
     else:
         print
