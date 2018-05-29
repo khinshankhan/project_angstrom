@@ -350,6 +350,8 @@ def get_team_data(team_num):
 def get_perm (u_id):
     global db_file
     db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
     param_tuple = (u_id,)
     querystring = '''
         SELECT permission FROM users
