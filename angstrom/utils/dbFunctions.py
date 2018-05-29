@@ -1,6 +1,8 @@
+from __future__ import print_function
 import sqlite3   #enable control of an sqlite database
 import copy
 import os
+import sys
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 global db_file
@@ -107,7 +109,7 @@ def add_tasks_to_db(data):
 
     #should only be one result (only want a specific team from a specific match)
     if res == None or len(res) > 1:
-        print "An error ocurred when adding match performance data, rolling back changes"
+        #print "An error ocurred when adding match performance data, rolling back changes"
         db.rollback()
         db.close()
         return
@@ -142,6 +144,7 @@ def valid_login(u_id, pw):
     return False
 
 def add_user(data):
+    print(data, file=sys.stderr)
     '''
         Data should be in format:
         {
@@ -150,21 +153,19 @@ def add_user(data):
             "password": <string>,
             "permission": <number>
         }
-    '''
-    db = sqlite3.connect(db_file)
-    c = db.cursor()
+     '''
 
-    param_tuple = (
-        data["u_id"],
-        data["name"],
-        data["password"],
-        data["permission"],
-    )
-    querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
-    c.execute(querystring, param_tuple)
+#    param_tuple = (
+#        data["u_id"],
+#        data["name"],
+#        data["password"],
+#        data["permission"],
+#    )
+#    querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
+#    c.execute(querystring, param_tuple)
+#    db.commit()
+#    db.close()
 
-    db.commit()
-    db.close()
 
 def add_team(data):
     db = sqlite3.connect(db_file)
@@ -205,10 +206,10 @@ def get_team(team_num):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        print "None found"
+        #print "None found"
         return None
 
-    print temp
+    #print temp
 
     db.close()
     return temp[0]
@@ -225,10 +226,10 @@ def search_team(query):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        print "None found"
+        #print "None found"
         return None
 
-    print temp
+    #print temp
 
     db.close()
     return temp[0]
@@ -245,10 +246,10 @@ def find_alliance_partner(team, match_num, alliance):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        print "None found"
+        #print "None found"
         return None
 
-    print temp[0][0]
+    #print temp[0][0]
 
     db.close()
     return temp[0][0]

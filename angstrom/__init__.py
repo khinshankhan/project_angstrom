@@ -1,3 +1,4 @@
+from __future__ import print_function
 from flask import Flask, render_template, session, redirect, url_for, flash, request
 
 from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
@@ -7,7 +8,7 @@ import random
 import os
 import sqlite3   #enable control of an sqlite database
 import json
-
+import sys
 # GLOBALS
 database = "database.db"
 db = sqlite3.connect(database)
@@ -72,7 +73,7 @@ def about():
 def add_task():
     form = request.form
     #print form
-        
+
     #alliance: blue is one, red is 0
     form_data = {
         "team": int(form["Team"]),
@@ -82,7 +83,7 @@ def add_task():
         "tasks": gen_task_dict(form),
         "notes": ("" if "Notes" not in form else form["Notes"])
     }
-    print form_data
+    #print form_data
     add_tasks_to_db(form_data)
     #test = generate_all([2, 3, 4, 10], 5)
     #add_tasks_to_db(test)
@@ -98,6 +99,33 @@ def find_team():
         flash('Team was not found.')
         return redirect(url_for('home', _anchor='dashboard'))
     return redirect(url_for('profile', team_num = team_num))
+
+@app.route('/add_team', methods=['POST'])
+@logged_in
+def add_team():
+    print('Team python checks out', file=sys.stderr)
+    q = request.form["u_id"]
+    print(q, file=sys.stderr)
+    #add_team(request.form["add_team"])
+    flash('Team was added.')
+    return redirect(url_for('home', _anchor='admin'))
+
+@app.route('/add_user', methods=['POST'])
+@logged_in
+def add_user():
+    print('User python checks oust', file=sys.stderr)
+    q = request.form["u_id"]
+    print(q, file=sys.stderr)
+    #form_data = {
+    #    "u_id": int(request.form["u_id"])
+    #    "name": (form["name"]),
+    #    "password": (form["password"]),
+    #    "permission": (1 if "permission" in form else 0),
+    #}
+#    print (form_data,file=sys.stderr)
+#    add_user(form_data)
+    flash('User was added.')
+    return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/visualize')
 def visualize():
@@ -136,7 +164,7 @@ def get_oprs():
         "id": team_num,
         "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
     }]
-    print data
+    #print data
     return json.dumps(formatted)
 
 @app.route('/get_sample_data')
@@ -150,6 +178,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == "__main__":
-    app.debug = False
-    #db_init(database)
+    app.debug = True
     app.run()
+    #db_init(database)

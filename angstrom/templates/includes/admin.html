@@ -1,10 +1,11 @@
 <div class="row">
+
   <div class="container">
     <h4 class="center-align">Admin Privileges</h4><br>
     <div class="card-panel">
       <h4 class="center-align">Add Team</h4>
       <div class="row">
-        <form class="col s12" method="POST">
+        <form class="col s12" method="POST" action="{{ url_for('add_team') }}">
           <div class="row">
             <div class="input-field col s6">
               <input id="team_num" type="text" required="" class="validate">
@@ -44,35 +45,38 @@
       </div>
     </div>
   </div>
+  
   <div class="container">
     <div class="card-panel">
       <h4 class="center-align">Add User</h4>
       <div class="row">
-        <form class="col s12" method="POST">
+        <form class="col s12" method="POST" action="{{ url_for('add_user') }}">
           <div class="row">
             <div class="input-field col s12 center">
               <input id="u_id" type="text" required="" class="validate">
               <label for="u_id">User ID</label>
             </div>
             <div class="input-field col s12 center">
-              <input id="pw" type="text" required="" class="validate">
-              <label for="pw">Password</label>
+              <input id="name" type="text" required="" class="validate">
+              <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12 center">
+              <input id="password" type="text" required="" class="validate">
+              <label for="password">Password</label>
             </div>
             <div class="input-field col s6">
               <p>
                 <label>
-                  <input id="privilege" type="checkbox" name="make_admin"/>
+                  <input id="permission" type="checkbox" name="make_admin"/>
                   <span>Give Admin Privileges?</span>
                 </label>
               </p>
             </div>
-            <div class="col s12">
               <div class="input-field col s12 center">
                 <button class="btn waves-effect waves-light" type="submit">Submit</button>
               </div>
-            </div>
-        </form>
           </div>
+        </form>
       </div>
     </div>
   </div>
