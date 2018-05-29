@@ -1,25 +1,27 @@
-[Mon May 28 23:06:24.726452 2018] [wsgi:warn] [pid 2513:tid 140283405043584] mod_wsgi: Compiled for Python/2.7.11.
-[Mon May 28 23:06:24.726553 2018] [wsgi:warn] [pid 2513:tid 140283405043584] mod_wsgi: Runtime using Python/2.7.12.
-[Mon May 28 23:06:24.728553 2018] [mpm_event:notice] [pid 2513:tid 140283405043584] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming normal operations
-[Mon May 28 23:06:24.728604 2018] [core:notice] [pid 2513:tid 140283405043584] AH00094: Command line: '/usr/sbin/apache2'
-[Mon May 28 23:07:28.753097 2018] [wsgi:error] [pid 2516:tid 140283127740160] ++++=======================================++++
-[Mon May 28 23:07:50.082545 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102] [2018-05-28 23:07:50,080] ERROR in app: Exception on /login [POST], referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082610 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102] Traceback (most recent call last):, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082614 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082617 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     response = self.full_dispatch_request(), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082620 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082623 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     rv = self.handle_user_exception(e), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082625 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082628 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     reraise(exc_type, exc_value, tb), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082631 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082633 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     rv = self.dispatch_request(), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082635 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082638 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     return self.view_functions[rule.endpoint](**req.view_args), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082640 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/var/www/angstrom/angstrom/__init__.py", line 49, in login, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082643 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     if valid(u_id, pw):, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082645 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/var/www/angstrom/angstrom/utils/view_helper.py", line 19, in valid, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082648 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     return valid_login(u_id, pw), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082650 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 139, in valid_login, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082667 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102]     c.execute(querystring, param_tuple), referer: http://206.189.235.133/
-[Mon May 28 23:07:50.082670 2018] [wsgi:error] [pid 2516:tid 140283110954752] [client 184.152.186.62:57102] OperationalError: no such table: users, referer: http://206.189.235.133/
-[Mon May 28 23:07:50.220338 2018] [wsgi:error] [pid 2517:tid 140283203274496] ++++=======================================++++
+[Tue May 29 01:50:36.638271 2018] [wsgi:warn] [pid 4693:tid 140214154454912] mod_wsgi: Compiled for Python/2.7.11.
+[Tue May 29 01:50:36.638481 2018] [wsgi:warn] [pid 4693:tid 140214154454912] mod_wsgi: Runtime using Python/2.7.12.
+[Tue May 29 01:50:36.641972 2018] [mpm_event:notice] [pid 4693:tid 140214154454912] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming normal operations
+[Tue May 29 01:50:36.642082 2018] [core:notice] [pid 4693:tid 140214154454912] AH00094: Command line: '/usr/sbin/apache2'
+[Tue May 29 01:51:09.693359 2018] [wsgi:error] [pid 4696:tid 140213972104960] [(7,)]
+[Tue May 29 01:51:09.734083 2018] [wsgi:error] [pid 4696:tid 140213946926848] [(7, u'Team seven', u'China', u'cool.jpg', 49)]
+[Tue May 29 01:51:09.745088 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695] [2018-05-29 01:51:09,735] ERROR in app: Exception on /profile [GET], referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745157 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695] Traceback (most recent call last):, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745163 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745167 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     response = self.full_dispatch_request(), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745172 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745176 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     rv = self.handle_user_exception(e), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745180 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745184 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     reraise(exc_type, exc_value, tb), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745187 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745191 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     rv = self.dispatch_request(), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745196 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745200 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     return self.view_functions[rule.endpoint](**req.view_args), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745204 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/utils/view_helper.py", line 11, in check_user, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745209 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     return f(*args, **kwargs), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745213 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/__init__.py", line 122, in profile, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745217 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     team_data = get_team_data(team_tuple[0]), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745246 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 335, in get_team_data, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745251 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     res.append(get_match_data(team_num, match[0])), referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745254 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 280, in get_match_data, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745258 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695]     db.row_factory = sqlite3.Row    #get column names, referer: http://206.189.235.133/home
+[Tue May 29 01:51:09.745263 2018] [wsgi:error] [pid 4696:tid 140213946926848] [client 184.152.186.62:57695] NameError: global name 'db' is not defined, referer: http://206.189.235.133/home
