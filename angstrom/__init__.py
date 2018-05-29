@@ -41,7 +41,7 @@ def index():
 @logged_in
 def home():
     perm = get_perm (session ['u_id'])
-    return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
+    return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, perms=perm)
 
 @app.route('/login', methods = ['POST'])
 def login():
