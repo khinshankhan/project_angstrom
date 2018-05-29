@@ -29,7 +29,7 @@ def is_user():
 def is_admin():
     # get user and check if admin
     if is_user():
-        return get_user(session['u_id'])[3] == 1
+        return get_user(session['u_id'])[2] == 1
     else:
         return False
 

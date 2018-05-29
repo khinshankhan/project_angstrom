@@ -4,6 +4,8 @@ import copy
 import os
 import sys
 
+from auth import *
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 global db_file
 db_file = basedir + "/../database.db"
@@ -130,7 +132,7 @@ def valid_login(u_id, pw):
     db = sqlite3.connect(db_file)
     c = db.cursor()
 
-    param_tuple = (u_id, pw)
+    param_tuple = (u_id, hashed(pw))
     querystring = """
         SELECT user_id, password FROM users WHERE user_id = ? AND password = ?
     """
@@ -162,7 +164,7 @@ def add_user(data):
     param_tuple = (
         data["u_id"],
         data["name"],
-        data["password"],
+        hashed(data["password"]),
         data["permission"],
     )
     querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
@@ -177,7 +179,7 @@ def get_user(u_id):
     param_tuple = (u_id,)
 
     querystring = """
-    SELECT * FROM users WHERE user_id = ?
+    SELECT user_id, name, permission FROM users WHERE user_id = ?
     """
     c.execute(querystring, param_tuple)
 

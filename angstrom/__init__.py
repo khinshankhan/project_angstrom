@@ -129,10 +129,12 @@ def add_users():
         "password": (form["password"]),
         "permission": (1 if "permission" in form else 0)
     }
-    print (form_data,file=sys.stderr)
     print('User python checks out', file=sys.stderr)
-    add_user(form_data)
-    flash('User was added.')
+    if get_user(int(form['u_id'])) is None:
+        add_user(form_data)
+        flash('User was added.')
+    else:
+        flash('This user ID is already taken.')
     return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/visualize')
