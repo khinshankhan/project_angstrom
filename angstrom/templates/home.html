@@ -18,7 +18,9 @@
     <ul class="tabs">
       <li class="tab col s4"><a class="teal-text" href="#dashboard">Dashboard</a></li>
       <li class="tab col s4"><a class="active teal-text" href="#scout">Scout</a></li>
+      {% if perms==0 %}
       <li class="tab col s4"><a class="teal-text" href="#admin">Admin</a></li>
+      {% endif %}
     </ul>
   </div>
 
@@ -30,9 +32,11 @@
     {% include "includes/scout.html" %}
   </div>
 
+  {% if perms==0 %}
   <div id="admin" class="col s12">
     {% include "includes/admin.html" %}
   </div>
+  {% endif %}
 </div>
 
 
