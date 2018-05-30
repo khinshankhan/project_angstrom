@@ -279,12 +279,6 @@ def search_teams(query):
     c.execute(querystring, param_tuple)
 
     temp = c.fetchall()
-    if len(temp) == 0:
-        #print "None found"
-        return None
-
-    #print temp
-
     db.close()
     return temp
 
