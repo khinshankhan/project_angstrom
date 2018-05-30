@@ -159,14 +159,14 @@ def add_users():
         flash('This user ID is already taken.')
     return redirect(url_for('home', _anchor='admin'))
 
-@app.route('/remove_users', methods=['POST'])
+@app.route('/remove_users', methods=['GET'])
 @admin
 def remove_users():
     u_id = int(request.args.get('u_id'))
     if get_user(u_id) is None:
         flash('User was not found.')
     else:
-        #remove_user(u_id)
+        remove_user(u_id)
         flash('User was removed.')
     return redirect(url_for('home', _anchor='admin'))
 

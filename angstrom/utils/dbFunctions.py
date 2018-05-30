@@ -146,10 +146,6 @@ def valid_login(u_id, pw):
     return False
 
 def add_user(data):
-    print(data, file=sys.stderr)
-    print("user fxn gets called",file=sys.stderr)
-    print(data,file=sys.stderr)
-
     '''
         Data should be in format:
         {
@@ -158,7 +154,10 @@ def add_user(data):
             "password": <string>,
             "permission": <number>
         }
-     '''
+    '''
+    print(data, file=sys.stderr)
+    print("user fxn gets called",file=sys.stderr)
+    print(data,file=sys.stderr)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     param_tuple = (
@@ -206,11 +205,6 @@ def get_users():
     return temp
 
 def add_team(data):
-    print("team fxn gets called",file=sys.stderr)
-    print(data,file=sys.stderr)
-    db = sqlite3.connect(db_file)
-    c = db.cursor()
-
     '''
         Data should be in format:
         {
@@ -221,6 +215,11 @@ def add_team(data):
             "pic": <string>,
         }
     '''
+    print("team fxn gets called",file=sys.stderr)
+    print(data,file=sys.stderr)
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
     param_tuple = (
         data["team"],
         data["team_name"],
@@ -332,7 +331,6 @@ def get_match_data(team_num, match_num):
 
         If no results are found, None is returned
     '''
-    global db_file
     db = sqlite3.connect(db_file)
 
     db.row_factory = sqlite3.Row    #get column names
@@ -394,6 +392,32 @@ def get_team_data(team_num):
 
     db.close()
     return res
+
+def remove_user(u_id):
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (u_id,)
+    querystring = '''
+        DELETE FROM users WHERE user_id = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
+    db.commit()
+    db.close()
+
+def remove_team(team_num):
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (team_num,)
+    querystring = '''
+        DELETE FROM teams WHERE team_num = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
+    db.commit()
+    db.close()
 
 if __name__ == "__main__":
     db_setup()
