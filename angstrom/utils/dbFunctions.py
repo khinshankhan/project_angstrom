@@ -415,23 +415,56 @@ def remove_team(team_num):
 
 if __name__ == "__main__":
     db_setup()
-    #get_match_data(1, 1)
-    '''
+    
+    add_user({
+            "u_id": 0,
+            "name": "Mr. Admin",
+            "password": "safepass",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 10,
+            "name": "Bobby",
+            "password": "thisisatest",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 11,
+            "name": "Little Bobby",
+            "password": "bobby",
+            "permission": 0
+        })
+    
     add_team({
             "team": 7,
             "team_name": "Team seven",
             "location": "China",
             "num_mem": 49,
-            "pic": "cool.jpg",
-            "worlds": 2011
+            "pic": "cool.jpg"
         })
-    get_team(7)
-
-    add_user({
-            "u_id": 0,
-            "name": "Mr. Admin",
-            "password": "safepass",
-            "permission": 0
+    add_team({
+            "team": 5,
+            "team_name": "Team five",
+            "location": "USA",
+            "num_mem": 25,
+            "pic": "yay.jpg"
+        })
+    add_team({
+            "team": 100,
+            "team_name": "10^2",
+            "location": "USA",
+            "num_mem": 10,
+            "pic": "weee.jpg"
         })
     '''
-    #get_team_data(1)
+    add_tasks_to_db({
+            "team": <number>,
+            "match": <number>,
+            "alliance": (1 if blue else 0),
+            "u_id": <number>,
+            "tasks": {
+                : <number>
+            },
+            "notes": <string>
+        })
+    '''
