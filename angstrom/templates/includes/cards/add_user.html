@@ -1,0 +1,32 @@
+<div class="card-panel">
+  <h4 class="center-align">Add User</h4>
+  <div class="row">
+    <form class="col s12" method="POST" action="{{ url_for('add_users') }}">
+      <div class="row">
+        <div class="input-field col s12 center">
+          <input id="u_id" name="u_id" type="number" required="" class="validate">
+          <label for="u_id">User ID</label>
+        </div>
+        <div class="input-field col s12 center">
+          <input id="name" name="name" type="text" required="" class="validate">
+          <label for="name">Name</label>
+        </div>
+        <div class="input-field col s12 center">
+          <input id="password" name="password" type="password" required="" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <div class="input-field col s6">
+          <p>
+            <label>
+              <input id="permission" name="permission" type="checkbox" name="make_admin"/>
+              <span>Give Admin Privileges?</span>
+            </label>
+          </p>
+        </div>
+        <div class="input-field col s12 center">
+          <button class="btn waves-effect waves-light" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

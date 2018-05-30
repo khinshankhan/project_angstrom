@@ -43,7 +43,7 @@ def index():
 @app.route('/home')
 @logged_in
 def home():
-    return render_template('home.html', user=session['u_id'], GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE)
+    return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = get_teams())
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -104,10 +104,8 @@ def find_team():
     return redirect(url_for('profile', team_num = team_num))
 
 @app.route('/add_teams', methods=['POST'])
-@logged_in
+@admin
 def add_teams():
-    print(request.files)
-    
     if 'pic' not in request.files:
         flash('You did not upload an image.')
         return redirect(url_for('home', _anchor='admin'))
@@ -141,13 +139,11 @@ def add_teams():
         flash('Team was added.')
     else:
         flash('Team already exists.')
-    print ("test")
     return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/add_users', methods=['POST'])
-@logged_in
+@admin
 def add_users():
-
     form = request.form
     form_data = {
         "u_id": int(form["u_id"]),
@@ -161,6 +157,17 @@ def add_users():
         flash('User was added.')
     else:
         flash('This user ID is already taken.')
+    return redirect(url_for('home', _anchor='admin'))
+
+@app.route('/remove_users', methods=['POST'])
+@admin
+def remove_users():
+    u_id = int(request.args.get('u_id'))
+    if get_user(u_id) is None:
+        flash('User was not found.')
+    else:
+        #remove_user(u_id)
+        flash('User was removed.')
     return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/visualize')

@@ -191,6 +191,20 @@ def get_user(u_id):
     db.close()
     return temp[0]
 
+def get_users():
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+
+    querystring = '''
+        SELECT user_id, name, permission from users;
+    '''
+    c.execute(querystring)
+
+    temp = c.fetchall()
+
+    db.close()
+    return temp
+
 def add_team(data):
     print("team fxn gets called",file=sys.stderr)
     print(data,file=sys.stderr)
@@ -239,6 +253,20 @@ def get_team(team_num):
 
     db.close()
     return temp[0]
+
+def get_teams():
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+
+    querystring = '''
+        SELECT * from teams;
+    '''
+    c.execute(querystring)
+
+    temp = c.fetchall()
+
+    db.close()
+    return temp
 
 def search_team(query):
     db = sqlite3.connect(db_file)
