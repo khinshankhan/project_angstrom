@@ -1,16 +1,36 @@
 <div class="card-panel">
   <h4 class="center-align">Find Team</h4>
 
-  <form method="POST" action="{{ url_for('find_team') }}">
+  <form method="POST">
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">search</i>
         <input id="search_team" name="search_team" type="text" class="validate">
         <label for="search_team">Team #</label>
       </div>
-      <div class="input-field col s12 center">
-        <button class="btn waves-effect waves-light" type="submit" name="form">Submit</button>
-      </div>
     </div>
   </form>
+
+  <ul class="collection" id="collection">
+    {% include "includes/cards/team_collection.html" %}
+  </ul>
 </div>
+
+<script>
+  var search_bar = document.getElementById("search_team");
+
+  search_bar.addEventListener("input", function() {
+    $.ajax({
+      url: "/find_teams?team_num=" + search_bar.value,
+      success: function(result){
+        update_collection(result);
+      }
+    });
+  });
+
+  var collection = document.getElementById("collection");
+
+  var update_collection = function(html) {
+    collection.innerHTML = html;
+  }
+</script>
