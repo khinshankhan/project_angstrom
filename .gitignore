@@ -2,3 +2,4 @@
 *.swp
 angstrom/static/img/public/*.jpg
 angstrom/static/img/public/*.jpeg
+angstrom/database.db

@@ -267,25 +267,19 @@ def get_teams():
     db.close()
     return temp
 
-def search_team(query):
+def search_teams(query):
     db = sqlite3.connect(db_file)
     c = db.cursor()
 
-    param_tuple = (query, '%' + query + '%')
+    param_tuple = ('%' + query + '%', '%' + query + '%')
     querystring = '''
-        SELECT team_num from teams WHERE team_num = ? OR name LIKE ?;
+        SELECT * from teams WHERE team_num LIKE ? OR name LIKE ? ORDER BY team_num ASC;
     '''
     c.execute(querystring, param_tuple)
 
     temp = c.fetchall()
-    if len(temp) == 0:
-        #print "None found"
-        return None
-
-    #print temp
-
     db.close()
-    return temp[0]
+    return temp
 
 def find_alliance_partner(team, match_num, alliance):
     db = sqlite3.connect(db_file)

@@ -43,6 +43,7 @@ def index():
 @app.route('/home')
 @logged_in
 def home():
+    print (get_teams())
     return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = get_teams())
 
 @app.route('/login', methods = ['POST'])
@@ -93,15 +94,6 @@ def add_task():
 
     flash('Match added.')
     return redirect(url_for('home'))
-
-@app.route('/find_team', methods=['POST'])
-@logged_in
-def find_team():
-    team_num = search_team(request.form['search_team'])
-    if team_num is None:
-        flash('Team was not found.')
-        return redirect(url_for('home', _anchor='dashboard'))
-    return redirect(url_for('profile', team_num = team_num))
 
 @app.route('/add_teams', methods=['POST'])
 @admin
@@ -201,6 +193,11 @@ def profile():
     return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, data_link = url_for('get_oprs', team_num = team_tuple[0]))
 
 # REQUEST ROUTES (AJAX)
+
+@app.route('/find_teams')
+def get_team_item():
+    teams = search_teams(request.args.get('team_num'))
+    return render_template('includes/cards/team_collection.html', teams=teams)
 
 @app.route('/get_opr')
 def get_oprs():
