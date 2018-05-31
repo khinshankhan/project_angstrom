@@ -11,16 +11,18 @@ import json
 import sys
 from werkzeug.utils import secure_filename
 
+# PATHS
+basedir = os.path.abspath(os.path.dirname(__file__))
+team_pic_directory = "static/img/public"
+
 # GLOBALS
-database = "database.db"
+database = basedir + "/./database.db"
 db = sqlite3.connect(database)
 c = db.cursor()
 
 app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-team_pic_directory = "static/img/public"
 
 from utils.dbFunctions import *
 from utils.view_helper import *
