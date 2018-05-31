@@ -13,6 +13,10 @@ from werkzeug.utils import secure_filename
 
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
+print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+print basedir
+print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
 team_pic_directory = "static/img/public"
 
 # GLOBALS
@@ -224,6 +228,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = False
     app.run()
     #db_init(database)

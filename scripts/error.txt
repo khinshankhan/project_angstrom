@@ -1,0 +1,22 @@
+[Thu May 31 17:03:02.022854 2018] [wsgi:warn] [pid 31002:tid 139737622783872] mod_wsgi: Compiled for Python/2.7.11.
+[Thu May 31 17:03:02.022948 2018] [wsgi:warn] [pid 31002:tid 139737622783872] mod_wsgi: Runtime using Python/2.7.12.
+[Thu May 31 17:03:02.024170 2018] [mpm_event:notice] [pid 31002:tid 139737622783872] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming normal operations
+[Thu May 31 17:03:02.024208 2018] [core:notice] [pid 31002:tid 139737622783872] AH00094: Command line: '/usr/sbin/apache2'
+[Thu May 31 17:03:06.105869 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869] mod_wsgi (pid=31006): Target WSGI script '/var/www/angstrom/angstrom.wsgi' cannot be loaded as Python module.
+[Thu May 31 17:03:06.105927 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869] mod_wsgi (pid=31006): Exception occurred processing WSGI script '/var/www/angstrom/angstrom.wsgi'.
+[Thu May 31 17:03:06.105952 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869] Traceback (most recent call last):
+[Thu May 31 17:03:06.105983 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869]   File "/var/www/angstrom/angstrom.wsgi", line 4, in <module>
+[Thu May 31 17:03:06.106051 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869]     from angstrom import app as application
+[Thu May 31 17:03:06.106118 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869]   File "/var/www/angstrom/angstrom/__init__.py", line 16
+[Thu May 31 17:03:06.106125 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869]     print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[Thu May 31 17:03:06.106130 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869]                                                      ^
+[Thu May 31 17:03:06.106135 2018] [wsgi:error] [pid 31006:tid 139737415276288] [client 172.56.35.210:56869] SyntaxError: invalid syntax
+[Thu May 31 17:03:06.261213 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105] mod_wsgi (pid=31005): Target WSGI script '/var/www/angstrom/angstrom.wsgi' cannot be loaded as Python module., referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261262 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105] mod_wsgi (pid=31005): Exception occurred processing WSGI script '/var/www/angstrom/angstrom.wsgi'., referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261280 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105] Traceback (most recent call last):, referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261303 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105]   File "/var/www/angstrom/angstrom.wsgi", line 4, in <module>, referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261356 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105]     from angstrom import app as application, referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261402 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105]   File "/var/www/angstrom/angstrom/__init__.py", line 16, referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261408 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105]     print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261411 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105]                                                      ^, referer: http://206.189.235.133/
+[Thu May 31 17:03:06.261415 2018] [wsgi:error] [pid 31005:tid 139737348134656] [client 172.56.35.210:57105] SyntaxError: invalid syntax, referer: http://206.189.235.133/
