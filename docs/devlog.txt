@@ -6,6 +6,26 @@ khinshanK -- Thu May 10 14:38:59 2018 -0400
 
     Update README.md
 
+khinshanK -- Thu May 10 14:39:20 2018 -0400
+
+    Update README.md
+
+khinshanK -- Thu May 10 22:55:41 2018 -0400
+
+    Add files via upload
+
+khinshanK -- Thu May 10 23:07:48 2018 -0400
+
+    Add files via upload
+
+khinshanK -- Fri May 11 20:57:42 2018 -0400
+
+    Delete logo2.png
+
+khinshanK -- Fri May 11 20:57:53 2018 -0400
+
+    Delete logo1.png
+
 khinshanK -- Sun May 13 08:29:50 2018 -0400
 
     Basic How To
@@ -445,3 +465,88 @@ khinshanK -- Tue May 29 05:03:42 2018 -0400
 khinshanK -- Tue May 29 05:14:22 2018 -0400
 
     okay, dbfunction for permissions now works locally, it's time to transition to DO box
+
+khinshanK -- Tue May 29 05:15:52 2018 -0400
+
+    last minute devlog refreshed + updated
+
+ryanS -- Tue May 29 11:26:08 2018 -0400
+
+    Rewrite code for admin checking to be more elegant
+
+ryanS -- Tue May 29 11:38:41 2018 -0400
+
+    Implement hashed passwords and check add user form for duplicate IDs
+
+ryanS -- Tue May 29 19:49:29 2018 -0400
+
+    Update add team form to include picture upload; display link to pictures on profile page
+
+ryanS -- Tue May 29 22:20:48 2018 -0400
+
+    Put admin forms into one row
+
+ryanS -- Wed May 30 10:14:33 2018 -0400
+
+    Reorganize form-containing cards into a includes subdirectory; add card for viewing a collection of users
+
+ryanS -- Wed May 30 10:21:51 2018 -0400
+
+    Move CSS from template to static
+
+ryanS -- Wed May 30 14:10:44 2018 -0400
+
+    Add active search for teams on dashboard
+
+ryanS -- Wed May 30 14:19:57 2018 -0400
+
+    Reorganize js for search team
+
+stanleyL -- Wed May 30 14:25:43 2018 -0400
+
+    removing
+
+ryanS -- Wed May 30 14:26:07 2018 -0400
+
+    Fix no teams found bug
+
+stanleyL -- Wed May 30 14:38:11 2018 -0400
+
+    added setup
+
+khinshanK -- Wed May 30 14:56:06 2018 -0400
+
+    updated 404 page to include error code
+
+khinshanK -- Thu May 31 04:00:53 2018 -0400
+
+    Script to refresh repo and relaunch app. **We need to migrate to an apache2 ready code, and use revert script to work locally
+
+khinshanK -- Thu May 31 04:25:24 2018 -0400
+
+    Silent file remove function added
+
+khinshanK -- Thu May 31 04:28:21 2018 -0400
+
+    Delete notes
+
+khinshanK -- Thu May 31 12:53:12 2018 -0400
+
+    Possible path change to make it work on both  (local+DO)
+
+khinshanK -- Thu May 31 17:04:00 2018 +0000
+
+    new errors with deployment
+
+khinshanK -- Thu May 31 13:07:39 2018 -0400
+
+    Changed print statements
+
+khinshanK -- Thu May 31 14:26:27 2018 -0400
+
+    organized nonessential to app docs into docs folder
+
+stanleyL -- Thu May 31 14:52:02 2018 -0400
+
+    pre scout
+

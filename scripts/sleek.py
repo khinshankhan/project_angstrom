@@ -59,6 +59,8 @@ def run():
     command ='git log --reverse > hi.txt'
     os.system(command)
     clean_log("hi.txt")
+    sremove("hi.txt")
+    os.rename('temp_file.txt', 'devlog.txt')
     
 run()
 
