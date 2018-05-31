@@ -101,6 +101,21 @@ def add_task():
     flash('Match added.')
     return redirect(url_for('home'))
 
+@app.route('/pres_scout', methods=['POST'])
+@logged_in
+def pre_scout():
+    form = request.form
+    form_data = {
+        "team": int(form["team_id"]),
+        "auton": int(form["auton"]),
+        "teleop": int(form["teleop"]),
+        "endgame": int(form["endgame"]),
+        "notes": form["notes"]
+    }
+    add_pre_scout(form_data)
+    
+    return redirect(url_for('home', _anchor='admin'))
+
 @app.route('/add_teams', methods=['POST'])
 @admin
 def add_teams():

@@ -171,6 +171,35 @@ def add_user(data):
     db.commit()
     db.close()
 
+def add_pre_scout(data):
+    '''
+        Data should be in format:
+        {
+            "team": <number>,
+            "auton": <number>,
+            "teleop": <number>,
+            "endgame": <number>
+            "notes": <string>
+        }
+    '''
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (
+            data["team"],
+            data["auton"],
+            data["teleop"],
+            data["endgame"],
+            data["notes"]
+            )
+    querystring = '''
+        INSERT INTO pre_scout VALUES (?, ?, ?, ?, ?);
+    '''
+    c.execute(param_tuple, querystring)
+    
+    db.commit()
+    db.close()
+
 def get_user(u_id):
     db = sqlite3.connect(db_file)
     c = db.cursor()
