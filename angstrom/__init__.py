@@ -43,7 +43,6 @@ def index():
 @app.route('/home')
 @logged_in
 def home():
-    print (get_teams())
     return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = get_teams())
 
 @app.route('/login', methods = ['POST'])
@@ -190,16 +189,20 @@ def profile():
     oprs = opr(team_data, team_tuple[0])
     impacts = impact(team_data, team_tuple[0])
 
-    return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, data_link = url_for('get_oprs', team_num = team_tuple[0]))
+    datasets = [
+        url_for('get_oprs', team_num = team_tuple[0]),
+        url_for('get_impacts', team_num = team_tuple[0]),
+    ]
+
+    return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
 
 # REQUEST ROUTES (AJAX)
-
 @app.route('/find_teams')
 def get_team_item():
     teams = search_teams(request.args.get('team_num'))
     return render_template('includes/cards/team_collection.html', teams=teams)
 
-@app.route('/get_opr')
+@app.route('/get_oprs')
 def get_oprs():
     team_num = int(request.args.get('team_num'))
     data = get_team_data(team_num)
@@ -209,6 +212,17 @@ def get_oprs():
         "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
     }]
     #print data
+    return json.dumps(formatted)
+
+@app.route('/get_impacts')
+def get_impacts():
+    team_num = int(request.args.get('team_num'))
+    data = get_team_data(team_num)
+    impacts = impact(data, team_num)
+    formatted = [{
+        "id": team_num,
+        "values": [ [i+1, impacts[i]] for i in range(len(impacts)) ]
+    }]
     return json.dumps(formatted)
 
 @app.route('/get_sample_data')

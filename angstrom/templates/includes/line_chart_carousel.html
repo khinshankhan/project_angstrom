@@ -1,0 +1,13 @@
+<div class="carousel carousel-slider">
+  <div class="carousel-fixed-item">
+    <a class="btn-small waves-effect white grey-text darken-text-2" id="prev_button">
+      <i class="material-icons">navigate_before</i>
+    </a>
+    <a class="btn-small waves-effect white grey-text darken-text-2" id="next_button">
+      <i class="material-icons">navigate_next</i>
+    </a>
+  </div>
+  {% for data_link in datasets %}
+  {% include "includes/line_chart.html" %}
+  {% endfor %}
+</div>

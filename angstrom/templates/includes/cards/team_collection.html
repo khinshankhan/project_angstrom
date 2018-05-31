@@ -3,6 +3,6 @@
   <img src="{{ url_for('static', filename='img/public/' + t[3]) }}" alt="" class="circle">
   <span class="title">{{ t[1] }} ({{ t[0] }})</span>
   <p>{{ t[2] }}</p>
-  <a href="{{ url_for('profile', team_num = t[0]) }}" class="secondary-content"><i class="material-icons">arrow_forward</i></a>
+  <a href="{{ url_for('profile', team_num = t[0]) }}" class="secondary-content"><i class="material-icons">navigate_next</i></a>
 </li>
 {% endfor %}
