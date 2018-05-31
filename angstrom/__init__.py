@@ -13,9 +13,9 @@ from werkzeug.utils import secure_filename
 
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
-print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-print basedir
-print "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+print (basedir, file=sys.stderr)
+print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
 
 team_pic_directory = "static/img/public"
 
