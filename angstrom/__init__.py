@@ -11,16 +11,22 @@ import json
 import sys
 from werkzeug.utils import secure_filename
 
+# PATHS
+basedir = os.path.abspath(os.path.dirname(__file__))
+print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+print (basedir, file=sys.stderr)
+print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+
+team_pic_directory = "static/img/public"
+
 # GLOBALS
-database = "database.db"
+database = basedir + "/./database.db"
 db = sqlite3.connect(database)
 c = db.cursor()
 
 app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-team_pic_directory = "static/img/public"
 
 from utils.dbFunctions import *
 from utils.view_helper import *
@@ -93,6 +99,21 @@ def add_task():
 
     flash('Match added.')
     return redirect(url_for('home'))
+
+@app.route('/pres_scout', methods=['POST'])
+@logged_in
+def pre_scout():
+    form = request.form
+    form_data = {
+        "team": int(form["team_id"]),
+        "auton": int(form["auton"]),
+        "teleop": int(form["teleop"]),
+        "endgame": int(form["endgame"]),
+        "notes": form["notes"]
+    }
+    add_pre_scout(form_data)
+    
+    return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/add_teams', methods=['POST'])
 @admin
@@ -236,6 +257,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = False
     app.run()
     #db_init(database)
