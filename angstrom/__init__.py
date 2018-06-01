@@ -100,7 +100,7 @@ def add_task():
     flash('Match added.')
     return redirect(url_for('home'))
 
-@app.route('/pres_scout', methods=['POST'])
+@app.route('/pre_scout', methods=['POST'])
 @logged_in
 def pre_scout():
     form = request.form
@@ -257,6 +257,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     app.run()
     #db_init(database)

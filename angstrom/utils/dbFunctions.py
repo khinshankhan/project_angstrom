@@ -195,7 +195,7 @@ def add_pre_scout(data):
     querystring = '''
         INSERT INTO pre_scout VALUES (?, ?, ?, ?, ?);
     '''
-    c.execute(param_tuple, querystring)
+    c.execute(querystring, param_tuple)
     
     db.commit()
     db.close()
