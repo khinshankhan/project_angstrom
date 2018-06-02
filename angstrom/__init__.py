@@ -22,9 +22,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
 
 # GLOBALS
+global database
 database = basedir + "/./database.db"
 global db
 db = sqlite3.connect(database)
+global c
 c = db.cursor()
 
 app = Flask(__name__)
@@ -271,18 +273,20 @@ def errors(val):
 '''
 
 def sremove(filename): #silentremove
-    base = basedir[:-5] + filename
-    aprint(base)
+    #base = filename
+    #aprint(base)
+    
     try:
         os.remove(filename)
     except OSError as e: # this would be "except OSError, e:" before Python 2.6
         if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
             raise # re-raise exception if a different error occurred
-
+    
 #exit commands
 def exit_handler():
+    aprint("Exiting")
     db.close()
-    sremove("database.db")
+    sremove(database)
     return None
 
 aprint ('Registering')
@@ -290,7 +294,10 @@ atexit.register(exit_handler)
 aprint ('Registered')
 
 if __name__ == "__main__":
-    #sremove("database.db")
+    db.close()
+    sremove(database)
+    db = sqlite3.connect(database)
+    c = db.cursor()
     db_setup()
 
     add_user({

@@ -166,7 +166,7 @@ def add_user(data):
         hashed(data["password"]),
         data["permission"],
     )
-    print(param_tuple, file=sys.stderr)
+    #print(param_tuple, file=sys.stderr)
     querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
     c.execute(querystring, param_tuple)
     db.commit()
