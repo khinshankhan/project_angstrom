@@ -1,6 +1,8 @@
 from __future__ import print_function
 from flask import Flask, render_template, session, redirect, url_for, flash, request, send_from_directory
 
+import atexit
+
 from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 
@@ -10,19 +12,27 @@ import sqlite3   #enable control of an sqlite database
 import json
 import sys
 from werkzeug.utils import secure_filename
+import errno
+import logging
 
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
-print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
-print (basedir, file=sys.stderr)
-print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+#print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+#print (basedir, file=sys.stderr)
+#print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
 
 team_pic_directory = "static/img/public"
 
 # GLOBALS
+global database
 database = basedir + "/./database.db"
+global db
 db = sqlite3.connect(database)
+global c
 c = db.cursor()
+
+global stat
+stat = 404
 
 app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
@@ -34,6 +44,12 @@ from utils.stats import *
 
 app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
+
+
+# FUNCTION TO PRINT
+def aprint(data):
+    print (data,file=sys.stderr)
+    return data
 
 @app.route('/')
 def index():
@@ -254,12 +270,184 @@ def get_sample_data():
     json_data = open(basedir + '/static/data/data.json').read()
     data = json.loads(json_data)
     return json.dumps(data)
-
+'''
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+'''
+#custom whatever page
+'''
+@app.route('/<val>', methods=['POST','GET'])
+def errors(val):
+    #status_as_integer = response.status_code
+    return render_template('errors.html', error=val, status=stat)
+'''
+#custom error pages
+@app.errorhandler(404)
+def page_error__404(error):
+	return render_template('errors.html', error=error, status=404), 404
+@app.errorhandler(405)
+def page_error__405(error):
+	return render_template('errors.html', error=error, status=405), 405
+@app.errorhandler(406)
+def page_error__406(error):
+	return render_template('errors.html', error=error, status=406), 406
+@app.errorhandler(408)
+def page_error__408(error):
+	return render_template('errors.html', error=error, status=408), 408
+@app.errorhandler(409)
+def page_error__409(error):
+	return render_template('errors.html', error=error, status=409), 409
+@app.errorhandler(410)
+def page_error__410(error):
+	return render_template('errors.html', error=error, status=410), 410
+@app.errorhandler(411)
+def page_error__411(error):
+	return render_template('errors.html', error=error, status=411), 411
+@app.errorhandler(412)
+def page_error__412(error):
+	return render_template('errors.html', error=error, status=412), 412
+@app.errorhandler(413)
+def page_error__413(error):
+	return render_template('errors.html', error=error, status=413), 413
+@app.errorhandler(414)
+def page_error__414(error):
+	return render_template('errors.html', error=error, status=414), 414
+@app.errorhandler(415)
+def page_error__415(error):
+	return render_template('errors.html', error=error, status=415), 415
+@app.errorhandler(416)
+def page_error__416(error):
+	return render_template('errors.html', error=error, status=416), 416
+@app.errorhandler(417)
+def page_error__417(error):
+	return render_template('errors.html', error=error, status=417), 417
+@app.errorhandler(428)
+def page_error__428(error):
+	return render_template('errors.html', error=error, status=428), 428
+@app.errorhandler(429)
+def page_error__429(error):
+	return render_template('errors.html', error=error, status=429), 429
+@app.errorhandler(431)
+def page_error__431(error):
+	return render_template('errors.html', error=error, status=431), 431
+@app.errorhandler(500)
+def page_error__500(error):
+	return render_template('errors.html', error=error, status=500), 500
+@app.errorhandler(501)
+def page_error__501(error):
+	return render_template('errors.html', error=error, status=501), 501
+@app.errorhandler(502)
+def page_error__502(error):
+	return render_template('errors.html', error=error, status=502), 502
+@app.errorhandler(503)
+def page_error__503(error):
+	return render_template('errors.html', error=error, status=503), 503
+@app.errorhandler(504)
+def page_error__504(error):
+	return render_template('errors.html', error=error, status=504), 504
+@app.errorhandler(505)
+def page_error__505(error):
+	return render_template('errors.html', error=error, status=505), 505
 
+
+#custom file remover
+def sremove(filename): #silentremove
+    #base = filename
+    #aprint(base)
+    
+    try:
+        os.remove(filename)
+    except OSError as e: # this would be "except OSError, e:" before Python 2.6
+        if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
+            raise # re-raise exception if a different error occurred
+    
+#exit commands
+def exit_handler():
+    aprint("Exiting")
+    db.close()
+    sremove(database)
+    return None
+
+#connects exit handler to the app
+aprint ('Registering')
+atexit.register(exit_handler)
+aprint ('Registered')
+
+#logs app reponses into console
+'''
+@app.after_request
+def log_the_status_code(response):
+    status_as_string = response.status
+    status_as_integer = response.status_code
+    logging.warning("status as string %s" % status_as_string)
+    logging.warning("status as integer %s" % status_as_integer)
+    global stat
+    stat = status_as_integer
+    return response
+'''
 if __name__ == "__main__":
+    db.close()
+    sremove(database)
+    db = sqlite3.connect(database)
+    c = db.cursor()
+    db_setup()
+
+    add_user({
+            "u_id": 0,
+            "name": "Mr. Admin",
+            "password": "safepass",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 10,
+            "name": "Bobby",
+            "password": "thisisatest",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 11,
+            "name": "Little Bobby",
+            "password": "bobby",
+            "permission": 0
+        })
+
+    add_team({
+            "team": 7,
+            "team_name": "Team seven",
+            "location": "China",
+            "num_mem": 49,
+            "pic": "cool.jpg"
+        })
+    add_team({
+            "team": 5,
+            "team_name": "Team five",
+            "location": "USA",
+            "num_mem": 25,
+            "pic": "yay.jpg"
+        })
+    add_team({
+            "team": 100,
+            "team_name": "10^2",
+            "location": "USA",
+            "num_mem": 10,
+            "pic": "weee.jpg"
+        })
+    '''
+    add_tasks_to_db({
+            "team": <number>,
+            "match": <number>,
+            "alliance": (1 if blue else 0),
+            "u_id": <number>,
+            "tasks": {
+                : <number>
+            },
+            "notes": <string>
+        })
+    '''
+        
+
     app.debug = False
     app.run()
     #db_init(database)
+        

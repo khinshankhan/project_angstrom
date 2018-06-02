@@ -155,9 +155,9 @@ def add_user(data):
             "permission": <number>
         }
     '''
-    print(data, file=sys.stderr)
-    print("user fxn gets called",file=sys.stderr)
-    print(data,file=sys.stderr)
+    # print(data, file=sys.stderr)
+    # print("user fxn gets called",file=sys.stderr)
+    # print(data,file=sys.stderr)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     param_tuple = (
@@ -166,6 +166,7 @@ def add_user(data):
         hashed(data["password"]),
         data["permission"],
     )
+    #print(param_tuple, file=sys.stderr)
     querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
     c.execute(querystring, param_tuple)
     db.commit()
@@ -195,7 +196,7 @@ def add_pre_scout(data):
     querystring = '''
         INSERT INTO pre_scout VALUES (?, ?, ?, ?, ?);
     '''
-    c.execute(param_tuple, querystring)
+    c.execute(querystring, param_tuple)
     
     db.commit()
     db.close()
@@ -244,8 +245,8 @@ def add_team(data):
             "pic": <string>,
         }
     '''
-    print("team fxn gets called",file=sys.stderr)
-    print(data,file=sys.stderr)
+    # print("team fxn gets called",file=sys.stderr)
+    # print(data,file=sys.stderr)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     
