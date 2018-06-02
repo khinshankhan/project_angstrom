@@ -93,14 +93,17 @@ def add_task():
         "notes": ("" if "Notes" not in form else form["Notes"])
     }
     #print form_data
-    add_tasks_to_db(form_data)
+    if get_team(form_data['team']) is not None:
+        add_tasks_to_db(form_data)
+        flash('Match added.')
+    else:
+        flash('This team is not currently competing.')
     #test = generate_all([2, 3, 4, 10], 5)
     #add_tasks_to_db(test)
 
-    flash('Match added.')
     return redirect(url_for('home'))
 
-@app.route('/pres_scout', methods=['POST'])
+@app.route('/pre_scout', methods=['POST'])
 @logged_in
 def pre_scout():
     form = request.form
