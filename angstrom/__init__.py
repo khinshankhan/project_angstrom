@@ -1,6 +1,8 @@
 from __future__ import print_function
 from flask import Flask, render_template, session, redirect, url_for, flash, request, send_from_directory
 
+import atexit
+
 from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 
@@ -10,17 +12,18 @@ import sqlite3   #enable control of an sqlite database
 import json
 import sys
 from werkzeug.utils import secure_filename
-
+import errno
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
-print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
-print (basedir, file=sys.stderr)
-print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+#print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
+#print (basedir, file=sys.stderr)
+#print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
 
 team_pic_directory = "static/img/public"
 
 # GLOBALS
 database = basedir + "/./database.db"
+global db
 db = sqlite3.connect(database)
 c = db.cursor()
 
@@ -34,6 +37,12 @@ from utils.stats import *
 
 app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
+
+
+# FUNCTION TO PRINT
+def aprint(data):
+    print (data,file=sys.stderr)
+    return data
 
 @app.route('/')
 def index():
@@ -251,12 +260,94 @@ def get_sample_data():
     json_data = open(basedir + '/static/data/data.json').read()
     data = json.loads(json_data)
     return json.dumps(data)
-
+'''
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
+@app.route('/<val>', methods=['POST','GET'])
+def errors(val):
+    return render_template('errors.html', error=val)
+'''
+
+def sremove(filename): #silentremove
+    base = basedir[:-5] + filename
+    aprint(base)
+    try:
+        os.remove(filename)
+    except OSError as e: # this would be "except OSError, e:" before Python 2.6
+        if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
+            raise # re-raise exception if a different error occurred
+
+#exit commands
+def exit_handler():
+    db.close()
+    sremove("database.db")
+    return None
+
+aprint ('Registering')
+atexit.register(exit_handler)
+aprint ('Registered')
+
 if __name__ == "__main__":
-    app.debug = True
+    #sremove("database.db")
+    db_setup()
+
+    add_user({
+            "u_id": 0,
+            "name": "Mr. Admin",
+            "password": "safepass",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 10,
+            "name": "Bobby",
+            "password": "thisisatest",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 11,
+            "name": "Little Bobby",
+            "password": "bobby",
+            "permission": 0
+        })
+
+    add_team({
+            "team": 7,
+            "team_name": "Team seven",
+            "location": "China",
+            "num_mem": 49,
+            "pic": "cool.jpg"
+        })
+    add_team({
+            "team": 5,
+            "team_name": "Team five",
+            "location": "USA",
+            "num_mem": 25,
+            "pic": "yay.jpg"
+        })
+    add_team({
+            "team": 100,
+            "team_name": "10^2",
+            "location": "USA",
+            "num_mem": 10,
+            "pic": "weee.jpg"
+        })
+    '''
+    add_tasks_to_db({
+            "team": <number>,
+            "match": <number>,
+            "alliance": (1 if blue else 0),
+            "u_id": <number>,
+            "tasks": {
+                : <number>
+            },
+            "notes": <string>
+        })
+    '''
+        
+
+    app.debug = False
     app.run()
     #db_init(database)
+        
