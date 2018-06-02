@@ -550,3 +550,34 @@ stanleyL -- Thu May 31 14:52:02 2018 -0400
 
     pre scout
 
+khinshanK -- Thu May 31 15:31:08 2018 -0400
+
+    used silent remove in sleek and updated devlog
+
+ryanS -- Thu May 31 16:45:17 2018 -0400
+
+    Add carousel to display graphs; reorganize creation of graphs
+
+stanleyL -- Fri Jun 1 14:18:15 2018 -0400
+
+    added pre scout
+
+ishtiaqueM -- Fri Jun 1 14:47:14 2018 -0400
+
+    added visial pictire to team page and shifted around team information
+
+stanleyL -- Fri Jun 1 14:51:04 2018 -0400
+
+    starting api
+
+khinshanK -- Fri Jun 1 20:12:24 2018 -0400
+
+    app now makes database when run. i think removal doesnt work on linux, but works on others?
+
+khinshanK -- Sat Jun 2 15:09:08 2018 -0400
+
+    fixed removal process, works much more smoothly now
+
+khinshanK -- Sat Jun 2 16:11:17 2018 -0400
+
+    fixed up error page using interal flask messages and added many errors
