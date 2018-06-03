@@ -69,3 +69,94 @@ def gen_task_dict(form):
     '''
     return task_list
 
+
+def add_sample():
+    db_setup()
+
+    add_user({
+            "u_id": 0,
+            "name": "Mr. Admin",
+            "password": "safepass",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 10,
+            "name": "Bobby",
+            "password": "thisisatest",
+            "permission": 1
+        })
+    add_user({
+            "u_id": 11,
+            "name": "Little Bobby",
+            "password": "bobby",
+            "permission": 0
+        })
+
+    add_team({
+            "team": 7,
+            "team_name": "Team seven",
+            "location": "China",
+            "num_mem": 49,
+            "pic": "cool.jpg"
+        })
+    add_team({
+            "team": 5,
+            "team_name": "Team five",
+            "location": "USA",
+            "num_mem": 25,
+            "pic": "yay.jpg"
+        })
+    add_team({
+            "team": 100,
+            "team_name": "10^2",
+            "location": "USA",
+            "num_mem": 10,
+            "pic": "weee.jpg"
+        })
+    add_tasks_customdb({
+                "entry_id": 1,
+                "team_num": 5,
+                "match_num": 1,
+                "alliance": 1,
+                "user_id": 0,
+                "count":2
+            })
+    add_tasks_customdb({
+                "entry_id": 2,
+                "team_num": 5,
+                "match_num": 2,
+                "alliance": 1,
+                "user_id": 0,
+                "count":5
+            })
+    add_tasks_customdb({
+                "entry_id": 3,
+                "team_num": 5,
+                "match_num": 3,
+                "alliance": 1,
+                "user_id": 0,
+                "count":3
+            })
+    '''
+    add_tasks_customdb({
+                "entry_id": 4,
+                "team_num": 7,
+                "match_num": 1,
+                "alliance": 1,
+                "user_id": 0
+            })
+    add_tasks_customdb({
+                "entry_id": 5,
+                "team_num": 7,
+                "match_num": 2,
+                "alliance": 1,
+                "user_id": 0
+            })
+    add_tasks_customdb({
+                "entry_id": 6,
+                "team_num": 7,
+                "match_num": 3,
+                "alliance": 1,
+                "user_id": 0
+            })
+    '''

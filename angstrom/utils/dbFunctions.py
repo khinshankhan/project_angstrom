@@ -443,6 +443,99 @@ def remove_team(team_num):
     db.commit()
     db.close()
 
+def db_setup():
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    querystring = """
+    CREATE TABLE IF NOT EXISTS teams (
+            team_num INTEGER PRIMARY KEY,
+            name TEXT,
+            location TEXT,
+            robot_picture TEXT,
+            members INTEGER
+    );
+    """
+    c.execute(querystring)
+    querystring = """
+    CREATE TABLE IF NOT EXISTS match_performance (
+            entry_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            team_num INTEGER,
+            match_num INTEGER,
+            alliance INTEGER,
+            user_id INTEGER,
+            notes TEXT
+    );
+    """
+    c.execute(querystring)
+
+    querystring = """
+    CREATE TABLE IF NOT EXISTS match_tasks (
+            entry_id INTEGER,
+            task_name TEXT,
+            count INTEGER
+    );
+    """
+    c.execute(querystring)
+
+    querystring = """
+    CREATE TABLE IF NOT EXISTS pre_scout (
+            team_num INTEGER,
+            auton_prediction INTEGER,
+            teleop_prediction INTEGER,
+            endgame_prediction INTEGER,
+            notes TEXT
+    );
+    """
+    c.execute(querystring)
+    querystring = """
+    CREATE TABLE IF NOT EXISTS users (
+            user_id INTEGER PRIMARY KEY,
+            name TEXT,
+            password TEXT,
+            permission INTEGER
+    );
+    """
+    c.execute(querystring)
+
+    db.commit()
+    db.close()
+
+def add_tasks_customdb(data):
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    param_tuple = (data["entry_id"], data["team_num"], data["match_num"], data["alliance"], data["user_id"], "none right now");
+
+    querystring = '''
+        INSERT INTO match_performance (entry_id, team_num, match_num, alliance, user_id, notes)
+            VALUES (?, ?, ?, ?, ?, ?);
+    '''
+    c.execute(querystring, param_tuple)
+    db.commit()
+    print("HERRRRRRREEEEEEEEEE", file=sys.stderr)
+    heads = ['08_r1_end' ,  
+            '04_g_tele'  , 
+            '01_jewel_a'  ,
+            '10_r3_end'    ,
+            '06_col_tel'   ,
+            '00_g_auto'    ,
+            '09_r2_end'     ,
+            '05_row_tel'   ,
+            '11_rup_end'  ,
+            '07_cipher_']
+    querystring = '''
+        INSERT INTO match_tasks (entry_id, task_name, count)
+            VALUES (?, ?, ?);
+    '''
+    for i in heads:
+        #print(i, file=sys.stderr)
+        #j += i
+        param_tuple = (data["entry_id"], i, data["count"]);
+        c.execute(querystring, param_tuple)
+
+
+    db.commit()
+    db.close()
+
 if __name__ == "__main__":
     db_setup()
     
