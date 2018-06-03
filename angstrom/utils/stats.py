@@ -92,6 +92,7 @@ def opr(data, team):
                 if 'auto' in task:
                     opr += match['tasks'][task] * AUTO[task]['points']
                 else:
+                    #task = "['%s']"%"', '".join(task)
                     opr += match['tasks'][task] * TELE[task]['points']
             oprs.append(opr)
     return oprs

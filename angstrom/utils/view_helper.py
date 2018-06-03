@@ -137,26 +137,27 @@ def add_sample():
                 "user_id": 0,
                 "count":3
             })
-    '''
     add_tasks_customdb({
                 "entry_id": 4,
                 "team_num": 7,
                 "match_num": 1,
                 "alliance": 1,
-                "user_id": 0
+                "user_id": 0,
+                "count":7
             })
     add_tasks_customdb({
                 "entry_id": 5,
                 "team_num": 7,
                 "match_num": 2,
                 "alliance": 1,
-                "user_id": 0
+                "user_id": 0,
+                "count":10
             })
     add_tasks_customdb({
                 "entry_id": 6,
                 "team_num": 7,
                 "match_num": 3,
                 "alliance": 1,
-                "user_id": 0
+                "user_id": 0,
+                "count":9
             })
-    '''

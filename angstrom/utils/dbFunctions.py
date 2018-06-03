@@ -511,17 +511,17 @@ def add_tasks_customdb(data):
     '''
     c.execute(querystring, param_tuple)
     db.commit()
-    print("HERRRRRRREEEEEEEEEE", file=sys.stderr)
-    heads = ['08_r1_end' ,  
-            '04_g_tele'  , 
-            '01_jewel_a'  ,
-            '10_r3_end'    ,
-            '06_col_tel'   ,
-            '00_g_auto'    ,
-            '09_r2_end'     ,
-            '05_row_tel'   ,
-            '11_rup_end'  ,
-            '07_cipher_']
+    heads = ['08_r1_end',
+             '04_g_tele',
+             '01_jewel_auto',
+             '10_r3_end',
+             '06_col_tele',
+             '00_g_auto',
+             '09_r2_end',
+             '05_row_tele',
+             '11_rup_end',
+             '07_cipher_tele']
+
     querystring = '''
         INSERT INTO match_tasks (entry_id, task_name, count)
             VALUES (?, ?, ?);
@@ -579,15 +579,3 @@ if __name__ == "__main__":
             "num_mem": 10,
             "pic": "weee.jpg"
         })
-    '''
-    add_tasks_to_db({
-            "team": <number>,
-            "match": <number>,
-            "alliance": (1 if blue else 0),
-            "u_id": <number>,
-            "tasks": {
-                : <number>
-            },
-            "notes": <string>
-        })
-    '''
