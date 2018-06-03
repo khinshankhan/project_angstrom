@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
       url: svg_id,
       success: function(result){
         result = JSON.parse(result);
-        if (result[0].values.length > 0 && result[0].values[0][1] != null) {
-          chart(result, svgDOM, svg);
+        if (result['data'][0].values.length > 0 && result['data'][0].values[0][1] != null) {
+          chart(result['data'], svgDOM, svg, result['name']);
         } else {
           show_default(svgDOM, svg);
         }
@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-var chart = function(teams, svgDOM, svg) {
+var chart = function(teams, svgDOM, svg, name) {
 
   var svg_height = svgDOM.clientHeight;
   var svg_width = svgDOM.clientWidth;
   var svg_id = svgDOM.id;
 
-  var margin = {top: 10, right: 10, bottom: 50, left: 30},
+  var margin = {top: 10, right: 10, bottom: 50, left: 35},
       width = svg_width - margin.left - margin.right,
       height = svg_height - margin.top - margin.bottom,
       g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -83,7 +83,7 @@ var chart = function(teams, svgDOM, svg) {
     .attr("y", 6)
     .attr("dy", "0.71em")
     .attr("fill", "#000")
-    .text("OPR");
+    .text(name);
 
   var team = g.selectAll(".team")
       .data(teams)

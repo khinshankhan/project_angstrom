@@ -247,10 +247,13 @@ def get_oprs():
     team_num = int(request.args.get('team_num'))
     data = get_team_data(team_num)
     oprs = opr(data, team_num)
-    formatted = [{
-        "id": team_num,
-        "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
-    }]
+    formatted = {
+        "name": "OPR",
+        "data": [{
+            "id": team_num,
+            "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
+        }]
+    }
     #print data
     return json.dumps(formatted)
 
@@ -259,10 +262,13 @@ def get_impacts():
     team_num = int(request.args.get('team_num'))
     data = get_team_data(team_num)
     impacts = impact(data, team_num)
-    formatted = [{
-        "id": team_num,
-        "values": [ [i+1, impacts[i]] for i in range(len(impacts)) ]
-    }]
+    formatted = {
+        "name": "Impact",
+        "data": [{
+            "id": team_num,
+            "values": [ [i+1, impacts[i]] for i in range(len(impacts)) ]
+        }]
+    }
     return json.dumps(formatted)
 
 @app.route('/get_sample_data')
@@ -285,70 +291,70 @@ def errors(val):
 #custom error pages
 @app.errorhandler(404)
 def page_error__404(error):
-	return render_template('errors.html', error=error, status=404), 404
+        return render_template('errors.html', error=error, status=404), 404
 @app.errorhandler(405)
 def page_error__405(error):
-	return render_template('errors.html', error=error, status=405), 405
+        return render_template('errors.html', error=error, status=405), 405
 @app.errorhandler(406)
 def page_error__406(error):
-	return render_template('errors.html', error=error, status=406), 406
+        return render_template('errors.html', error=error, status=406), 406
 @app.errorhandler(408)
 def page_error__408(error):
-	return render_template('errors.html', error=error, status=408), 408
+        return render_template('errors.html', error=error, status=408), 408
 @app.errorhandler(409)
 def page_error__409(error):
-	return render_template('errors.html', error=error, status=409), 409
+        return render_template('errors.html', error=error, status=409), 409
 @app.errorhandler(410)
 def page_error__410(error):
-	return render_template('errors.html', error=error, status=410), 410
+        return render_template('errors.html', error=error, status=410), 410
 @app.errorhandler(411)
 def page_error__411(error):
-	return render_template('errors.html', error=error, status=411), 411
+        return render_template('errors.html', error=error, status=411), 411
 @app.errorhandler(412)
 def page_error__412(error):
-	return render_template('errors.html', error=error, status=412), 412
+        return render_template('errors.html', error=error, status=412), 412
 @app.errorhandler(413)
 def page_error__413(error):
-	return render_template('errors.html', error=error, status=413), 413
+        return render_template('errors.html', error=error, status=413), 413
 @app.errorhandler(414)
 def page_error__414(error):
-	return render_template('errors.html', error=error, status=414), 414
+        return render_template('errors.html', error=error, status=414), 414
 @app.errorhandler(415)
 def page_error__415(error):
-	return render_template('errors.html', error=error, status=415), 415
+        return render_template('errors.html', error=error, status=415), 415
 @app.errorhandler(416)
 def page_error__416(error):
-	return render_template('errors.html', error=error, status=416), 416
+        return render_template('errors.html', error=error, status=416), 416
 @app.errorhandler(417)
 def page_error__417(error):
-	return render_template('errors.html', error=error, status=417), 417
+        return render_template('errors.html', error=error, status=417), 417
 @app.errorhandler(428)
 def page_error__428(error):
-	return render_template('errors.html', error=error, status=428), 428
+        return render_template('errors.html', error=error, status=428), 428
 @app.errorhandler(429)
 def page_error__429(error):
-	return render_template('errors.html', error=error, status=429), 429
+        return render_template('errors.html', error=error, status=429), 429
 @app.errorhandler(431)
 def page_error__431(error):
-	return render_template('errors.html', error=error, status=431), 431
+        return render_template('errors.html', error=error, status=431), 431
 @app.errorhandler(500)
 def page_error__500(error):
-	return render_template('errors.html', error=error, status=500), 500
+        return render_template('errors.html', error=error, status=500), 500
 @app.errorhandler(501)
 def page_error__501(error):
-	return render_template('errors.html', error=error, status=501), 501
+        return render_template('errors.html', error=error, status=501), 501
 @app.errorhandler(502)
 def page_error__502(error):
-	return render_template('errors.html', error=error, status=502), 502
+        return render_template('errors.html', error=error, status=502), 502
 @app.errorhandler(503)
 def page_error__503(error):
-	return render_template('errors.html', error=error, status=503), 503
+        return render_template('errors.html', error=error, status=503), 503
 @app.errorhandler(504)
 def page_error__504(error):
-	return render_template('errors.html', error=error, status=504), 504
+        return render_template('errors.html', error=error, status=504), 504
 @app.errorhandler(505)
 def page_error__505(error):
-	return render_template('errors.html', error=error, status=505), 505
+        return render_template('errors.html', error=error, status=505), 505
 
 
 #custom file remover
