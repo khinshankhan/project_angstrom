@@ -271,11 +271,7 @@ def get_impacts():
     }
     return json.dumps(formatted)
 
-@app.route('/get_sample_data')
-def get_sample_data():
-    json_data = open(basedir + '/static/data/data.json').read()
-    data = json.loads(json_data)
-    return json.dumps(data)
+
 '''
 @app.errorhandler(404)
 def page_not_found(e):
