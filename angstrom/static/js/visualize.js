@@ -67,7 +67,7 @@ var chart = function(teams, svgDOM, svg, name) {
   g.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
+    .call(d3.axisBottom(x).ticks(teams[0].values.length))
     .append("text")
     .attr("transform", "translate(" + width/2 + ",0)")
     .attr("y", 30)
