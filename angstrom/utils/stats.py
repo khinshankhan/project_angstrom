@@ -98,6 +98,19 @@ def opr(data, team):
     return oprs
 
 '''
+GLYPHS
+
+Takes in a dataset containing match data and returns the number of glyphs a team scored
+'''
+def glyphs_stat(data, team):
+    glyphs = []
+    for match in data:
+        if match['team'] == team:
+            print match
+            glyphs.append(match['tasks']['04_g_tele'])
+    return glyphs
+
+'''
 Expected Impact
 
 Takes in a dataset containing match data and returns the expected impact of a single team.

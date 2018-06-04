@@ -232,6 +232,7 @@ def profile():
     datasets = [
         url_for('get_oprs', team_num = team_tuple[0]),
         url_for('get_impacts', team_num = team_tuple[0]),
+        url_for('get_glyphs', team_num = team_tuple[0])
     ]
 
     return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
@@ -267,6 +268,20 @@ def get_impacts():
         "data": [{
             "id": team_num,
             "values": [ [i+1, impacts[i]] for i in range(len(impacts)) ]
+        }]
+    }
+    return json.dumps(formatted)
+
+@app.route('/get_glyphs')
+def get_glyphs():
+    team_num = int(request.args.get('team_num'))
+    data = get_team_data(team_num)
+    glyphs = glyphs_stat(data, team_num)
+    formatted = {
+        "name": "Glyphs",
+        "data": [{
+            "id": team_num,
+            "values": [ [i+1, glyphs[i]] for i in range(len(glyphs)) ]
         }]
     }
     return json.dumps(formatted)
