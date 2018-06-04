@@ -21,10 +21,6 @@ from utils.stats import *
 
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
-#print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
-#print (basedir, file=sys.stderr)
-#print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
-
 team_pic_directory = "static/img/public"
 
 
@@ -40,6 +36,7 @@ def sremove(filename): #silentremove
 global database
 database = basedir + "/./database.db"
 sremove(database)
+db_setup()
 global db
 db = sqlite3.connect(database)
 global c
