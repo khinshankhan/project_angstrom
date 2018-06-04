@@ -15,6 +15,10 @@ from werkzeug.utils import secure_filename
 import errno
 import logging
 
+from utils.dbFunctions import *
+from utils.view_helper import *
+from utils.stats import *
+
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
 #print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",file=sys.stderr)
@@ -23,13 +27,24 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 team_pic_directory = "static/img/public"
 
+
+#custom file remover
+def sremove(filename): #silentremove
+    try:
+        os.remove(filename)
+    except OSError as e: # this would be "except OSError, e:" before Python 2.6
+        if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
+            raise # re-raise exception if a different error occurred
+
 # GLOBALS
 global database
 database = basedir + "/./database.db"
+sremove(database)
 global db
 db = sqlite3.connect(database)
 global c
 c = db.cursor()
+add_sample()
 
 global stat
 stat = 404
@@ -38,9 +53,6 @@ app = Flask(__name__)
 app.secret_key = "dev" #os.urandom(64)
 
 
-from utils.dbFunctions import *
-from utils.view_helper import *
-from utils.stats import *
 
 app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
@@ -368,16 +380,6 @@ def page_error__505(error):
         return render_template('errors.html', error=error, status=505), 505
 
 
-#custom file remover
-def sremove(filename): #silentremove
-    #base = filename
-    #aprint(base)
-    
-    try:
-        os.remove(filename)
-    except OSError as e: # this would be "except OSError, e:" before Python 2.6
-        if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
-            raise # re-raise exception if a different error occurred
     
 #exit commands
 def exit_handler():
@@ -404,11 +406,6 @@ def log_the_status_code(response):
     return response
 '''
 if __name__ == "__main__":
-    db.close()
-    sremove(database)
-    db = sqlite3.connect(database)
-    c = db.cursor()
-    add_sample()    
     app.debug = False
     app.run()
     #db_init(database)
