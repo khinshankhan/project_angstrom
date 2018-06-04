@@ -7,6 +7,7 @@ from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the approp
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 from utils.dbFunctions import *
 from utils.view_helper import *
+from utils.toa_api import *
 from utils.stats import *
 #imports for logistics (makes stuff happen, eg read or open db)
 import random
@@ -294,6 +295,11 @@ def get_auto_glyphs():
     }
     return json.dumps(formatted)
 
+def get_api_key():
+    f = open('toa_key.txt')
+    key = f.readline().strip()
+    return key
+
 #custom whatever page
 '''
 @app.route('/<val>', methods=['POST','GET'])
@@ -399,5 +405,6 @@ def log_the_status_code(response):
 
 if __name__ == "__main__":
     app.debug = False
+    get_events(get_api_key())
     app.run()
-        
+
