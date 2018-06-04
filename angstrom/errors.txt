@@ -1,0 +1,24 @@
+[Mon Jun 04 01:59:53.641177 2018] [wsgi:warn] [pid 18438:tid 140080923854720] mod_wsgi: Compiled for Python/2.7.11.
+[Mon Jun 04 01:59:53.641304 2018] [wsgi:warn] [pid 18438:tid 140080923854720] mod_wsgi: Runtime using Python/2.7.12.
+[Mon Jun 04 01:59:53.642339 2018] [mpm_event:notice] [pid 18438:tid 140080923854720] AH00489: Apache/2.4.18 (Ubuntu) mod_wsgi/4.3.0 Python/2.7.12 configured -- resuming normal operations
+[Mon Jun 04 01:59:53.642378 2018] [core:notice] [pid 18438:tid 140080923854720] AH00094: Command line: '/usr/sbin/apache2'
+[Mon Jun 04 02:00:00.151924 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255] mod_wsgi (pid=18441): Target WSGI script '/var/www/angstrom/angstrom.wsgi' cannot be loaded as Python module.
+[Mon Jun 04 02:00:00.151999 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255] mod_wsgi (pid=18441): Exception occurred processing WSGI script '/var/www/angstrom/angstrom.wsgi'.
+[Mon Jun 04 02:00:00.152043 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255] Traceback (most recent call last):
+[Mon Jun 04 02:00:00.152082 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255]   File "/var/www/angstrom/angstrom.wsgi", line 4, in <module>
+[Mon Jun 04 02:00:00.152177 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255]     from angstrom import app as application
+[Mon Jun 04 02:00:00.152195 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255]   File "/var/www/angstrom/angstrom/__init__.py", line 39, in <module>
+[Mon Jun 04 02:00:00.152384 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255]     db_setup()
+[Mon Jun 04 02:00:00.152400 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 447, in db_setup
+[Mon Jun 04 02:00:00.152632 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255]     db = sqlite3.connect(db_file)
+[Mon Jun 04 02:00:00.152673 2018] [wsgi:error] [pid 18441:tid 140080651904768] [client 66.108.247.22:61255] OperationalError: unable to open database file
+[Mon Jun 04 02:00:00.613549 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256] mod_wsgi (pid=18442): Target WSGI script '/var/www/angstrom/angstrom.wsgi' cannot be loaded as Python module., referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613614 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256] mod_wsgi (pid=18442): Exception occurred processing WSGI script '/var/www/angstrom/angstrom.wsgi'., referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613652 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256] Traceback (most recent call last):, referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613691 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256]   File "/var/www/angstrom/angstrom.wsgi", line 4, in <module>, referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613780 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256]     from angstrom import app as application, referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613797 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256]   File "/var/www/angstrom/angstrom/__init__.py", line 39, in <module>, referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613976 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256]     db_setup(), referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.613991 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256]   File "/var/www/angstrom/angstrom/utils/dbFunctions.py", line 447, in db_setup, referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.614186 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256]     db = sqlite3.connect(db_file), referer: http://206.189.235.133/
+[Mon Jun 04 02:00:00.614220 2018] [wsgi:error] [pid 18442:tid 140080719046400] [client 66.108.247.22:61256] OperationalError: unable to open database file, referer: http://206.189.235.133/
