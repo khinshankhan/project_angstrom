@@ -161,3 +161,6 @@ def add_sample():
                 "user_id": 0,
                 "count":9
             })
+
+if __name__ == "__main__":
+	add_sample()
