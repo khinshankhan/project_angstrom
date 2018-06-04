@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.carousel');
+  console.log(elems);
   var instances = M.Carousel.init(elems, {
     fullWidth: true
   });

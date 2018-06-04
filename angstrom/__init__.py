@@ -46,7 +46,7 @@ app.secret_key = "keysmithsmakekeys" #os.urandom(64)
 #global, continuously updating variables using functions
 app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
-
+app.jinja_env.globals.update(get_user = get_user)
 
 @app.route('/')
 def index():
@@ -196,7 +196,7 @@ def remove_users():
 
 @app.route('/visualize')
 def visualize():
-    return render_template('visualize.html', data_link = url_for('get_sample_data'))
+    return render_template('visualize.html', data_link = url_for('get_oprs'))
 
 @app.route('/pictures/<filename>')
 def pictures(filename):

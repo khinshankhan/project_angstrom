@@ -34,6 +34,7 @@
       <table>
         <tr>
           <th>Match</th>
+          <th>Scouter</th>
           <th>OPR</th>
           <th>Impact</th>
           <th>Total Glyphs</th>
@@ -42,6 +43,7 @@
         {% for i in range(0, team_data|length) %}
         <tr>
           <td>{{ team_data[i]['match'] }}</td>
+          <td>{{ get_user(team_data[i]['u_id'])[1] }}</td>
           <td>{{ oprs[i]|int }}</td>
           {% if impacts[i] %}
           <td>{{ impacts[i]|round(2) }}</td>
