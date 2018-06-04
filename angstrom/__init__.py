@@ -196,7 +196,14 @@ def remove_users():
 
 @app.route('/visualize')
 def visualize():
-    return render_template('visualize.html', data_link = url_for('get_oprs'))
+    if request.args:
+        qs_teams = request.args.getlist("teams")
+        teams_to_display = [ get_team(t)[0] for t in qs_teams ]
+    else:
+        teams_to_display = []
+    teams = get_teams()
+    
+    return render_template('visualize.html', teams = teams, datasets = [url_for('get_oprs', team_nums = teams_to_display), url_for('get_impacts', team_nums = teams_to_display)], team_nums = teams_to_display)
 
 @app.route('/pictures/<filename>')
 def pictures(filename):
@@ -223,10 +230,10 @@ def profile():
     impacts = impact(team_data, team_tuple[0])
 
     datasets = [
-        url_for('get_oprs', team_num = team_tuple[0]),
-        url_for('get_impacts', team_num = team_tuple[0]),
-        url_for('get_glyphs', team_num = team_tuple[0]),
-        url_for('get_auto_glyphs', team_num = team_tuple[0])
+        url_for('get_oprs', team_nums = [team_tuple[0]]),
+        url_for('get_impacts', team_nums = [team_tuple[0]]),
+        url_for('get_glyphs', team_nums = [team_tuple[0]]),
+        url_for('get_auto_glyphs', team_nums = [team_tuple[0]])
     ]
 
     return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
@@ -239,59 +246,98 @@ def get_team_item():
 
 @app.route('/get_oprs')
 def get_oprs():
-    team_num = int(request.args.get('team_num'))
-    data = get_team_data(team_num)
-    oprs = opr(data, team_num)
+    team_nums = request.args.getlist('team_nums')
+
+    # loop through team nums and append data to data key
+    data_fields = []
+    for team in team_nums:
+        team = int(team)
+        data = get_team_data(team)
+        oprs = opr(data, team)
+
+        data_field = {
+            "id": team,
+            "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
+        }
+        data_fields.append(data_field)
+
     formatted = {
         "name": "OPR",
-        "data": [{
-            "id": team_num,
-            "values": [ [i+1, oprs[i]] for i in range(len(oprs)) ]
-        }]
+        "data": data_fields
     }
-    #print data
+
     return json.dumps(formatted)
 
 @app.route('/get_impacts')
 def get_impacts():
-    team_num = int(request.args.get('team_num'))
-    data = get_team_data(team_num)
-    impacts = impact(data, team_num)
+    team_nums = request.args.getlist('team_nums')
+
+    # loop through team nums and append data to data key
+    data_fields = []
+    for team in team_nums:
+        team = int(team)
+        data = get_team_data(team)
+        impacts = impact(data, team)
+
+        data_field = {
+            "id": team,
+            "values": [ [i+1, impacts[i]] for i in range(len(impacts)) ]
+        }
+        data_fields.append(data_field)
+
     formatted = {
         "name": "Impact",
-        "data": [{
-            "id": team_num,
-            "values": [ [i+1, impacts[i]] for i in range(len(impacts)) ]
-        }]
+        "data": data_fields
     }
+
     return json.dumps(formatted)
 
 @app.route('/get_glyphs')
 def get_glyphs():
-    team_num = int(request.args.get('team_num'))
-    data = get_team_data(team_num)
-    glyphs = glyphs_stat(data, team_num)
+    team_nums = request.args.getlist('team_nums')
+
+    # loop through team nums and append data to data key
+    data_fields = []
+    for team in team_nums:
+        team = int(team)
+        data = get_team_data(team)
+        glyphs = glyphs_stat(data, team)
+
+        data_field = {
+            "id": team,
+            "values": [ [i+1, glyphs[i]] for i in range(len(glyphs)) ]
+        }
+        data_fields.append(data_field)
+
     formatted = {
         "name": "Total Glyphs",
-        "data": [{
-            "id": team_num,
-            "values": [ [i+1, glyphs[i]] for i in range(len(glyphs)) ]
-        }]
+        "data": data_fields
     }
+
     return json.dumps(formatted)
 
 @app.route('/get_auto_glyphs')
 def get_auto_glyphs():
-    team_num = int(request.args.get('team_num'))
-    data = get_team_data(team_num)
-    auto_glyphs = auto_glyphs_stat(data, team_num)
+    team_nums = request.args.getlist('team_nums')
+
+    # loop through team nums and append data to data key
+    data_fields = []
+    for team in team_nums:
+        team = int(team)
+        data = get_team_data(team)
+        auto_glyphs = auto_glyphs_stat(data, team)
+
+        data_field = {
+            "id": team,
+            "values": [ [i+1, auto_glyphs[i]] for i in range(len(auto_glyphs)) ]
+        }
+        data_fields.append(data_field)
+
     formatted = {
         "name": "Auto Glyphs",
-        "data": [{
-            "id": team_num,
-            "values": [ [i+1, auto_glyphs[i]] for i in range(len(auto_glyphs)) ]
-        }]
+        "data": data_fields
     }
+
     return json.dumps(formatted)
 
 #custom whatever page
