@@ -5,6 +5,7 @@ import os
 import sys
 
 from auth import *
+from generate import *
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 global db_file
@@ -518,27 +519,18 @@ def add_tasks_customdb(data):
     '''
     c.execute(querystring, param_tuple)
     db.commit()
-    heads = ['08_r1_end',
-             '04_g_tele',
-             '01_jewel_auto',
-             '10_r3_end',
-             '06_col_tele',
-             '00_g_auto',
-             '09_r2_end',
-             '05_row_tele',
-             '11_rup_end',
-             '07_cipher_tele']
+    
+    match = generate_match(data['team_num'], data['match_num'], data['alliance'])
 
     querystring = '''
         INSERT INTO match_tasks (entry_id, task_name, count)
             VALUES (?, ?, ?);
     '''
-    for i in heads:
+    for task in match['tasks']:
         #print(i, file=sys.stderr)
         #j += i
-        param_tuple = (data["entry_id"], i, data["count"]);
+        param_tuple = (data["entry_id"], task, match['tasks'][task]);
         c.execute(querystring, param_tuple)
-
 
     db.commit()
     db.close()

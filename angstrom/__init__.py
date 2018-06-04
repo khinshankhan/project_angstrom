@@ -37,9 +37,7 @@ def sremove(filename): #silentremove
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
 
-db_setup()
 add_sample()
-
 
 #naming of app and key
 app = Flask(__name__)
@@ -227,7 +225,8 @@ def profile():
     datasets = [
         url_for('get_oprs', team_num = team_tuple[0]),
         url_for('get_impacts', team_num = team_tuple[0]),
-        url_for('get_glyphs', team_num = team_tuple[0])
+        url_for('get_glyphs', team_num = team_tuple[0]),
+        url_for('get_auto_glyphs', team_num = team_tuple[0])
     ]
 
     return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
@@ -273,10 +272,24 @@ def get_glyphs():
     data = get_team_data(team_num)
     glyphs = glyphs_stat(data, team_num)
     formatted = {
-        "name": "Glyphs",
+        "name": "Total Glyphs",
         "data": [{
             "id": team_num,
             "values": [ [i+1, glyphs[i]] for i in range(len(glyphs)) ]
+        }]
+    }
+    return json.dumps(formatted)
+
+@app.route('/get_auto_glyphs')
+def get_auto_glyphs():
+    team_num = int(request.args.get('team_num'))
+    data = get_team_data(team_num)
+    auto_glyphs = auto_glyphs_stat(data, team_num)
+    formatted = {
+        "name": "Auto Glyphs",
+        "data": [{
+            "id": team_num,
+            "values": [ [i+1, auto_glyphs[i]] for i in range(len(auto_glyphs)) ]
         }]
     }
     return json.dumps(formatted)

@@ -36,7 +36,8 @@
           <th>Match</th>
           <th>OPR</th>
           <th>Impact</th>
-          <th>Glyphs</th>
+          <th>Total Glyphs</th>
+          <th>Auto Glyphs</th>
         </tr>
         {% for i in range(0, team_data|length) %}
         <tr>
@@ -48,6 +49,7 @@
           <td></td>
           {% endif %}
           <td>{{ team_data[i]['tasks']['04_g_tele'] }}</td>
+          <td>{{ team_data[i]['tasks']['00_g_auto'] }}</td>
         </tr>
         {% endfor %}
       </table>

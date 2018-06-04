@@ -119,7 +119,6 @@ def add_sample():
                 "match_num": 1,
                 "alliance": 1,
                 "user_id": 0,
-                "count":2
             })
     add_tasks_customdb({
                 "entry_id": 2,
@@ -127,7 +126,6 @@ def add_sample():
                 "match_num": 2,
                 "alliance": 1,
                 "user_id": 0,
-                "count":5
             })
     add_tasks_customdb({
                 "entry_id": 3,
@@ -135,7 +133,6 @@ def add_sample():
                 "match_num": 3,
                 "alliance": 1,
                 "user_id": 0,
-                "count":3
             })
     add_tasks_customdb({
                 "entry_id": 4,
@@ -143,7 +140,6 @@ def add_sample():
                 "match_num": 1,
                 "alliance": 1,
                 "user_id": 0,
-                "count":7
             })
     add_tasks_customdb({
                 "entry_id": 5,
@@ -151,7 +147,6 @@ def add_sample():
                 "match_num": 2,
                 "alliance": 1,
                 "user_id": 0,
-                "count":10
             })
     add_tasks_customdb({
                 "entry_id": 6,
@@ -159,7 +154,6 @@ def add_sample():
                 "match_num": 3,
                 "alliance": 1,
                 "user_id": 0,
-                "count":9
             })
 
 if __name__ == "__main__":
