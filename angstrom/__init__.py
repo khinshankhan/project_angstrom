@@ -41,12 +41,13 @@ team_pic_directory = "static/img/public"
 global database
 database = basedir + "/./database.db"
 #aprint(database)
-db_setup
+if not os.path.isfile(database):
+    db_setup
+    add_sample()
 global db
 db = sqlite3.connect(database)
 global c
 c = db.cursor()
-add_sample()
 
 global stat
 stat = 404
