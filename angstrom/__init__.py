@@ -19,6 +19,11 @@ from utils.dbFunctions import *
 from utils.view_helper import *
 from utils.stats import *
 
+# FUNCTION TO PRINT
+def aprint(data):
+    print (data,file=sys.stderr)
+    return data
+
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
@@ -35,8 +40,12 @@ def sremove(filename): #silentremove
 # GLOBALS
 global database
 database = basedir + "/./database.db"
-sremove(database)
-db_setup()
+global runs
+runs = 0
+if runs == 0:
+    sremove(database)
+    db_setup
+    runs += 1
 global db
 db = sqlite3.connect(database)
 global c
@@ -54,11 +63,6 @@ app.secret_key = "dev" #os.urandom(64)
 app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
 
-
-# FUNCTION TO PRINT
-def aprint(data):
-    print (data,file=sys.stderr)
-    return data
 
 @app.route('/')
 def index():
