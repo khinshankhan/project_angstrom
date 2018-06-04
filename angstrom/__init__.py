@@ -1,34 +1,29 @@
+#necessary imports for app (literally can't operate without)
 from __future__ import print_function
 from flask import Flask, render_template, session, redirect, url_for, flash, request, send_from_directory
-
-import atexit
-
+from werkzeug.utils import secure_filename
+#imports from other files (files we made to keep everything organized and clean)
 from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the appropiate config
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
-
-import random
-import os
-import sqlite3   #enable control of an sqlite database
-import json
-import sys
-from werkzeug.utils import secure_filename
-import errno
-import logging
-
 from utils.dbFunctions import *
 from utils.view_helper import *
 from utils.stats import *
+#imports for logistics (makes stuff happen, eg read or open db)
+import random
+import os
+import sqlite3 #enable control of an sqlite database
+import json
+import sys
+#extra imports (not needed, but help make the app smooth)
+import errno
+import logging
+import atexit
 
-# FUNCTION TO PRINT
+# FUNCTION TO PRINT (buffer is all messed up)
 def aprint(data):
     print (data,file=sys.stderr)
     return data
-
-# PATHS
-basedir = os.path.abspath(os.path.dirname(__file__))
-team_pic_directory = "static/img/public"
-
-
+'''
 #custom file remover
 def sremove(filename): #silentremove
     try:
@@ -36,16 +31,17 @@ def sremove(filename): #silentremove
     except OSError as e: # this would be "except OSError, e:" before Python 2.6
         if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
             raise # re-raise exception if a different error occurred
+'''
 
-# GLOBALS
+# PATHS
+basedir = os.path.abspath(os.path.dirname(__file__))
+team_pic_directory = "static/img/public"
+
+# GLOBAL VARIABLES
 global database
 database = basedir + "/./database.db"
-global runs
-runs = 0
-if runs == 0:
-    sremove(database)
-    db_setup
-    runs += 1
+#aprint(database)
+db_setup
 global db
 db = sqlite3.connect(database)
 global c
@@ -55,21 +51,17 @@ add_sample()
 global stat
 stat = 404
 
+#naming of app and key
 app = Flask(__name__)
-app.secret_key = "dev" #os.urandom(64)
+app.secret_key = "keysmithsmakekeys" #os.urandom(64)
 
-
-
+#global, continuously updating variables using functions
 app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
 
 
 @app.route('/')
 def index():
-    #temporarily disable login checks
-    #session['u_id'] = 0
-    #return redirect( url_for('home') )
-
     if not is_user():
         return render_template('index.html')
     else:
@@ -101,7 +93,7 @@ def logout():
 def about():
     cuser = ""
     if not is_user():
-        cuser = "Nameless Visitor"
+        cuser = "Mysterious Visitor"
     else:
         cuser = "User " + str(session['u_id'])
     return render_template('about.html', user=cuser)
@@ -299,12 +291,6 @@ def get_glyphs():
     }
     return json.dumps(formatted)
 
-
-'''
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-'''
 #custom whatever page
 '''
 @app.route('/<val>', methods=['POST','GET'])
@@ -381,7 +367,7 @@ def page_error__505(error):
         return render_template('errors.html', error=error, status=505), 505
 
 
-    
+'''    
 #exit commands
 def exit_handler():
     aprint("Exiting")
@@ -393,6 +379,7 @@ def exit_handler():
 aprint ('Registering')
 atexit.register(exit_handler)
 aprint ('Registered')
+'''
 
 #logs app reponses into console
 '''
@@ -406,8 +393,8 @@ def log_the_status_code(response):
     stat = status_as_integer
     return response
 '''
+
 if __name__ == "__main__":
     app.debug = False
     app.run()
-    #db_init(database)
         

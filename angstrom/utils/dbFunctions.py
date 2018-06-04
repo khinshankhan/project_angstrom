@@ -10,7 +10,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 global db_file
 db_file = basedir + "/../database.db"
 
+# FUNCTION TO PRINT (buffer is all messed up)
+def pprint(data):
+    print (data,file=sys.stderr)
+    return data
+
 def db_setup():
+    pprint("=========================================================")
+    pprint(db_file)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     querystring = """

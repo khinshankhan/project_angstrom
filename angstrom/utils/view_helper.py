@@ -163,4 +163,5 @@ def add_sample():
             })
 
 if __name__ == "__main__":
-	add_sample()
+    db_setup()
+    add_sample()
