@@ -203,8 +203,13 @@ def visualize():
     else:
         teams_to_display = []
     teams = get_teams()
-    
-    return render_template('visualize.html', teams = teams, datasets = [url_for('get_oprs', team_nums = teams_to_display), url_for('get_impacts', team_nums = teams_to_display)], team_nums = teams_to_display)
+
+    datasets = [
+        url_for('get_oprs', team_nums = teams_to_display),
+        url_for('get_impacts', team_nums = teams_to_display)
+    ]
+
+    return render_template('visualize.html', teams = teams, datasets = datasets, team_nums = teams_to_display)
 
 @app.route('/pictures/<filename>')
 def pictures(filename):
