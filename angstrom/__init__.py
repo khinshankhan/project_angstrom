@@ -37,20 +37,9 @@ def sremove(filename): #silentremove
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
 
-# GLOBAL VARIABLES
-global database
-database = basedir + "/./database.db"
-#aprint(database)
-if not os.path.isfile(database):
-    db_setup
-    add_sample()
-global db
-db = sqlite3.connect(database)
-global c
-c = db.cursor()
+db_setup()
+add_sample()
 
-global stat
-stat = 404
 
 #naming of app and key
 app = Flask(__name__)
