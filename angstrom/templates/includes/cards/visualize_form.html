@@ -1,0 +1,14 @@
+<div class="col l6 s12">
+  <h5>Teams</h5>
+  <form id="compare_form">
+    {% for team in teams %}
+    <p>
+      <label>
+        <input name="teams" type="checkbox" value="{{ team[0] }}" {% if team[0] in team_nums %}checked="checked"{% endif %}/>
+        <span>{{ team[1] }} ({{ team[0] }})</span>
+      </label>
+    </p>
+    {% endfor %}
+    <button class="btn waves-effect waves-light" type="submit">Graph</button>
+  </form>
+</div>

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.carousel');
-  console.log(elems);
   var instances = M.Carousel.init(elems, {
     fullWidth: true
   });
@@ -28,8 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
       url: svg_id,
       success: function(result){
         result = JSON.parse(result);
-        if (result['data'][0].values.length > 0 && result['data'][0].values[0][1] != null) {
-          chart(result['data'], svgDOM, svg, result['name']);
+        data = []
+        for (var i = 0; i < result['data'].length; i++) {
+          if (result['data'][i].values.length > 0 && result['data'][i].values[0][1] != null) {
+            data.push(result['data'][i]);
+          }
+        }
+        if (data.length > 0) {
+          chart(data, svgDOM, svg, result['name']);
         } else {
           show_default(svgDOM, svg);
         }
