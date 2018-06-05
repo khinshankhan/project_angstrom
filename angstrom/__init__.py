@@ -347,9 +347,12 @@ def get_auto_glyphs():
     return json.dumps(formatted)
 
 def get_api_key():
+    return None
+    '''
     f = open('toa_key.txt')
     key = f.readline().strip()
     return key
+    '''
 
 #custom whatever page
 '''
@@ -458,4 +461,3 @@ if __name__ == "__main__":
     app.debug = False
     get_events(get_api_key())
     app.run()
-

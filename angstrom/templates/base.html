@@ -40,25 +40,27 @@
             <img id="logo" src="{{ url_for('static', filename='img/circle_logo.gif') }}" alt="Stuy Fission">
           </a>
           <ul class="right hide-on-med-and-down">
-	    {% if not is_user() %}
-	    <li><a href="{{ url_for('index') }}">Home</a></li>
-	    {% endif %}
-	    {% if is_user() %}
+	          {% if not is_user() %}
+	          <li><a href="{{ url_for('index') }}">Home</a></li>
+	          {% endif %}
+	          {% if is_user() %}
             <li><a href="{{ url_for('home') }}">Dashboard</a></li>
-	    {% endif %}
+            <li><a href="{{ url_for('visualize') }}">Compare</a></li>
+	          {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
             {% if is_user() %}
-	    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+	          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% endif %}
           </ul>
-            
+          
           <ul id="nav-mobile" class="sidenav">
-	    {% if not is_user() %}
-	    <li><a href="{{ url_for('index') }}">Home</a></li>
-	    {% endif %}
-	    {% if is_user() %}
-	    <li><a href="{{ url_for('home') }}">Dashboard</a></li>
-	    {% endif %}
+	          {% if not is_user() %}
+	          <li><a href="{{ url_for('index') }}">Home</a></li>
+	          {% endif %}
+	          {% if is_user() %}
+	          <li><a href="{{ url_for('home') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('visualize') }}">Compare</a></li>
+	          {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
             {% if is_user() %}
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>

@@ -15,7 +15,5 @@ def get_events(key):
     response = requests.get('%s/events'%(BASE_URL), headers=headers)
     return response.text
 
-def 
-
 #previous matches a team has been in
 #find high score
