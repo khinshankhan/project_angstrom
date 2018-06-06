@@ -459,5 +459,6 @@ def log_the_status_code(response):
 
 if __name__ == "__main__":
     app.debug = False
-    get_events(get_api_key())
+    key = api_init()
+    print (get_team_events(key, 310))
     app.run()
