@@ -44,7 +44,7 @@
 	          <li><a href="{{ url_for('index') }}">Home</a></li>
 	          {% endif %}
 	          {% if is_user() %}
-            <li><a href="{{ url_for('home') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('visualize') }}">Compare</a></li>
 	          {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
@@ -58,7 +58,7 @@
 	          <li><a href="{{ url_for('index') }}">Home</a></li>
 	          {% endif %}
 	          {% if is_user() %}
-	          <li><a href="{{ url_for('home') }}">Dashboard</a></li>
+	          <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('visualize') }}">Compare</a></li>
 	          {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
