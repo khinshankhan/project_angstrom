@@ -5,7 +5,7 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">search</i>
-        <input id="search_team" name="search_team" type="text" class="validate">
+        <input id="search_team" name="search_team" type="text" class="validate" onkeypress="if (event.keyCode == 13) {return false;}">
         <label for="search_team">Team #</label>
       </div>
     </div>
