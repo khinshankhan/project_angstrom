@@ -42,4 +42,28 @@ def get_team_events(key, team_num):
             headers=default_header(key))
     return json.loads(response.text)
 
+#in the TOA api, the /matches and /stations route can be combined to find
+#which teams were red or blue
+#red is listed first in the station
+def get_team_matches(key, team_num):
+    '''
+    Query /stations, then check through each element["teams"] and check if
+    team_num is contained within it.
+    For each of those matches, use /matches route to match up auton,teleop,
+    endgame scores for red and blue. Now match up first half of teams listed
+    with red scores and second half of teams with blue score
+    '''
+    events = get_team_events(key, team_num)
+    for event in events:
+        matches = json.loads(
+                requests.get('%s/event/%s/matches'%(BASE_URL, event['event_key']),
+                headers=default_header(key)).text)
+        stations = json.loads(
+                requests.get('%s/event/%s/matches/stations'%(BASE_URL, event['event_key']),
+                headers=default_header(key)).text)
+        found_matches = []
+        for station in stations:
+            if "310" in station["teams"].split(","):
+                found_matches.append(station)
+        print json.dumps(found_matches)
 
