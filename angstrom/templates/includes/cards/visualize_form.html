@@ -1,18 +1,29 @@
-<h5>Teams</h5>
-<form>
-  <div class="row">
-    {% for team in teams %}
-    <div class="col s12 m6 l4">
-      <p>
-        <label>
-          <input name="teams" type="checkbox" value="{{ team[0] }}" {% if team[0] in team_nums %}checked="checked"{% endif %}/>
-          <span>{{ team[1] }} ({{ team[0] }})</span>
-        </label>
-      </p>
+<div class="card-panel">
+  <div class="container">
+    <div class="row">
+      <h4>Visualize</h4>
     </div>
-    {% endfor %}
+    <div class="row">
+      <h5>Teams</h5>
+      <a id="select_all" class="waves-effect waves-light btn-small">select all</a>
+      <a id="select_none" class="waves-effect waves-light btn-small">select none</a>
+      <form>
+        <div class="row">
+          {% for team in teams %}
+          <div class="col s12 m6 l4">
+            <p>
+              <label>
+                <input name="teams" type="checkbox" value="{{ team[0] }}" {% if team[0] in team_nums %}checked="checked"{% endif %}/>
+                <span>{{ team[1] }} ({{ team[0] }})</span>
+              </label>
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row center-align">
+          <button class="btn waves-effect waves-light" type="submit">Graph</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="row center-align">
-    <button class="btn waves-effect waves-light" type="submit">Graph</button>
-  </div>
-</form>
+</div>
