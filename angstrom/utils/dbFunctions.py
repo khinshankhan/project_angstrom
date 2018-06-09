@@ -194,6 +194,13 @@ def add_pre_scout(data):
     db = sqlite3.connect(db_file)
     c = db.cursor()
     
+    #remove an existing entry first
+    param_tuple = (data["team"],)
+    querystring = '''
+        DELETE FROM pre_scout WHERE team_num = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
     param_tuple = (
             data["team"],
             data["auton"],
