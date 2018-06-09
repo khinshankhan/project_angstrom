@@ -218,8 +218,14 @@ def get_pre_scout(team_num):
         SELECT * FROM pre_scout WHERE team_num = ?;
     '''
     c.execute(querystring, param_tuple)
-    
+
+    temp = c.fetchall()
+    if len(temp) == 0:
+        #print "None found"
+        return None
+
     db.close()
+    return temp[0]
 
 def get_user(u_id):
     db = sqlite3.connect(db_file)

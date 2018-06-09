@@ -125,8 +125,9 @@ def pre_scout():
         "notes": form["notes"]
     }
     add_pre_scout(form_data)
-    
-    return redirect(url_for('home', _anchor='admin'))
+
+    flash('Added pre-scout.')
+    return redirect(url_for('home', _anchor='dashboard'))
 
 @app.route('/add_teams', methods=['POST'])
 @admin
@@ -231,6 +232,9 @@ def profile():
         'pic': team_tuple[3]
     }
 
+    prescout = get_pre_scout(team_tuple[0])
+    print(prescout)
+    
     team_data = get_team_data(team_tuple[0])
     oprs = opr(team_data, team_tuple[0])
     impacts = impact(team_data, team_tuple[0])
@@ -242,7 +246,7 @@ def profile():
         url_for('get_auto_glyphs', team_nums = [team_tuple[0]])
     ]
 
-    return render_template('team.html', team = team, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
+    return render_template('team.html', team = team, prescout = prescout, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
 
 # REQUEST ROUTES (AJAX)
 @app.route('/find_teams')
