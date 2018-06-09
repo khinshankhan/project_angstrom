@@ -209,6 +209,18 @@ def add_pre_scout(data):
     db.commit()
     db.close()
 
+def get_pre_scout(team_num):
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+    
+    param_tuple = (team_num,)
+    querystring = '''
+        SELECT * FROM pre_scout WHERE team_num = ?;
+    '''
+    c.execute(querystring, param_tuple)
+    
+    db.close()
+
 def get_user(u_id):
     db = sqlite3.connect(db_file)
     c = db.cursor()
