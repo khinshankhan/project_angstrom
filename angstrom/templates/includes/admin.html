@@ -2,18 +2,30 @@
   <h4 class="center-align">Admin Privileges</h4><br>
 </div>
 <div class="row">
-  <div class="col m12 l6">
-    {% include "includes/cards/add_team.html" %}
+  <div class="col s12 m9 offset-l2 l8">
+    <div id="add_team" class="section scrollspy">
+      {% include "includes/cards/add_team.html" %}
+    </div>
+    <div id="add_user" class="section scrollspy">
+      {% include "includes/cards/add_user.html" %}
+    </div>
+    <div id="view_users" class="section scrollspy">
+      {% include "includes/cards/view_users.html" %}
+    </div>
+    <div id="settings" class="section scrollspy">
+      {% include "includes/cards/settings.html" %}
+    </div>
   </div>
-  <div class="col m12 l6">
-    {% include "includes/cards/add_user.html" %}
-  </div>
-</div>
-<div class="row">
-  <div class="col m12 l6">
-    {% include "includes/cards/view_users.html" %}
-  </div>
-  <div class="col m12 l6">
 
+  <div class="col hide-on-small-only m3 l2">
+    <div class="pushpin">
+      <h5>Navigation</h5>
+      <ul class="section table-of-contents">
+        <li><a href="#add_team">Add Team</a></li>
+        <li><a href="#add_user">Add User</a></li>
+        <li><a href="#view_users">View Users</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -127,4 +127,3 @@ def get_team_matches(key, team_num):
                             ]
                         })
     return res
-

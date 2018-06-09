@@ -476,6 +476,28 @@ def remove_team(team_num):
     db.commit()
     db.close()
 
+def clear_match_data():
+    db = sqlite3.connect(db_file)
+    c = db.cursor()
+
+    querystring = '''
+        DELETE FROM teams;
+    '''
+    c.execute(querystring)
+
+    querystring = '''
+        DELETE FROM match_performance;
+    '''
+    c.execute(querystring)
+
+    querystring = '''
+        DELETE FROM pre_scout;
+    '''
+    c.execute(querystring)
+
+    db.commit()
+    db.close()
+    
 def db_setup():
     db = sqlite3.connect(db_file)
     c = db.cursor()

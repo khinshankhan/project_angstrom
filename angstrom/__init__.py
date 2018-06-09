@@ -49,6 +49,8 @@ app.jinja_env.globals.update(is_user = is_user)
 app.jinja_env.globals.update(is_admin = is_admin)
 app.jinja_env.globals.update(get_user = get_user)
 
+global key
+
 @app.route('/')
 def index():
     if not is_user():
@@ -197,6 +199,7 @@ def remove_users():
     return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/visualize')
+@logged_in
 def visualize():
     if request.args:
         qs_teams = request.args.getlist("teams")
@@ -213,6 +216,7 @@ def visualize():
     return render_template('visualize.html', teams = teams, datasets = datasets, team_nums = teams_to_display)
 
 @app.route('/pictures/<filename>')
+@logged_in
 def pictures(filename):
     return send_from_directory(team_pic_directory, filename)
 
@@ -233,8 +237,7 @@ def profile():
     }
 
     prescout = get_pre_scout(team_tuple[0])
-    print(prescout)
-    
+
     team_data = get_team_data(team_tuple[0])
     oprs = opr(team_data, team_tuple[0])
     impacts = impact(team_data, team_tuple[0])
@@ -247,6 +250,20 @@ def profile():
     ]
 
     return render_template('team.html', team = team, prescout = prescout, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
+
+@app.route('/sample_data')
+@admin
+def sample_data():
+    print (get_team_matches(key, 310))
+    return redirect(url_for('home', _anchor='admin'))
+
+@app.route('/clear_data')
+@admin
+def clear_data():
+    clear_match_data()
+    flash('All match data has been removed.')
+    return redirect(url_for('home', _anchor='admin'))
+
 
 # REQUEST ROUTES (AJAX)
 @app.route('/find_teams')

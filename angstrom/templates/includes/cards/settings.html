@@ -1,0 +1,15 @@
+<div class="card-panel">
+  <h4 class="center-align">Settings</h4>
+  <a class="waves-effect waves-light btn" href="{{ url_for('sample_data') }}">use sample data</a>
+  <a class="waves-effect waves-light btn modal-trigger" href="#clear_data_warning">clear data</a>
+</div>
+
+<div id="clear_data_warning" class="modal">
+  <div class="modal-content">
+    <h4>Are you sure?</h4>
+    <p>Clearing the data will remove all teams, scouted match data, and prescouted data. Users will be preserved.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="{{ url_for('clear_data') }}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>

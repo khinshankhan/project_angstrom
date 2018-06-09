@@ -6,8 +6,20 @@
 
 {% block scripts %}
 <script>
-  var tabs = document.getElementsByClassName("tabs")[0];
-  var instance = M.Tabs.init(tabs, null);
+  document.addEventListener('DOMContentLoaded', function() {
+    var modals = document.querySelectorAll('.modal');
+    var modal_instances = M.Modal.init(modals, null);
+
+    var tabs = document.getElementsByClassName("tabs")[0];
+    var tabs_instance = M.Tabs.init(tabs, null);
+
+    var scrollspy = document.querySelectorAll('.scrollspy');
+    var scrollspy_instances = M.ScrollSpy.init(scrollspy, null);
+
+    var pushpins = document.querySelectorAll('.pushpin');
+    var pushpin_instances = M.Pushpin.init(pushpins, null);
+
+  });
 </script>
 {% endblock %}
 
