@@ -52,7 +52,33 @@ def get_team_matches(key, team_num):
     For each of those matches, use /matches route to match up auton,teleop,
     endgame scores for red and blue. Now match up first half of teams listed
     with red scores and second half of teams with blue score
+
+    Returns the following for each match:
+    [
+        {
+            "event_key": <string>,
+            "match_key": <string>,
+            "match_data: [
+                {
+                    "color": "red",
+                    "teams": <list of numbers>,
+                    "total": <number>,
+                    "penalty": <number>,
+                    "auton": <number>,
+                    "teleop": <number>,
+                    "endgame": <number>
+                },
+                {
+                    "color": "blue",
+                    ...
+                }
+            ]
+        },
+        ...
+    ]
     '''
+    res = []
+    
     events = get_team_events(key, team_num)
     for event in events:
         matches = json.loads(
@@ -61,9 +87,44 @@ def get_team_matches(key, team_num):
         stations = json.loads(
                 requests.get('%s/event/%s/matches/stations'%(BASE_URL, event['event_key']),
                 headers=default_header(key)).text)
-        found_matches = []
+        desired_stations = []
+
+        #find all stations in which the team_num was involved
         for station in stations:
-            if "310" in station["teams"].split(","):
-                found_matches.append(station)
-        print json.dumps(found_matches)
+            split_teams = map(lambda x: int(x), station["teams"].split(","))
+
+            #if the desired team participated in this match
+            if team_num in split_teams:
+                index = split_teams.index(team_num)
+
+                #pair up with data from /matches
+                for match in matches:
+                    if match["match_key"] == station["match_key"]:
+                        res.append({
+                            "event_key": event["event_key"],
+                            "match_key": match["match_key"],
+                            "event_name": event["event_name"],
+                            "match_name": match["match_name"],
+                            "match_data": [
+                                {
+                                    "color": "red",
+                                    "teams": split_teams[:len(split_teams)/2],
+                                    "total": match["red_score"],
+                                    "penalty": match["red_penalty"],
+                                    "auton": match["red_auto_score"],
+                                    "teleop": match["red_tele_score"],
+                                    "endgame": match["red_end_score"]
+                                },
+                                {
+                                    "color": "blue",
+                                    "teams": split_teams[len(split_teams)/2:],
+                                    "total": match["blue_score"],
+                                    "penalty": match["blue_penalty"],
+                                    "auton": match["blue_auto_score"],
+                                    "teleop": match["blue_tele_score"],
+                                    "endgame": match["blue_end_score"]
+                                }
+                            ]
+                        })
+    return res
 
