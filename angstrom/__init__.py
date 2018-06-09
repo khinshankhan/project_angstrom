@@ -255,6 +255,9 @@ def profile():
 @admin
 def sample_data():
     print (get_team_matches(key, 310))
+    clear_match_data()
+    # import data
+    flash('Data has been replaced with sample data.')
     return redirect(url_for('home', _anchor='admin'))
 
 @app.route('/clear_data')
