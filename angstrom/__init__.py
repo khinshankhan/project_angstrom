@@ -481,5 +481,6 @@ def log_the_status_code(response):
 if __name__ == "__main__":
     app.debug = False
     key = api_init()
-    #print(json.dumps(get_team_matches(key, 310)))
+    events = get_team_events(key, 310)
+    print(json.dumps(get_team_event_matches(key, 310, events[0])))
     app.run()
