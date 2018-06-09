@@ -482,5 +482,5 @@ if __name__ == "__main__":
     app.debug = False
     key = api_init()
     events = get_team_events(key, 310)
-    print(json.dumps(get_team_event_matches(key, 310, events[0])))
+    print(json.dumps(get_team_matches(key, 310, events[0])))
     app.run()
