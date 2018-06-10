@@ -7,7 +7,8 @@ from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the approp
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 from utils.dbFunctions import *
 from utils.view_helper import *
-from utils.toa_api import *
+# NEEDS FIX
+#from utils.toa_api import *
 from utils.stats import *
 #imports for logistics (makes stuff happen, eg read or open db)
 import random
@@ -61,7 +62,20 @@ def index():
 @app.route('/home')
 @logged_in
 def home():
-    return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = get_teams())
+    teams = get_teams()
+    names = ['oprs','impacts','glyphs','auto_glyphs']
+    datasets = []
+    
+    for i in names:
+        temp = []
+        for j in teams:
+            nom = i.upper()
+            nom = nom.replace("_", " ")
+            surl = url_for('get_'+i, team_nums = j[0])
+            temp.append([nom, surl, j[1]])
+        datasets.append(temp)
+    
+    return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = teams, datasets = datasets)
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -483,7 +497,8 @@ def log_the_status_code(response):
 
 if __name__ == "__main__":
     app.debug = False
-    key = api_init()
-    events = get_team_events(key, 310)
-    print(json.dumps(get_team_matches(key, 310, events[0])))
+    # NEEDS FIX
+    #key = api_init()
+    #vents = get_team_events(key, 310)
+    #print(json.dumps(get_team_matches(key, 310, events[0])))
     app.run()
