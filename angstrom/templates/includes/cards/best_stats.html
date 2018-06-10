@@ -1,18 +1,18 @@
 <div class="card-panel">
   <h4 class="center-align">Best Average</h4>
-
   <div class="row">
     {% for datalink in datasets %}
-    <div class="col s12">
+    {% set count = loop.index %}
+    <div class="col 3 m6 l3">
       <script type="text/javascript">
 	var themain = {{datasets|tojson}}
-        var maindata = {{datalink|tojson}}
+	var maindata = {{datalink|tojson}}
       </script>
       <center><b> {{datalink[0][0]}} </b></center>
       <div id={{datalink[0][1]}}></div>
     </div>
     <script src="{{ url_for('static', filename='js/stat_team.js') }}"></script>
     {% endfor %}
+    
   </div>
-
 </div>

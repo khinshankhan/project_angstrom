@@ -48,7 +48,7 @@ function get_data(){
 	    name.splice(0, 1);
 
 	    set2 = [];
-	    for (var z = 0; z < set.length; z++){
+	    for (var z = 0; z < set.length && z < 3; z++){
 		var combined = [set[z], name2[z]];
 		set2.push(combined);
 	    }
@@ -77,15 +77,26 @@ function sortFunction(a, b) {
 function makeUL(array) {
     // Create the list element:
     var list = document.createElement('ul');
-
+    list.classList.add("collection");
+    
     for(var i = 0; i < array.length; i++) {
         // Create the list item:
         var item = document.createElement('li');
+	item.classList.add("collection-item","avatar");
 
         // Set its contents:
-	var content = array[i][1] + " : "+ array[i][0];
-        item.appendChild(document.createTextNode(content));
-
+	/*
+	  var content = array[i][1] + " : "+ array[i][0];
+          item.appendChild(document.createTextNode(content));
+	*/
+	var proc = document.createElement("SPAN");
+	var t = document.createTextNode(array[i][1]);
+	proc.appendChild(t);
+	item.appendChild(proc);
+	proc = document.createElement("p");
+	t = document.createTextNode(array[i][0]);
+	proc.appendChild(t);
+	item.appendChild(proc);
         // Add it to the list:
         list.appendChild(item);
     }
