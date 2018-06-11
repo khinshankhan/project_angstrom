@@ -251,15 +251,6 @@ def profile():
 
     return render_template('team.html', team = team, prescout = prescout, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
 
-@app.route('/sample_data')
-@admin
-def sample_data():
-    print (get_team_matches(key, 310))
-    clear_match_data()
-    # import data
-    flash('Data has been replaced with sample data.')
-    return redirect(url_for('home', _anchor='admin'))
-
 @app.route('/clear_data')
 @admin
 def clear_data():
