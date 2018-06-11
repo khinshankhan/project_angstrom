@@ -7,6 +7,9 @@
     <!-- Framework CSS -->
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}"  media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Favicon -->
@@ -40,27 +43,27 @@
             <img id="logo" src="{{ url_for('static', filename='img/circle_logo.gif') }}" alt="Stuy Fission">
           </a>
           <ul class="right hide-on-med-and-down">
-	          {% if not is_user() %}
-	          <li><a href="{{ url_for('index') }}">Home</a></li>
-	          {% endif %}
-	          {% if is_user() %}
+	    {% if not is_user() %}
+	    <li><a href="{{ url_for('index') }}">Home</a></li>
+	    {% endif %}
+	    {% if is_user() %}
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('visualize') }}">Compare</a></li>
-	          {% endif %}
+	    {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
             {% if is_user() %}
-	          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+	    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% endif %}
           </ul>
           
           <ul id="nav-mobile" class="sidenav">
-	          {% if not is_user() %}
-	          <li><a href="{{ url_for('index') }}">Home</a></li>
-	          {% endif %}
-	          {% if is_user() %}
-	          <li><a href="{{ url_for('home') }}">Home</a></li>
+	    {% if not is_user() %}
+	    <li><a href="{{ url_for('index') }}">Home</a></li>
+	    {% endif %}
+	    {% if is_user() %}
+	    <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('visualize') }}">Compare</a></li>
-	          {% endif %}
+	    {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
             {% if is_user() %}
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -89,10 +92,14 @@
     <footer class="page-footer teal">
       <div class="footer-copyright">
         <div class="container">
-          Made by <a class="brown-text text-lighten-3" href="https://github.com/kkhan01/Atomic_Theory-Project_Angstrom">Atomic Theory</a> &copy;
+          Made by Atomic Theory &copy;
           <span id="copyright">
             <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
           </span>
+	  <!-- <a class="brown-text text-lighten-3" href="https://github.com/kkhan01/Atomic_Theory-Project_Angstrom"> -->
+	  <a href="https://github.com/kkhan01/Atomic_Theory-Project_Angstrom">
+	    <i class="fab fa-github"></i>
+	  </a>
         </div>
       </div>
       <!--Produced by Atomic Theory: Khinshan Khan, Stanley Lin, Ishtiaque Mahdi, Ryan Siu-->
@@ -108,8 +115,8 @@
       {% if messages %}
       {% for message in messages %}
       M.toast({
-        html: '{{ message }}',
-        displayLength: 4000
+      html: '{{ message }}',
+      displayLength: 4000
       });
       {% endfor %}
       {% endif %}

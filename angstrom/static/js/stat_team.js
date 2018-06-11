@@ -82,7 +82,7 @@ function makeUL(array) {
     for(var i = 0; i < array.length; i++) {
         // Create the list item:
         var item = document.createElement('li');
-	item.classList.add("collection-item","avatar");
+	item.classList.add("collection-item");
 
         // Set its contents:
 	/*
