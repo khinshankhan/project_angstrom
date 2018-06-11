@@ -1,25 +1,18 @@
 <div class="card-panel">
   <h4 class="center-align">Best Average</h4>
-
   <div class="row">
-    <div class="col s12">
-      <center><b> OPR </b></center>
-      <ul class="collection" id="collection">
-	{% include "includes/cards/team_collection.html" %}
-      </ul>
-
+    {% for datalink in datasets %}
+    {% set count = loop.index %}
+    <div class="col 3 m6 l3">
+      <script type="text/javascript">
+	var themain = {{datasets|tojson}}
+	var maindata = {{datalink|tojson}}
+      </script>
+      <center><b> {{datalink[0][0]}} </b></center>
+      <div id={{datalink[0][1]}}></div>
     </div>
-
-    <div class="card-stacked">
-      <center><b> Impacts </b></center>
-      <ul class="collection" id="collection">
-	{% include "includes/cards/team_collection.html" %}
-      </ul>
-
-    </div>
+    <script src="{{ url_for('static', filename='js/stat_team.js') }}"></script>
+    {% endfor %}
     
   </div>
-
 </div>
-
-<script src="{{ url_for('static', filename='js/search_team.js') }}"></script>
