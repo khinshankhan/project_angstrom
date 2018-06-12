@@ -10,7 +10,7 @@ function get_data(){
 	//console.log(maindata[k][1]);
 	/* $.ajax returns a promise*/
 	name.push(maindata[k][1]);
-	name2.push(maindata[k][2]);
+	name2.push(maindata[k][2] + " (" + maindata[k][3] + ")" );
 	var request = $.ajax({
             /* the ajax config*/
 	    url: maindata[k][1],
@@ -95,6 +95,7 @@ function makeUL(array) {
 	item.appendChild(proc);
 	proc = document.createElement("p");
 	t = document.createTextNode(array[i][0]);
+	proc.style.fontStyle = 'italic';
 	proc.appendChild(t);
 	item.appendChild(proc);
         // Add it to the list:
