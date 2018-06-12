@@ -3,6 +3,7 @@ import sqlite3   #enable control of an sqlite database
 import copy
 import os
 import sys
+import csv
 
 from auth import *
 from generate import *
@@ -583,21 +584,35 @@ def add_tasks_customdb(data):
     db.close()
 
 #match_perf, pre_scout, teams
-def export_csv(filename, db_name):
+def export_csv(filename, table_name):
     db = sqlite3.connect(db_file)
     db.row_factory = sqlite3.Row    #get column names
     c = db.cursor()
 
-    writer = csv.writer("%s.csv"%(filename))
+    out_file = open("%s"%(filename), "w")
+    writer = csv.writer(out_file)
     
-    if db_name == "match_performance":
+    if table_name == "match_performance":
         querystring = '''SELECT * FROM match_performance;'''
         c.execute(querystring)
         data = c.fetchall()
-    if db_name == "pre_scout":
-        
-    if db_name == "teams":
-        
+        if len(data) > 0:
+            writer.writerow(data[0].keys())
+            writer.writerows(data)
+    if table_name == "pre_scout":
+        querystring = '''SELECT * FROM pre_scout;'''
+        c.execute(querystring)
+        data = c.fetchall()
+        if len(data) > 0:
+            writer.writerow(data[0].keys())
+            writer.writerows(data)
+    if table_name == "teams":
+        querystring = '''SELECT * FROM teams;'''
+        c.execute(querystring)
+        data = c.fetchall()
+        if len(data) > 0:
+            writer.writerow(data[0].keys())
+            writer.writerows(data)
     
     db.close()
 

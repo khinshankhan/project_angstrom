@@ -499,4 +499,8 @@ if __name__ == "__main__":
     #key = api_init()
     #vents = get_team_events(key, 310)
     #print(json.dumps(get_team_matches(key, 310, events[0])))
+    export_csv("perf.csv", "match_performance")
+    export_csv("pre.csv", "pre_scout")
+    export_csv("teams.csv", "teams")
     app.run()
+
