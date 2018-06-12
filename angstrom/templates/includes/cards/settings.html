@@ -1,9 +1,30 @@
 <div class="card-panel">
-  <h4 class="center-align">Settings</h4>
-  <a class="waves-effect waves-light btn modal-trigger" href="#clear_data_warning">clear data</a>
-  <a class="waves-effect waves-light btn" href="{{ url_for('csv_mp') }}">match csv</a>
-  <a class="waves-effect waves-light btn" href="{{ url_for('csv_ps') }}">prescout csv</a>
-  <a class="waves-effect waves-light btn" href="{{ url_for('csv_teams') }}">teams csv</a>
+  <div class="row">
+    <h4 class="center-align">Settings</h4>
+  </div>
+  <div class="row">
+    <div class="col s12 l4 center-align">
+      <h5>Data</h5>
+      <a class="waves-effect waves-light btn modal-trigger" href="#clear_data_warning">clear data</a>
+    </div>
+    <div class="col s12 l8 center-align">
+      <h5>Download</h5>
+      <div class="row">
+        <div class="col s12 m4">
+          <a class="waves-effect waves-light btn" href="{{ url_for('csv_mp') }}">match csv</a>
+          <br><br>
+        </div>
+        <div class="col s12 m4">
+          <a class="waves-effect waves-light btn" href="{{ url_for('csv_ps') }}">prescout csv</a>
+          <br><br>
+        </div>
+        <div class="col s12 m4">
+          <a class="waves-effect waves-light btn" href="{{ url_for('csv_teams') }}">teams csv</a>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="clear_data_warning" class="modal">
