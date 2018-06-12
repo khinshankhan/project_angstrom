@@ -43,27 +43,27 @@
             <img id="logo" src="{{ url_for('static', filename='img/circle_logo.gif') }}" alt="Stuy Fission">
           </a>
           <ul class="right hide-on-med-and-down">
-	    {% if not is_user() %}
-	    <li><a href="{{ url_for('index') }}">Home</a></li>
-	    {% endif %}
-	    {% if is_user() %}
+	          {% if not is_user() %}
+	          <li><a href="{{ url_for('index') }}">Home</a></li>
+	          {% endif %}
+	          {% if is_user() %}
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('visualize') }}">Compare</a></li>
-	    {% endif %}
+	          {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
             {% if is_user() %}
-	    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+	          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% endif %}
           </ul>
           
           <ul id="nav-mobile" class="sidenav">
-	    {% if not is_user() %}
-	    <li><a href="{{ url_for('index') }}">Home</a></li>
-	    {% endif %}
-	    {% if is_user() %}
-	    <li><a href="{{ url_for('home') }}">Home</a></li>
+	          {% if not is_user() %}
+	          <li><a href="{{ url_for('index') }}">Home</a></li>
+	          {% endif %}
+	          {% if is_user() %}
+	          <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('visualize') }}">Compare</a></li>
-	    {% endif %}
+	          {% endif %}
             <li><a href="{{ url_for('about') }}">About</a></li>
             {% if is_user() %}
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -96,9 +96,9 @@
           <span id="copyright">
             <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
           </span>
-	  <a class="white-text text-lighten-3" href="https://github.com/kkhan01/Atomic_Theory-Project_Angstrom">
-	    <i class="fab fa-github fa-lg"></i>
-	  </a>
+	        <a class="white-text text-lighten-3" href="https://github.com/kkhan01/Atomic_Theory-Project_Angstrom">
+	          <i class="fab fa-github fa-lg right"></i>
+	        </a>
         </div>
       </div>
       <!--Produced by Atomic Theory: Khinshan Khan, Stanley Lin, Ishtiaque Mahdi, Ryan Siu-->
@@ -114,8 +114,8 @@
       {% if messages %}
       {% for message in messages %}
       M.toast({
-      html: '{{ message }}',
-      displayLength: 4000
+        html: '{{ message }}',
+        displayLength: 4000
       });
       {% endfor %}
       {% endif %}
