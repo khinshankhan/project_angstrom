@@ -582,6 +582,25 @@ def add_tasks_customdb(data):
     db.commit()
     db.close()
 
+#match_perf, pre_scout, teams
+def export_csv(filename, db_name):
+    db = sqlite3.connect(db_file)
+    db.row_factory = sqlite3.Row    #get column names
+    c = db.cursor()
+
+    writer = csv.writer("%s.csv"%(filename))
+    
+    if db_name == "match_performance":
+        querystring = '''SELECT * FROM match_performance;'''
+        c.execute(querystring)
+        data = c.fetchall()
+    if db_name == "pre_scout":
+        
+    if db_name == "teams":
+        
+    
+    db.close()
+
 if __name__ == "__main__":
     db_setup()
     
