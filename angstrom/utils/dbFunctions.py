@@ -4,6 +4,7 @@ import copy
 import os
 import sys
 import csv
+import random
 
 from auth import *
 from generate import *
@@ -559,7 +560,7 @@ def db_setup():
 def add_tasks_customdb(data):
     db = sqlite3.connect(db_file)
     c = db.cursor()
-    param_tuple = (data["entry_id"], data["team_num"], data["match_num"], data["alliance"], data["user_id"], "none right now");
+    param_tuple = (data["entry_id"], data["team_num"], data["match_num"], data["alliance"], data["user_id"], "notes" if random.random() > 0.5 else "");
 
     querystring = '''
         INSERT INTO match_performance (entry_id, team_num, match_num, alliance, user_id, notes)
