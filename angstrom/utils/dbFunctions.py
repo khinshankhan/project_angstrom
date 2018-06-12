@@ -616,6 +616,7 @@ def export_csv(filename, table_name):
             writer.writerows(data)
     
     db.close()
+    out_file.close()
 
 if __name__ == "__main__":
     db_setup()
