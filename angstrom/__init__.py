@@ -38,6 +38,7 @@ def sremove(filename): #silentremove
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
+data_directory = "data/"
 
 add_sample()
 
@@ -241,6 +242,25 @@ def visualize():
 @logged_in
 def pictures(filename):
     return send_from_directory(team_pic_directory, filename)
+
+@app.route('/csvs/match_performance')
+@admin
+def csv_mp():
+    export_csv(data_directory + "perf.csv", "match_performance")
+    return send_from_directory(data_directory, "perf.csv")
+
+@app.route('/csvs/pre_scout')
+@admin
+def csv_ps():
+    export_csv(data_directory + "pre.csv", "pre_scout")
+    return send_from_directory(data_directory, "pre.csv")
+
+@app.route('/csvs/teams')
+@admin
+def csv_teams():
+    export_csv(data_directory + "teams.csv", "teams")
+    return send_from_directory(data_directory, "teams.csv")
+
 
 @app.route('/profile')
 @logged_in
@@ -500,8 +520,4 @@ if __name__ == "__main__":
     #key = api_init()
     #vents = get_team_events(key, 310)
     #print(json.dumps(get_team_matches(key, 310, events[0])))
-    export_csv("perf.csv", "match_performance")
-    export_csv("pre.csv", "pre_scout")
-    export_csv("teams.csv", "teams")
     app.run()
-

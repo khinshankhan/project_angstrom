@@ -3,5 +3,6 @@
 *.csv
 angstrom/static/img/public/*.jpg
 angstrom/static/img/public/*.jpeg
+angstrom/data/*.csv
 angstrom/database.db
 angstrom/toa_key.txt
