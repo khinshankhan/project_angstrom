@@ -75,15 +75,12 @@ def home():
             temp.append([nom, surl, j[1], j[0]])
         datasets.append(temp)
 
-        boolean = 0
-        if teams:
-            boolean = 1
         tnames = []
         for i in range(len(names)):
             tnames.append(names[i].upper())
             tnames[i] = tnames[i].replace("_", " ")
             
-    return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = teams, names = tnames, datasets = datasets, boolean = boolean)
+    return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = teams, names = tnames, datasets = datasets)
 
 @app.route('/login', methods = ['POST'])
 def login():
