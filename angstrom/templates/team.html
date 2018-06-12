@@ -50,6 +50,7 @@
           <th>Impact</th>
           <th>Total Glyphs</th>
           <th>Auto Glyphs</th>
+          <th></th>
         </tr>
         {% for i in range(0, team_data|length) %}
         <tr>
@@ -63,6 +64,11 @@
           {% endif %}
           <td>{{ team_data[i]['tasks']['04_g_tele'] }}</td>
           <td>{{ team_data[i]['tasks']['00_g_auto'] }}</td>
+          <td>
+            {% if team_data[i]['notes'] %}
+            <a class="tooltipped" data-position="right" data-tooltip="{{ team_data[i]['notes' ]}}">Notes</a>
+            {% endif %}
+          </td>
         </tr>
         {% endfor %}
       </table>
@@ -82,8 +88,19 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/visualize.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, null);
+  });
+</script>
 {% endblock %}
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/visualize.css') }}"/>
+<style>
+  table {
+    overflow-x: auto;
+  }
+</style>
 {% endblock %}
