@@ -37,7 +37,7 @@ def sremove(filename): #silentremove
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
-data_directory = "data/"
+data_directory = basedir + "/utils/data/"
 
 add_sample()
 
@@ -115,8 +115,6 @@ def about():
 @logged_in
 def add_task():
     form = request.form
-    #print form
-
     #alliance: blue is one, red is 0
     form_data = {
         "team": int(form["Team"]),
@@ -126,7 +124,6 @@ def add_task():
         "tasks": gen_task_dict(form),
         "notes": ("" if "Notes" not in form else form["Notes"])
     }
-    #print form_data
     if get_team(form_data['team']) is not None:
         add_tasks_to_db(form_data)
         flash('Match added.')
@@ -182,8 +179,6 @@ def add_teams():
         "pic": filename
         #"notes": (form["notes"])
     }
-    print (form_data,file=sys.stderr)
-    print('Team python checks out', file=sys.stderr)
     if get_team(int(form['team_num'])) is None:
         add_team(form_data)
         flash('Team was added.')
@@ -201,7 +196,6 @@ def add_users():
         "password": (form["password"]),
         "permission": (1 if "permission" in form else 0)
     }
-    print('User python checks out', file=sys.stderr)
     if get_user(int(form['u_id'])) is None:
         add_user(form_data)
         flash('User was added.')
@@ -246,19 +240,29 @@ def pictures(filename):
 @admin
 def csv_mp():
     export_csv(data_directory + "perf.csv", "match_performance")
-    return send_from_directory(data_directory, "perf.csv")
+    return send_from_directory(data_directory, "perf.csv",
+                               mimetype='text/csv',
+                               attachment_filename='match_performance.csv',
+                               as_attachment=True)
 
 @app.route('/csvs/pre_scout')
 @admin
 def csv_ps():
     export_csv(data_directory + "pre.csv", "pre_scout")
-    return send_from_directory(data_directory, "pre.csv")
+    return send_from_directory(data_directory, "pre.csv",
+                               mimetype='text/csv',
+                               attachment_filename='pre.csv',
+                               as_attachment=True)
 
 @app.route('/csvs/teams')
 @admin
 def csv_teams():
     export_csv(data_directory + "teams.csv", "teams")
-    return send_from_directory(data_directory, "teams.csv")
+    aprint(basedir)
+    return send_from_directory(data_directory, "teams.csv",
+                               mimetype='text/csv',
+                               attachment_filename='teams.csv',
+                               as_attachment=True)
 
 
 @app.route('/profile')
