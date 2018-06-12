@@ -264,7 +264,6 @@ def csv_teams():
                                attachment_filename='teams.csv',
                                as_attachment=True)
 
-
 @app.route('/profile')
 @logged_in
 def profile():
