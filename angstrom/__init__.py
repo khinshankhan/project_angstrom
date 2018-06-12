@@ -7,7 +7,7 @@ from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the approp
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 from utils.dbFunctions import *
 from utils.view_helper import *
-from utils.toa_api import *
+#from utils.toa_api import *
 from utils.stats import *
 #imports for logistics (makes stuff happen, eg read or open db)
 import random
@@ -108,7 +108,7 @@ def about():
     if not is_user():
         cuser = "Mysterious Visitor"
     else:
-        cuser = "User " + str(session['u_id'])
+        (num, cuser, nu) = get_user(session['u_id'])
     return render_template('about.html', user=cuser)
 
 @app.route('/add_task', methods=['POST'])
@@ -520,6 +520,6 @@ def log_the_status_code(response):
 
 if __name__ == "__main__":
     app.debug = False
-    key = api_init()
-    events = get_team_events(key, 310)
+    #key = api_init()
+    #events = get_team_events(key, 310)
     app.run()
