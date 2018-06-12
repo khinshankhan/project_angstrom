@@ -79,8 +79,11 @@ def home():
         for i in range(len(names)):
             tnames.append(names[i].upper())
             tnames[i] = tnames[i].replace("_", " ")
-            
-    return render_template('home.html', GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = teams, names = tnames, datasets = datasets)
+
+    auto_sorted_keys = sorted(GAME_AUTO)
+    tele_sorted_keys = sorted(GAME_TELE)
+
+    return render_template('home.html', auto_sorted_keys = auto_sorted_keys, tele_sorted_keys = tele_sorted_keys, GAME_AUTO = GAME_AUTO, GAME_TELE = GAME_TELE, users = get_users(), teams = teams, names = tnames, datasets = datasets)
 
 @app.route('/login', methods = ['POST'])
 def login():
