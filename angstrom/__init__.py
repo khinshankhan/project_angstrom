@@ -38,7 +38,7 @@ def sremove(filename): #silentremove
 # PATHS
 basedir = os.path.abspath(os.path.dirname(__file__))
 team_pic_directory = "static/img/public"
-data_directory = "data/"
+data_directory = basedir + "/data/"
 
 add_sample()
 
@@ -258,7 +258,10 @@ def csv_ps():
 @app.route('/csvs/teams')
 @admin
 def csv_teams():
+    aprint("?????????????????????????")
+    aprint(data_directory)
     export_csv(data_directory + "teams.csv", "teams")
+    aprint(basedir)
     return send_from_directory(data_directory, "teams.csv")
 
 
