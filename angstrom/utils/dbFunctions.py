@@ -19,8 +19,6 @@ def pprint(data):
     return data
 
 def db_setup():
-    pprint("=========================================================")
-    pprint(db_file)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     querystring = """
@@ -121,7 +119,6 @@ def add_tasks_to_db(data):
 
     #should only be one result (only want a specific team from a specific match)
     if res == None or len(res) > 1:
-        #print "An error ocurred when adding match performance data, rolling back changes"
         db.rollback()
         db.close()
         return
@@ -165,9 +162,6 @@ def add_user(data):
             "permission": <number>
         }
     '''
-    # print(data, file=sys.stderr)
-    # print("user fxn gets called",file=sys.stderr)
-    # print(data,file=sys.stderr)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     param_tuple = (
@@ -176,7 +170,6 @@ def add_user(data):
         hashed(data["password"]),
         data["permission"],
     )
-    #print(param_tuple, file=sys.stderr)
     querystring = "INSERT INTO users VALUES (?, ?, ?, ?)"
     c.execute(querystring, param_tuple)
     db.commit()
@@ -230,7 +223,6 @@ def get_pre_scout(team_num):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        #print "None found"
         return None
 
     db.close()
@@ -249,7 +241,6 @@ def get_user(u_id):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        #print "None found"
         return None
 
     db.close()
@@ -280,8 +271,6 @@ def add_team(data):
             "pic": <string>,
         }
     '''
-    # print("team fxn gets called",file=sys.stderr)
-    # print(data,file=sys.stderr)
     db = sqlite3.connect(db_file)
     c = db.cursor()
     
@@ -310,10 +299,7 @@ def get_team(team_num):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        #print "None found"
         return None
-
-    #print temp
 
     db.close()
     return temp[0]
@@ -358,10 +344,7 @@ def find_alliance_partner(team, match_num, alliance):
 
     temp = c.fetchall()
     if len(temp) == 0:
-        #print "None found"
         return None
-
-    #print temp[0][0]
 
     db.close()
     return temp[0][0]
@@ -576,7 +559,6 @@ def add_tasks_customdb(data):
             VALUES (?, ?, ?);
     '''
     for task in match['tasks']:
-        #print(i, file=sys.stderr)
         #j += i
         param_tuple = (data["entry_id"], task, match['tasks'][task]);
         c.execute(querystring, param_tuple)
@@ -589,7 +571,7 @@ def export_csv(filename, table_name):
     db = sqlite3.connect(db_file)
     db.row_factory = sqlite3.Row    #get column names
     c = db.cursor()
-
+    
     out_file = open("%s"%(filename), "w")
     writer = csv.writer(out_file)
     

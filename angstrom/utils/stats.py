@@ -65,7 +65,7 @@ def glyphs_stat(data, team):
     glyphs = []
     for match in data:
         if match['team'] == team:
-            print match
+            #print match
             glyphs.append(match['tasks']['04_g_tele'])
     return glyphs
 
@@ -78,7 +78,7 @@ def auto_glyphs_stat(data, team):
     glyphs = []
     for match in data:
         if match['team'] == team:
-            print match
+            #print match
             glyphs.append(match['tasks']['00_g_auto'])
     return glyphs
 
@@ -99,7 +99,7 @@ def alliance_partners(data, team):
 
 # Finds a team's alliance partner in a given match
 def alliance_partner(data, team, match_num, alliance):
-    print get_match_data(find_alliance_partner(team, match_num, alliance), match_num)
+    #print get_match_data(find_alliance_partner(team, match_num, alliance), match_num)
     return get_match_data(find_alliance_partner(team, match_num, alliance), match_num)
 
 '''
