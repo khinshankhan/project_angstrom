@@ -16,11 +16,11 @@
           </div>
           <div class="col m12 l6">
             <ul>
-              <li><i class="teal-text inline-icon material-icons">location_on</i> {{ team.location }}</li>
-              <li><i class="teal-text inline-icon material-icons">person</i> {{ team.num_mem }} members</li>
-              <li><i class="teal-text inline-icon material-icons">image</i> <a href="{{ url_for('pictures', filename = team.pic) }}">{{ team.pic }}</a></li>
+              <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Location">location_on</i> {{ team.location }}</li>
+              <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Number of team members">person</i> {{ team.num_mem }} members</li>
+              <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Image">image</i> <a href="{{ url_for('pictures', filename = team.pic) }}">{{ team.pic }}</a></li>
               {% if prescout %}
-              <li><i class="teal-text inline-icon material-icons">info</i>
+              <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Prescout">info</i>
                 Prescout <strong>auto</strong>: {{ prescout[1] }}, <strong>teleop</strong>: {{ prescout[2] }}, <strong>endgame</strong>: {{ prescout[3] }}
                 <br><i class="white-text inline-icon material-icons">info</i>
                 {% if prescout[4] %}
@@ -30,6 +30,12 @@
               {% else %}
               <li><i class="teal-text inline-icon material-icons">info</i> No prescout information</li>
               {% endif %}
+              <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Previous competitions">skip_previous</i> <strong>Previous Competitions</strong>
+                {% for event in previous_events %}
+                <br><i class="white-text inline-icon material-icons">skip_previous</i>
+                {{ event['event_name'] }}, {{ event['state_prov'] }} ({{ event['event_type_key'] }})
+                {% endfor %}
+              </li>
             </ul>
           </div>
         </div>

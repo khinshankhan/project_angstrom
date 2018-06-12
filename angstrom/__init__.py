@@ -7,8 +7,7 @@ from utils.game_config import GAME_AUTO_2018 as GAME_AUTO # change to the approp
 from utils.game_config import GAME_TELE_2018 as GAME_TELE # change to the appropiate config
 from utils.dbFunctions import *
 from utils.view_helper import *
-# NEEDS FIX
-#from utils.toa_api import *
+from utils.toa_api import *
 from utils.stats import *
 #imports for logistics (makes stuff happen, eg read or open db)
 import random
@@ -284,6 +283,8 @@ def profile():
     oprs = opr(team_data, team_tuple[0])
     impacts = impact(team_data, team_tuple[0])
 
+    previous_events = get_team_events(key, team_tuple[0])
+
     datasets = [
         url_for('get_oprs', team_nums = [team_tuple[0]]),
         url_for('get_impacts', team_nums = [team_tuple[0]]),
@@ -291,7 +292,7 @@ def profile():
         url_for('get_auto_glyphs', team_nums = [team_tuple[0]])
     ]
 
-    return render_template('team.html', team = team, prescout = prescout, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets)
+    return render_template('team.html', team = team, prescout = prescout, team_data = team_data, oprs = oprs, impacts = impacts, datasets = datasets, previous_events = previous_events)
 
 @app.route('/clear_data')
 @admin
@@ -516,8 +517,6 @@ def log_the_status_code(response):
 
 if __name__ == "__main__":
     app.debug = False
-    # NEEDS FIX
-    #key = api_init()
-    #vents = get_team_events(key, 310)
-    #print(json.dumps(get_team_matches(key, 310, events[0])))
+    key = api_init()
+    events = get_team_events(key, 310)
     app.run()
