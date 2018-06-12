@@ -581,3 +581,199 @@ khinshanK -- Sat Jun 2 15:09:08 2018 -0400
 khinshanK -- Sat Jun 2 16:11:17 2018 -0400
 
     fixed up error page using interal flask messages and added many errors
+
+khinshanK -- Sat Jun 2 16:33:01 2018 -0400
+
+    devlog cleaned
+
+ryanS -- Sat Jun 2 18:49:05 2018 -0400
+
+    Add check for if team is competing in scout form
+
+khinshanK -- Sun Jun 3 18:48:15 2018 -0400
+
+    cleaned up main function and inserting arbitrary data rn. sqlite3 is doing smth weirf ith \/u
+
+khinshanK -- Sun Jun 3 19:28:32 2018 -0400
+
+    dummy data successfully added, now we need to figure out the problem with the secondary graph (i think it it retaining old axis)
+
+ryanS -- Sun Jun 3 19:55:01 2018 -0400
+
+    Fix axis labels on graphs
+
+ryanS -- Sun Jun 3 19:57:04 2018 -0400
+
+    Fix impact graph not displaying properly
+
+ryanS -- Sun Jun 3 19:58:31 2018 -0400
+
+    Shift graphs lower to display better
+
+ryanS -- Sun Jun 3 20:04:13 2018 -0400
+
+    Remove decimal ticks in graphs
+
+khinshanK -- Mon Jun 4 00:06:52 2018 +0000
+
+    safety for deployment
+
+khinshanK -- Sun Jun 3 20:09:09 2018 -0400
+
+    Delete database.db
+
+ryanS -- Sun Jun 3 20:11:33 2018 -0400
+
+    Add number of glyphs graph
+
+ryanS -- Sun Jun 3 20:14:19 2018 -0400
+
+    Add table column for number of glyphs
+
+khinshanK -- Sun Jun 3 21:46:08 2018 -0400
+
+    worked file to circumvent permission issues
+
+khinshanK -- Sun Jun 3 21:58:08 2018 -0400
+
+    more attempts at fixing server problems
+
+khinshanK -- Mon Jun 4 02:00:32 2018 +0000
+
+    error log
+
+khinshanK -- Sun Jun 3 22:44:47 2018 -0400
+
+    another attempt as db writing
+
+khinshanK -- Sun Jun 3 23:27:37 2018 -0400
+
+    oof, it doesnt work nicely with server. planning on asking for help tmr
+
+khinshanK -- Sun Jun 3 23:32:03 2018 -0400
+
+    final attempt at server side for the night
+
+khinshanK -- Mon Jun 4 09:26:50 2018 -0400
+
+    cleaned __init__.py should work fine
+
+ryanS -- Mon Jun 4 11:35:14 2018 -0400
+
+    Move sample match generation into separate file; add auto glyph chart; change initial sample data generation to use a set of accepted values
+
+ryanS -- Mon Jun 4 12:53:38 2018 -0400
+
+    Start visualization page for comparing teams
+
+khinshanK -- Mon Jun 4 14:22:01 2018 -0400
+
+    Update angstrom.conf
+
+ryanS -- Mon Jun 4 14:37:24 2018 -0400
+
+    Work on comparsion chart allowing users to select teams to display; fix chart bugs
+
+khinshanK -- Mon Jun 4 14:40:51 2018 -0400
+
+    hopefully this makes the setup run only once
+
+ryanS -- Mon Jun 4 14:50:43 2018 -0400
+
+    Make visualize form more robust
+
+stanleyL -- Mon Jun 4 14:50:46 2018 -0400
+
+    work on api
+
+khinshanK -- Mon Jun 4 19:00:11 2018 +0000
+
+    shell script to help fresh clone permissions faster
+
+ryanS -- Tue Jun 5 19:06:10 2018 -0400
+
+    Link comparison visualizations to navbar
+
+stanleyL -- Wed Jun 6 14:50:56 2018 -0400
+
+    more api
+
+khinshanK -- Wed Jun 6 14:54:53 2018 -0400
+
+    Ish and I are working on making a best avg stats card. working on display right now. idea: use horizontal cards in union with vertical cards
+
+stanleyL -- Wed Jun 6 23:16:50 2018 -0400
+
+    updated gitignore
+
+khinshanK -- Fri Jun 8 14:01:24 2018 -0400
+
+    Ish and I tried some horizontal janky thing, it's in the works
+
+ryanS -- Fri Jun 8 14:37:27 2018 -0400
+
+    Disable enter on search form
+
+ryanS -- Fri Jun 8 14:38:54 2018 -0400
+
+    Change link text of dashboard to home
+
+stanleyL -- Fri Jun 8 14:51:00 2018 -0400
+
+    in progress getting match data
+
+ryanS -- Fri Jun 8 14:58:22 2018 -0400
+
+    Add select all and select none buttons to compare page
+
+stanleyL -- Fri Jun 8 22:27:14 2018 -0400
+
+    finished api
+
+stanleyL -- Fri Jun 8 22:31:09 2018 -0400
+
+    added prescout
+
+ryanS -- Sat Jun 9 13:53:49 2018 -0400
+
+    Add prescout information to profile page
+
+stanleyL -- Sat Jun 9 15:17:48 2018 -0400
+
+    prescout duplicate entry handling
+
+ryanS -- Sat Jun 9 17:00:14 2018 -0400
+
+    Add settings card for admin; implement clear data button; add scrollspy for admin for better navigation
+
+ryanS -- Sat Jun 9 17:03:53 2018 -0400
+
+    Add modals for confirming dangerous operations with data
+
+stanleyL -- Sat Jun 9 17:12:13 2018 -0400
+
+    added support for a single event
+
+stanleyL -- Sat Jun 9 17:15:52 2018 -0400
+
+    simplified
+
+khinshanK -- Sun Jun 10 12:35:11 2018 -0400
+
+    almost done with the best stats card, need help with css of all things..
+
+khinshanK -- Sun Jun 10 13:56:52 2018 -0400
+
+    turns out that i can indeed css (might be easier with js now that ive done it once. reordered dashboard for uniform feel, created table structure of best stats similar to search team, removed print statements.)
+
+khinshanK -- Sun Jun 10 16:12:37 2018 -0400
+
+    made stats into a card with ryan's help
+
+ryanS -- Mon Jun 11 08:26:07 2018 -0400
+
+    Remove sample data button
+
+khinshanK -- Mon Jun 11 18:16:13 2018 -0400
+
+    fixed up the table for best stats for aesthtics. added in edge case of no teams, and used font awesome for octocat logo (ryan needs to move it however he wants, but code is present)

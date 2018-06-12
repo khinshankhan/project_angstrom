@@ -1,6 +1,8 @@
 <div class="card-panel">
   <h4 class="center-align">Best Average</h4>
+
   <div class="row">
+    {% if boolean == 1 %}
     {% for datalink in datasets %}
     {% set count = loop.index %}
     <div class="col 3 m6 l3">
@@ -8,11 +10,22 @@
 	var themain = {{datasets|tojson}}
 	var maindata = {{datalink|tojson}}
       </script>
-      <center><b> {{datalink[0][0]}} </b></center>
+      <center><b> {{datalink[0][0]}}</b></center>
       <div id={{datalink[0][1]}}></div>
     </div>
     <script src="{{ url_for('static', filename='js/stat_team.js') }}"></script>
     {% endfor %}
-    
+    {% else %}
+    {% for name in names %}
+    {% set count = loop.index %}
+    <div class="col s12 m6 l3">
+      <center><b> {{name}}</b>
+	<p>NO STATS TO DISPLAY</p>
+	<p>NO TEAMS FOUND</p>
+      </center>
+
+    </div>
+    {% endfor %}
+    {% endif %}
   </div>
 </div>
