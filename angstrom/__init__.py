@@ -241,22 +241,29 @@ def pictures(filename):
 @admin
 def csv_mp():
     export_csv(data_directory + "perf.csv", "match_performance")
-    return send_from_directory(data_directory, "perf.csv")
+    return send_from_directory(data_directory, "perf.csv",
+                               mimetype='text/csv',
+                               attachment_filename='match_performance.csv',
+                               as_attachment=True)
 
 @app.route('/csvs/pre_scout')
 @admin
 def csv_ps():
     export_csv(data_directory + "pre.csv", "pre_scout")
-    return send_from_directory(data_directory, "pre.csv")
+    return send_from_directory(data_directory, "pre.csv",
+                               mimetype='text/csv',
+                               attachment_filename='pre.csv',
+                               as_attachment=True)
 
 @app.route('/csvs/teams')
 @admin
 def csv_teams():
-    aprint("?????????????????????????")
-    aprint(data_directory)
     export_csv(data_directory + "teams.csv", "teams")
     aprint(basedir)
-    return send_from_directory(data_directory, "teams.csv")
+    return send_from_directory(data_directory, "teams.csv",
+                               mimetype='text/csv',
+                               attachment_filename='teams.csv',
+                               as_attachment=True)
 
 
 @app.route('/profile')
