@@ -777,3 +777,211 @@ ryanS -- Mon Jun 11 08:26:07 2018 -0400
 khinshanK -- Mon Jun 11 18:16:13 2018 -0400
 
     fixed up the table for best stats for aesthtics. added in edge case of no teams, and used font awesome for octocat logo (ryan needs to move it however he wants, but code is present)
+
+khinshanK -- Mon Jun 11 18:17:32 2018 -0400
+
+    updated devlog with everyone\'s messages
+
+khinshanK -- Mon Jun 11 22:46:41 2018 -0400
+
+    made octocat white and big
+
+stanleyL -- Mon Jun 11 22:56:43 2018 -0400
+
+    starting csv export
+
+khinshanK -- Mon Jun 11 23:07:22 2018 -0400
+
+    added numbers to the team display and made the actual stat italics from the js
+
+stanleyL -- Mon Jun 11 23:18:44 2018 -0400
+
+    added csv exporting
+
+ryanS -- Tue Jun 12 14:47:09 2018 -0400
+
+    Implement csv generating buttons
+
+ryanS -- Tue Jun 12 15:00:02 2018 -0400
+
+    Incorporate notes into profile page
+
+ryanS -- Tue Jun 12 15:04:52 2018 -0400
+
+    Change note generation for generated matches to be random
+
+ryanS -- Tue Jun 12 15:11:20 2018 -0400
+
+    Bug fix with file opening
+
+ryanS -- Tue Jun 12 15:35:15 2018 -0400
+
+    Remove deprecated tags
+
+khinshanK -- Tue Jun 12 15:37:31 2018 -0400
+
+    attempt at fixing directory problem of downloads
+
+ryanS -- Tue Jun 12 15:41:21 2018 -0400
+
+    Organize download buttons
+
+khinshanK -- Tue Jun 12 15:54:38 2018 -0400
+
+    second attempt at a fix of directory structure and writing
+
+khinshanK -- Tue Jun 12 16:08:52 2018 -0400
+
+    fixed download extensions
+
+khinshanK -- Tue Jun 12 17:32:01 2018 -0400
+
+    updated about page to look more... professional and added some more mobile compatability to it
+
+ryanS -- Tue Jun 12 17:33:25 2018 -0400
+
+    Implement API by finding teams' past competitions
+
+khinshanK -- Tue Jun 12 17:39:41 2018 -0400
+
+    Changed offset because numbers on coders go to another line
+
+ryanS -- Tue Jun 12 17:40:52 2018 -0400
+
+    Small patches to prevent errors
+
+ryanS -- Tue Jun 12 17:46:22 2018 -0400
+
+    Small visual adjustments
+
+ryanS -- Tue Jun 12 17:51:49 2018 -0400
+
+    Fix bad programming stuff
+
+ryanS -- Tue Jun 12 17:57:04 2018 -0400
+
+    Reformat footer
+
+ryanS -- Tue Jun 12 18:06:26 2018 -0400
+
+    Fix ordering of scout form fields
+
+khinshanK -- Tue Jun 12 19:00:58 2018 -0400
+
+    modified about route to use user name instead of id and temporarily commented out the api key
+
+khinshanK -- Tue Jun 12 19:44:03 2018 -0400
+
+    made a parser of int to words, added a bunch of random team data using loops and randomness
+
+khinshanK -- Tue Jun 12 19:47:39 2018 -0400
+
+    uncommented api stuff, but it's still on cooldown. exec delegation to ryan to make the exception for cooldown
+
+stanleyL -- Tue Jun 12 20:54:03 2018 -0400
+
+    added combined match csv
+
+stanleyL -- Tue Jun 12 21:00:08 2018 -0400
+
+    erro fix?
+
+ryanS -- Tue Jun 12 21:27:54 2018 -0400
+
+    Fix scaling of visualization graph to work with sets of data of varying sizes
+
+khinshanK -- Tue Jun 12 22:08:46 2018 -0400
+
+    tried to use semaphoric logic for matches and alliances
+
+ryanS -- Tue Jun 12 22:20:06 2018 -0400
+
+    Add message if API could not find previous competitions
+
+ryanS -- Tue Jun 12 22:28:13 2018 -0400
+
+    Add try excepts to API calls
+
+ryanS -- Tue Jun 12 22:29:07 2018 -0400
+
+    Fix default case for API handling
+
+ryanS -- Tue Jun 12 22:35:20 2018 -0400
+
+    More API patches
+
+khinshanK -- Tue Jun 12 22:47:02 2018 -0400
+
+    judging by a look into the db, my sample data works perfectly, but site is still not operational
+
+ryanS -- Tue Jun 12 22:50:21 2018 -0400
+
+    More API bug fixes
+
+ryanS -- Tue Jun 12 22:53:19 2018 -0400
+
+    Change downloaded match csv
+
+ryanS -- Tue Jun 12 22:54:50 2018 -0400
+
+    Fix typo
+
+ryanS -- Tue Jun 12 22:59:33 2018 -0400
+
+    Fix special characters
+
+ryanS -- Tue Jun 12 23:15:34 2018 -0400
+
+    Fix more bugs with API
+
+khinshanK -- Tue Jun 12 23:34:31 2018 -0400
+
+    made sample matches 8 instead 4, and fixed up js to be more indicative (minor error before of name order fixed)
+
+khinshanK -- Tue Jun 12 23:50:37 2018 -0400
+
+    moved apu init and took out all 500 error handeling (it was for debugging tbh)
+
+khinshanK -- Tue Jun 12 23:53:05 2018 -0400
+
+    api init moved again for deployment
+
+khinshanK -- Tue Jun 12 23:56:39 2018 -0400
+
+    editted api key path
+
+khinshanK -- Tue Jun 12 23:57:48 2018 -0400
+
+    forgot to import os for basedir
+
+khinshanK -- Wed Jun 13 00:17:49 2018 -0400
+
+    changed rounding to more places
+
+khinshanK -- Wed Jun 13 00:21:49 2018 -0400
+
+    changed rounding to less places
+
+khinshanK -- Wed Jun 13 00:29:38 2018 -0400
+
+    centering cards
+
+khinshanK -- Wed Jun 13 00:31:19 2018 -0400
+
+    centering cards
+
+khinshanK -- Wed Jun 13 00:33:46 2018 -0400
+
+    centering cards
+
+khinshanK -- Wed Jun 13 00:39:32 2018 -0400
+
+    centering cards
+
+khinshanK -- Wed Jun 13 00:52:22 2018 -0400
+
+    attempt at fixing search team in dashboard for aesthtics
+
+khinshanK -- Wed Jun 13 06:53:28 2018 -0400
+
+    Update README.md
