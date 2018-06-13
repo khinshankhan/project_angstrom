@@ -219,7 +219,7 @@ def add_sample():
                 semaphore = 0
             else:
                 semaphore = 1
-                
+
 
 if __name__ == "__main__":
     db_setup()

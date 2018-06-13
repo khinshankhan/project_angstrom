@@ -43,13 +43,15 @@ def get_seasons(key):
 
 #gets all events a team has attended
 def get_team_events(key, team_num):
+    if not seasons:
+        return []
     try:
         for season in seasons:
             response = requests.get('%s/team/%d/%d/events'%(
                 BASE_URL, team_num, int(season["season_key"])),
                                     headers=default_header(key))
         return json.loads(response.text)
-    except ValueError, TypeError:
+    except ValueError:
         return []
 
 #in the TOA api, the /matches and /stations route can be combined to find
