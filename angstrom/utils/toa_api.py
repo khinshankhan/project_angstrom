@@ -21,26 +21,35 @@ def api_init():
     return key
 
 def get_events(key):
-    response = requests.get('%s/events'%(BASE_URL), headers=default_header(key))
-    return json.loads(response.text)
+    try:
+        response = requests.get('%s/events'%(BASE_URL), headers=default_header(key))
+        return json.loads(response.text)
+    except ValueError:
+        return None
 
 def get_seasons(key):
     global seasons
-    response = requests.get('%s/seasons'%(BASE_URL), headers=default_header(key))
-    if seasons == None:
-        seasons = json.loads(response.text)
-    return json.loads(response.text)
+    try:
+        response = requests.get('%s/seasons'%(BASE_URL), headers=default_header(key))
+        if seasons == None:
+            seasons = json.loads(response.text)
+        return json.loads(response.text)
+    except ValueError:
+        return None
 
 #previous matches a team has been in
 #find high score
 
 #gets all events a team has attended
 def get_team_events(key, team_num):
-    for season in seasons:
-        response = requests.get('%s/team/%d/%d/events'%(
+    try:
+        for season in seasons:
+            response = requests.get('%s/team/%d/%d/events'%(
                 BASE_URL, team_num, int(season["season_key"])),
-            headers=default_header(key))
-    return json.loads(response.text)
+                                    headers=default_header(key))
+        return json.loads(response.text)
+    except ValueError:
+        return None
 
 #in the TOA api, the /matches and /stations route can be combined to find
 #which teams were red or blue
@@ -89,12 +98,16 @@ def get_team_matches(key, team_num, event=None):
         events = [event]
     
     for event in events:
-        matches = json.loads(
+        try:
+            matches = json.loads(
                 requests.get('%s/event/%s/matches'%(BASE_URL, event['event_key']),
-                headers=default_header(key)).text)
-        stations = json.loads(
+                             headers=default_header(key)).text)
+            stations = json.loads(
                 requests.get('%s/event/%s/matches/stations'%(BASE_URL, event['event_key']),
-                headers=default_header(key)).text)
+                             headers=default_header(key)).text)
+        except ValueError:
+            return None
+
         desired_stations = []
 
         #find all stations in which the team_num was involved

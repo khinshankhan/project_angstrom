@@ -289,8 +289,7 @@ def profile():
     impacts = impact(team_data, team_tuple[0])
 
     previous_events = get_team_events(key, team_tuple[0])
-    print(previous_events)
-
+    
     datasets = [
         url_for('get_oprs', team_nums = [team_tuple[0]]),
         url_for('get_impacts', team_nums = [team_tuple[0]]),
