@@ -1,5 +1,5 @@
 import requests, json
-
+import os
 BASE_URL = "https://theorangealliance.org/apiv2"
 
 seasons = None
