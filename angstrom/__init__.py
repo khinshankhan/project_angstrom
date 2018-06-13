@@ -40,6 +40,9 @@ team_pic_directory = "static/img/public"
 data_directory = basedir + "/utils/data/"
 
 add_sample()
+key = api_init()
+#events = get_team_events(key, 310)
+
 
 #naming of app and key
 app = Flask(__name__)
