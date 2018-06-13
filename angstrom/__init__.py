@@ -241,10 +241,10 @@ def pictures(filename):
 @app.route('/csvs/match_performance')
 @admin
 def csv_mp():
-    export_csv(data_directory + "perf.csv", "match_performance")
-    return send_from_directory(data_directory, "perf.csv",
+    export_csv(data_directory + "match.csv", "matches")
+    return send_from_directory(data_directory, "matches.csv",
                                mimetype='text/csv',
-                               attachment_filename='match_performance.csv',
+                               attachment_filename='matches.csv',
                                as_attachment=True)
 
 @app.route('/csvs/pre_scout')
@@ -524,5 +524,4 @@ if __name__ == "__main__":
     app.debug = False
     key = api_init()
     #events = get_team_events(key, 310)
-    export_csv("match.csv", "matches")
     app.run()
