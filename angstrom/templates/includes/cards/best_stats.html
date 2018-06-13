@@ -7,11 +7,11 @@
     {% set count = loop.index %}
     <div class="col 3 m6 l3 center-align">
       <script type="text/javascript">
-	      var themain = {{datasets|tojson}}
-	      var maindata = {{datalink|tojson}}
+	var themain = {{datasets|tojson}}
+	var maindata = {{datalink|tojson}}
       </script>
       <h6 class="center-align">{{datalink[0][0]}}</h6>
-      <div id={{datalink[0][1]}}></div>
+      <div id={{datalink[0][1]}} class="center-align"></div>
     </div>
     <script src="{{ url_for('static', filename='js/stat_team.js') }}"></script>
     {% endfor %}
@@ -20,7 +20,7 @@
     {% set count = loop.index %}
     <div class="col s12 m6 l3">
       <h6 class="center-align">{{name}}</h6>
-	    <p class="center-align">NO TEAMS FOUND</p>
+      <p class="center-align">NO TEAMS FOUND</p>
     </div>
     {% endfor %}
     {% endif %}
