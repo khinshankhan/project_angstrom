@@ -575,6 +575,7 @@ def export_csv(filename, table_name):
     out_file = open("%s"%(filename), "w")
     writer = csv.writer(out_file)
     
+    querystring = ""
     if table_name == "matches":
         querystring = '''
             SELECT * FROM match_performance
@@ -582,9 +583,9 @@ def export_csv(filename, table_name):
                     match_tasks.entry_id =
                     match_performance.entry_id;
         '''
-    if table_name == "pre_scout":
+    elif table_name == "pre_scout":
         querystring = 'SELECT * FROM pre_scout;'
-    if table_name == "teams":
+    elif table_name == "teams":
         querystring = 'SELECT * FROM teams;'
     
     c.execute(querystring)
