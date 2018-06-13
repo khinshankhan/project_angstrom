@@ -241,7 +241,7 @@ def pictures(filename):
 @app.route('/csvs/match_performance')
 @admin
 def csv_mp():
-    export_csv(data_directory + "match.csv", "matches")
+    export_csv(data_directory + "matches.csv", "matches")
     return send_from_directory(data_directory, "matches.csv",
                                mimetype='text/csv',
                                attachment_filename='matches.csv',
