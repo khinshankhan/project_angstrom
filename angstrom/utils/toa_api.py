@@ -25,7 +25,7 @@ def get_events(key):
         response = requests.get('%s/events'%(BASE_URL), headers=default_header(key))
         return json.loads(response.text)
     except ValueError:
-        return None
+        return []
 
 def get_seasons(key):
     global seasons
@@ -35,7 +35,7 @@ def get_seasons(key):
             seasons = json.loads(response.text)
         return json.loads(response.text)
     except ValueError:
-        return None
+        return []
 
 #previous matches a team has been in
 #find high score
@@ -49,7 +49,7 @@ def get_team_events(key, team_num):
                                     headers=default_header(key))
         return json.loads(response.text)
     except ValueError:
-        return None
+        return []
 
 #in the TOA api, the /matches and /stations route can be combined to find
 #which teams were red or blue
@@ -106,7 +106,7 @@ def get_team_matches(key, team_num, event=None):
                 requests.get('%s/event/%s/matches/stations'%(BASE_URL, event['event_key']),
                              headers=default_header(key)).text)
         except ValueError:
-            return None
+            return []
 
         desired_stations = []
 
