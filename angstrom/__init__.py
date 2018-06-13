@@ -226,7 +226,9 @@ def visualize():
 
     datasets = [
         url_for('get_oprs', team_nums = teams_to_display),
-        url_for('get_impacts', team_nums = teams_to_display)
+        url_for('get_impacts', team_nums = teams_to_display),
+        url_for('get_glyphs', team_nums = teams_to_display),
+        url_for('get_auto_glyphs', team_nums = teams_to_display)
     ]
 
     return render_template('visualize.html', teams = teams, datasets = datasets, team_nums = teams_to_display)
@@ -287,6 +289,7 @@ def profile():
     impacts = impact(team_data, team_tuple[0])
 
     previous_events = get_team_events(key, team_tuple[0])
+    print(previous_events)
 
     datasets = [
         url_for('get_oprs', team_nums = [team_tuple[0]]),

@@ -31,6 +31,9 @@
               <li><i class="teal-text inline-icon material-icons">info</i> No prescout information</li>
               {% endif %}
               <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Previous competitions">skip_previous</i> <strong>Previous Competitions</strong>
+                {% if not previous_events %}
+                <br><i class="white-text inline-icon material-icons">skip_previous</i> None found
+                {% endif %}
                 {% for event in previous_events %}
                 <br><i class="white-text inline-icon material-icons">skip_previous</i>
                 {{ event['event_name'] }}, {{ event['state_prov'] }} ({{ event['event_type_key'] }})
