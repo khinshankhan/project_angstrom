@@ -48,7 +48,7 @@ def get_team_events(key, team_num):
                 BASE_URL, team_num, int(season["season_key"])),
                                     headers=default_header(key))
         return json.loads(response.text)
-    except ValueError:
+    except ValueError, TypeError:
         return []
 
 #in the TOA api, the /matches and /stations route can be combined to find
@@ -105,7 +105,7 @@ def get_team_matches(key, team_num, event=None):
             stations = json.loads(
                 requests.get('%s/event/%s/matches/stations'%(BASE_URL, event['event_key']),
                              headers=default_header(key)).text)
-        except ValueError:
+        except ValueError, TypeError:
             return []
 
         desired_stations = []
