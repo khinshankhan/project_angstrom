@@ -473,25 +473,6 @@ def page_error__429(error):
 @app.errorhandler(431)
 def page_error__431(error):
         return render_template('errors.html', error=error, status=431), 431
-@app.errorhandler(500)
-def page_error__500(error):
-        return render_template('errors.html', error=error, status=500), 500
-@app.errorhandler(501)
-def page_error__501(error):
-        return render_template('errors.html', error=error, status=501), 501
-@app.errorhandler(502)
-def page_error__502(error):
-        return render_template('errors.html', error=error, status=502), 502
-@app.errorhandler(503)
-def page_error__503(error):
-        return render_template('errors.html', error=error, status=503), 503
-@app.errorhandler(504)
-def page_error__504(error):
-        return render_template('errors.html', error=error, status=504), 504
-@app.errorhandler(505)
-def page_error__505(error):
-        return render_template('errors.html', error=error, status=505), 505
-
 
 '''    
 #exit commands
@@ -522,6 +503,4 @@ def log_the_status_code(response):
 
 if __name__ == "__main__":
     app.debug = False
-    key = api_init()
-    #events = get_team_events(key, 310)
     app.run()

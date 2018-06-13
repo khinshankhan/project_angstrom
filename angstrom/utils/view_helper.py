@@ -78,6 +78,9 @@ def gen_task_dict(form):
 
 
 def add_sample():
+    key = api_init()
+    #events = get_team_events(key, 310)
+    
     if not os.path.isfile(db_file):
         db_setup()
 
