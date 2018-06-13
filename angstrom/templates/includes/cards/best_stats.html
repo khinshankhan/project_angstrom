@@ -5,7 +5,7 @@
     {% if teams %}
     {% for datalink in datasets %}
     {% set count = loop.index %}
-    <div class="col 3 m6 l3">
+    <div class="col 3 m6 l3 center-align">
       <script type="text/javascript">
 	      var themain = {{datasets|tojson}}
 	      var maindata = {{datalink|tojson}}
