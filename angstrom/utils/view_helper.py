@@ -163,7 +163,7 @@ def add_sample():
         doublesemaphore = 0
         entry = 7
         match = 4
-        for i in range(17,25):
+        for i in range(10,51):
             country = random.randint(1,len(country_list)-1)
             add_team({
                 "team": i,
@@ -212,9 +212,8 @@ def add_sample():
                 "notes": ""
             })
             doublesemaphore += 1
-            if semaphore == 1 and doublesemaphore == 3:
-                match += 4
             if doublesemaphore == 4:
+                match += 4
                 doublesemaphore = 0
             if semaphore == 1:
                 semaphore = 0
