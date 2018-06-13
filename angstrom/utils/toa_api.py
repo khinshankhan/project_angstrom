@@ -35,6 +35,7 @@ def get_seasons(key):
             seasons = json.loads(response.text)
         return json.loads(response.text)
     except ValueError:
+        seasons = []
         return []
 
 #previous matches a team has been in
