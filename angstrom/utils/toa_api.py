@@ -4,6 +4,8 @@ BASE_URL = "https://theorangealliance.org/apiv2"
 
 seasons = None
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 def default_header(key):
     return {
         "X-Application-Origin": "Project Angstrom",
@@ -11,7 +13,7 @@ def default_header(key):
     }
 
 def get_api_key():
-    f = open('toa_key.txt')
+    f = open(basedir + '/../toa_key.txt')
     key = f.readline().strip()
     return key
 
