@@ -23,7 +23,7 @@ function get_data(){
 		    });
 		    var sum = temp.reduce(function(a, b) { return a + b; });
 		    var avg = sum / temp.length;
-		    avg = Math.round(avg * 10000) / 10000
+		    avg = Math.round(avg * 1000) / 1000
 		    //console.log(avg);
 		    //console.log(name2);
 		    set.push(avg);
