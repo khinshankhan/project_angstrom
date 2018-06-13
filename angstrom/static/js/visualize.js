@@ -62,7 +62,9 @@ var chart = function(teams, svgDOM, svg, name) {
       .x(function(d) { return x(d[0]); })
       .y(function(d) { return y(d[1]); });
 
-  x.domain(d3.extent(teams[0].values, function(d) { return parseInt(d[0])**(1+1/d[0])-d[0]*.2; }));
+  var max = d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseInt(d[0]); })})
+  x.domain([1-1/max,
+            d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseInt(d[0])+1/d[0]; })})]);
 
   y.domain([0,
             d3.max(teams, function(c) { return d3.max(c.values, function(d) { return parseFloat(d[1]) * 1.1; }); })

@@ -9,7 +9,7 @@
       <span>
         <div class="row">
           <div class="col l6 hide-on-med-and-down">
-            <img src="{{ url_for('static', filename='img/public/'+team.pic)}}" alt="" class="responsive-img" style="max-width:50%;">
+            <img src="{{ url_for('static', filename='img/public/'+team.pic)}}" alt="{{ team.team_name }}" class="responsive-img" style="max-width:50%;">
           </div>
           <div class="col m12 hide-on-large-only">
             <img src="{{ url_for('static', filename='img/public/'+team.pic)}}" alt="" class="responsive-img">
@@ -22,8 +22,8 @@
               {% if prescout %}
               <li><i class="teal-text inline-icon material-icons tooltipped" data-position="left" data-tooltip="Prescout">info</i>
                 Prescout <strong>auto</strong>: {{ prescout[1] }}, <strong>teleop</strong>: {{ prescout[2] }}, <strong>endgame</strong>: {{ prescout[3] }}
-                <br><i class="white-text inline-icon material-icons">info</i>
                 {% if prescout[4] %}
+                <br><i class="white-text inline-icon material-icons">info</i>
                 Prescout <strong>notes</strong>: {{ prescout[4] }}
                 {% endif %}
               </li>
