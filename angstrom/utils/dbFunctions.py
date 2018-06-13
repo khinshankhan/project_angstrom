@@ -566,7 +566,7 @@ def add_tasks_customdb(data):
     db.commit()
     db.close()
 
-#match_perf, pre_scout, teams
+#for match data, use table_name = "matches"
 def export_csv(filename, table_name):
     db = sqlite3.connect(db_file)
     db.row_factory = sqlite3.Row    #get column names
@@ -575,27 +575,23 @@ def export_csv(filename, table_name):
     out_file = open("%s"%(filename), "w")
     writer = csv.writer(out_file)
     
-    if table_name == "match_performance":
-        querystring = '''SELECT * FROM match_performance;'''
-        c.execute(querystring)
-        data = c.fetchall()
-        if len(data) > 0:
-            writer.writerow(data[0].keys())
-            writer.writerows(data)
+    if table_name == "matches":
+        querystring = '''
+            SELECT * FROM match_performance
+                INNER JOIN match_tasks ON
+                    match_tasks.entry_id =
+                    match_performance.entry_id;
+        '''
     if table_name == "pre_scout":
-        querystring = '''SELECT * FROM pre_scout;'''
-        c.execute(querystring)
-        data = c.fetchall()
-        if len(data) > 0:
-            writer.writerow(data[0].keys())
-            writer.writerows(data)
+        querystring = 'SELECT * FROM pre_scout;'
     if table_name == "teams":
-        querystring = '''SELECT * FROM teams;'''
-        c.execute(querystring)
-        data = c.fetchall()
-        if len(data) > 0:
-            writer.writerow(data[0].keys())
-            writer.writerows(data)
+        querystring = 'SELECT * FROM teams;'
+    
+    c.execute(querystring)
+    data = c.fetchall()
+    if len(data) > 0:
+        writer.writerow(data[0].keys())
+        writer.writerows(data)
     
     db.close()
     out_file.close()
