@@ -48,18 +48,19 @@ function get_data(){
 	    name.splice(0, 1);
 
 	    set2 = [];
-	    for (var z = 0; z < set.length && z < 3; z++){
+	    for (var z = 0; z < set.length; z++){
 		var combined = [set[z], name2[z]];
 		set2.push(combined);
 	    }
 	    set2.sort(sortFunction);
+	    var tset = set2.splice(0, 3);
 	    //console.log(set2);
 	    //console.log(element[0][1]);
 	    //console.log(nom);
 	    //console.log(set);
 	    var elemExists = document.getElementById(nom);
 	    if(elemExists != null){
-		document.getElementById(nom).appendChild(makeUL(set2));
+		document.getElementById(nom).appendChild(makeUL(tset));
 	    }
 	});
     })

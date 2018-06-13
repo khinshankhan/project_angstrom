@@ -163,7 +163,7 @@ def add_sample():
         doublesemaphore = 0
         entry = 7
         match = 4
-        for i in range(10,51):
+        for i in range(10,26):
             country = random.randint(1,len(country_list)-1)
             add_team({
                 "team": i,
@@ -172,38 +172,15 @@ def add_sample():
                 "num_mem": random.randint(1,101),
                 "pic": "itsa.jpg"
             })
-            add_tasks_customdb({
-                "entry_id": entry,
-                "team_num": i,
-                "match_num": match,
-                "alliance": semaphore,
-                "user_id": 0,
-            })
-            entry += 1
-            add_tasks_customdb({
-                "entry_id": entry,
-                "team_num": i,
-                "match_num": match + 1,
-                "alliance": semaphore,
-                "user_id": 0,
-            })
-            entry += 1
-            add_tasks_customdb({
-                "entry_id": entry,
-                "team_num": i,
-                "match_num": match + 2,
-                "alliance": semaphore,
-                "user_id": 0,
-            })
-            entry += 1
-            add_tasks_customdb({
-                "entry_id": entry,
-                "team_num": i,
-                "match_num": match + 3,
-                "alliance": semaphore,
-                "user_id": 0,
-            })
-            entry += 1
+            for j in range(0, 8):
+                add_tasks_customdb({
+                    "entry_id": entry,
+                    "team_num": i,
+                    "match_num": match + j,
+                    "alliance": semaphore,
+                    "user_id": 0,
+                })
+                entry += 1
             add_pre_scout({
                 "team": i,
                 "auton": random.randint(1,30),
@@ -213,7 +190,7 @@ def add_sample():
             })
             doublesemaphore += 1
             if doublesemaphore == 4:
-                match += 4
+                match += 8
                 doublesemaphore = 0
             if semaphore == 1:
                 semaphore = 0
