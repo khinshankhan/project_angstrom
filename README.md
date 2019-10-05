@@ -19,4 +19,4 @@
 8. View and interact the site by opening a browser and navigating to: `127.0.0.1:5000` or `localhost:5000`
 
 ### Disclaimer: 
-Although this was made for a software development class, we almost pitched the idea officially to FTC, but ultimately did not. Although we don't have any official license set up for this, we'd appreciate it if you abided by [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/), by which, you just accredit us even if it's a minor mention in the project. We're also open to take any questions or comments you may have (you can either open an issue here or contact Khinshan, other team members may be available as well).
+Although this was made for a software development class, we almost pitched the idea officially to FTC, but ultimately did not. We previously did not have a license, but now have a [GNU General Public License v3.0](./LICENSE.org) and we ask you abide by it. We're also open to take any questions or comments you may have (you can either open an issue here or contact Khinshan, other team members may be available as well).
